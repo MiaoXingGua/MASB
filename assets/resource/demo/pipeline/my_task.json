@@ -1,0 +1,52 @@
+{
+    // ↓ 识别文字
+    "点击存储": {
+        "recognition": "OCR", // 需要识别东西时填这个
+        "expected": "Storage", // 识别内容
+        "action": "Click", // 执行动作
+        "next": [       // 后后续(动作)节点列表
+            "向下滑动" // 节点匹配成功时，立即终止后续节点检测
+        ]
+    },
+    "向下滑动": {
+        // 这里不需要识别任何东西 滑动即可
+        "action": "Swipe",
+        // 给Swipe动作一些额外参数
+        "begin": [
+            100, // x
+            500, // y
+            10, // width
+            10  // height
+        ],
+        "end": [
+            100,
+            100,
+            10,
+            10
+        ],
+        "next": [
+            "点击图片"
+        ]
+    },
+    "点击图片": {
+        "recognition": "OCR",
+        "expected": "Images",
+        "action": "Click",
+        "next": [
+            "点击视频"
+        ]
+    },
+    // 识别图片
+    "点击视频": {
+        "recognition": "TemplateMatch",
+        // 范围，默认全屏
+        "roi":[
+            0,
+            0,
+            0,
+            0
+        ],
+        "template": "VideosL.png",
+        "action": "Click",
+    },
+}
