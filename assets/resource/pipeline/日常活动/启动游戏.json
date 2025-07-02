@@ -1,0 +1,13 @@
+{
+    "打开App": {
+        "doc": "StartGame_Start",
+        "action": "StartApp",
+        "package": "com.moonton.silverblood.cn",
+        "post_delay": 5000,
+        "pre_wait_freezes": 500,
+        "next": [
+            "StartGame_Logo"
+        ]
+    },
+
+}
