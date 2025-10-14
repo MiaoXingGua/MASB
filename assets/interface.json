@@ -2,7 +2,6 @@
     "name": "MASB - MaaAssistantSilver&Blood 银与绯",
     "url": "https://github.com/MiaoXingGua/MASB",
     "version": "0.01",
-    "mfa_min_version": "1.1.366.398",
     "message": "- 银与绯 -",
     "controller": [
         {
@@ -14,14 +13,14 @@
         {
             "name": "国服",
             "path": [
-                "{PROJECT_DIR}/resource"
+                "{PROJECT_DIR}/resource/demo"
             ]
         },
         {
             "name": "国际服",
             "path": [
-                "{PROJECT_DIR}/resource",
-                "{PROJECT_DIR}/resource_internation" // 依次加载，后加载的资源会覆盖前加载的资源
+                "{PROJECT_DIR}/resource/demo",
+                "{PROJECT_DIR}/resource/game" // 依次加载，后加载的资源会覆盖前加载的资源
             ]
         }
     ],
@@ -32,10 +31,10 @@
         ]
     },
     "task": [
-       {
-            "name": "启动游戏",
-            "entry": "StartGame_Start"
-        },
+    //    {
+    //         "name": "启动游戏",
+    //         "entry": "StartGame_Start"
+    //     },
     ],
     "option": {
 

@@ -1,0 +1,67 @@
+{
+
+    "打开游戏": {
+        "doc": "打开游戏",
+        "action": "StartApp",
+        "package": "com.moonton.silverblood.cn",
+        "post_delay": 5000, // 执行动作后 到 识别 next 的延迟，毫秒。可选，默认 200 。
+        "pre_wait_freezes": 1000, // 等待画面静止，毫秒。可选，默认 0 ，即不等待。
+        "next": [
+            "Loading_Logo"
+        ]
+    },
+    "Loading_Logo":{
+        "doc": "开始加载",
+        "recognition": "FeatureMatch",
+        "template": "StartLoading.png",
+         "post_delay": 5000, // 执行动作后 到 识别 next 的延迟，毫秒。可选，默认 200 。
+        "pre_wait_freezes": 1000, // 等待画面静止，毫秒。可选，默认 0 ，即不等待。
+        "next": [
+            "Start_Logo"
+        ]
+    },
+    // 识别点击进入游戏标志
+    "Start_Logo":{
+        "recognition": "OCR", // 需要识别东西时填这个
+        "expected": "START", // 识别内容
+        "action": "Click", // 执行动作
+    },
+
+
+    // "贵宾商店":{
+    //     "recognition": "OCR", // 需要识别东西时填这个
+    //     "expected": "贵宾商店", // 识别内容
+    //     "action": "Click", // 执行动作
+    // },
+
+    // "彼岸邀约":{
+    //     "recognition": "OCR", // 需要识别东西时填这个
+    //     "expected": "彼岸", // 识别内容
+    //     "action": "Click", // 执行动作
+    // },
+
+    // "猎杀之夜":{
+    //     "recognition": "OCR", // 需要识别东西时填这个
+    //     "expected": "猎杀之夜", // 识别内容
+    //     "action": "Click", // 执行动作
+    // },
+
+    // "新生盛宴":{
+    //     "recognition": "OCR", // 需要识别东西时填这个
+    //     "expected": "新生盛宴", // 识别内容
+    //     "action": "Click", // 执行动作
+    // },
+
+    // "新月之旅":{
+    //     "recognition": "OCR", // 需要识别东西时填这个
+    //     "expected": "新月之旅", // 识别内容
+    //     "action": "Click", // 执行动作
+    // },
+
+    // "忘却中庭":{
+    //     "recognition": "OCR", // 需要识别东西时填这个
+    //     "expected": "猎杀之夜", // 识别内容
+    //     "action": "Click", // 执行动作
+    // },
+
+}
