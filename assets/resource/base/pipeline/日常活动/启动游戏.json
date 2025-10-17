@@ -1,67 +1,122 @@
+
+    /**
+        打开游戏功能
+        1、启动APP doc提示用户
+        2、直到识别 《START》点击游戏进入 每3秒检查一次
+        PS: 如果 2 没有识别到《START》进入interrupt（异常事件）（异常事件写在1中）
+        2-1、如果识别到 《连接服务器失败》 则要识别到《重试》并点击
+        2-2、如果识别到 《下载》则点击
+        2-3、如果识别到 《开始下载》则点击
+        规则：
+        ① Node会依次尝试执行next中的Node，直到匹配到能成功执行的Node（如果想让程序必然进入这个Node，则可以设置这个Node什么都不做就是单纯输出一下文字）
+        ② 如果①中Node尝试了所有next没有成功的，则开始依次尝试interrupt中Node，如果还没有成功的，则整个pipline结束
+        ③ 匹配到next中的Node，进入后会一直顺序执行（不会回头），而匹配到interrupt中的Node，但这个Node的pipline结束则会回到则会回到一开始的interrupt的Node的父Node中
+
+
+    **/
 {
+    // 入口：启动《银与血》，空操作跳转StartApp
+    "启动游戏": {
+        "focus": "> 启动《银与血》",
+        "action": {
+            "type": "DoNothing"
+        },
+        "next": ["StartApp"]
+    },
 
-    "打开游戏": {
-        "doc": "打开游戏",
-        "action": "StartApp",
-        "package": "com.moonton.silverblood.cn",
-        "post_delay": 5000, // 执行动作后 到 识别 next 的延迟，毫秒。可选，默认 200 。
-        "pre_wait_freezes": 1000, // 等待画面静止，毫秒。可选，默认 0 ，即不等待。
+    // 启动APP，定义正常流程和异常处理
+    "StartApp": {
+        "focus": "> 正在启动《银与血》...",
+        "action": {
+            "type": "StartApp",
+            "param": {
+                "package": "com.moonton.silverblood.ap"
+            }
+        },
         "next": [
-            "Loading_Logo"
-        ]
-    },
-    "Loading_Logo":{
-        "doc": "开始加载",
-        "recognition": "FeatureMatch",
-        "template": "StartLoading.png",
-         "post_delay": 5000, // 执行动作后 到 识别 next 的延迟，毫秒。可选，默认 200 。
-        "pre_wait_freezes": 1000, // 等待画面静止，毫秒。可选，默认 0 ，即不等待。
-        "next": [
-            "Start_Logo"
-        ]
-    },
-    // 识别点击进入游戏标志
-    "Start_Logo":{
-        "recognition": "OCR", // 需要识别东西时填这个
-        "expected": "START", // 识别内容
-        "action": "Click", // 执行动作
+            "CheckStart",            // 检查START按钮
+            "CheckCloseAnnouncement", // 检查公告关闭按钮
+            "AlreadyInHomePage"      // 检查是否已在首页
+        ],
+        "interrupt": [
+            "CheckRetry",         // 网络异常.json：点击重试
+            "CheckDownload",      // 发现更新.json：点击下载
+            "CheckStartDownload", // 开始下载.json：点击开始下载
+            "CheckConfirm"        // 确认信息.json：点击确认
+        ],
+        "post_delay": 5000,   // 启动后延迟5s
+        "rate_limit": 3000,   // 每3s检查
+        "timeout": 600000     // 总超时10min
     },
 
+    // 检查是否已在首页，成功则结束
+    "AlreadyInHomePage": {
+        "focus": "> 检查是否在首页...",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["人偶商会", "贵族商店", "月度邀请", "活动"], // 精简关键词，覆盖主要标识
+                "roi": [50, 50, 1180, 620] // 非全屏，聚焦主界面（720p）
+            }
+        },
+        "next": ["EndTask"],
+        "timeout": 10000,     // 10s超时，快速检查
+        "rate_limit": 2000    // 每2s检查
+    },
 
-    // "贵宾商店":{
-    //     "recognition": "OCR", // 需要识别东西时填这个
-    //     "expected": "贵宾商店", // 识别内容
-    //     "action": "Click", // 执行动作
-    // },
+    // 检查START按钮，成功则点击并检查公告
+    "CheckStart": {
+        "focus": "> 等待START按钮...",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "START",
+                "roi": [537, 529, 185, 107]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "next": ["CheckCloseAnnouncement"],
+        "pre_delay": 500,     // 识别后延迟0.5s
+        "post_delay": 1000,   // 点击后延迟1s
+        "rate_limit": 3000,   // 每3s检查
+        "timeout": 600000     // 总超时10min
+    },
 
-    // "彼岸邀约":{
-    //     "recognition": "OCR", // 需要识别东西时填这个
-    //     "expected": "彼岸", // 识别内容
-    //     "action": "Click", // 执行动作
-    // },
+    // 检查公告“X”按钮，15秒内检测到则点击，未检测到结束
+    "CheckCloseAnnouncement": {
+        "focus": "> 检查公告关闭（X）...",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "close_button.png",
+                "threshold": 0.8, // 更严格匹配
+                "roi": [1100, 50, 100, 100] // 右上角区域
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "next": ["EndTask"],
+        "on_error": ["EndTask"], // 超时/失败跳结束
+        "timeout": 15000,       // 15s超时
+        "rate_limit": 1000,     // 每1s检查
+        "post_delay": 500       // 点击后延迟0.5s
+    },
 
-    // "猎杀之夜":{
-    //     "recognition": "OCR", // 需要识别东西时填这个
-    //     "expected": "猎杀之夜", // 识别内容
-    //     "action": "Click", // 执行动作
-    // },
-
-    // "新生盛宴":{
-    //     "recognition": "OCR", // 需要识别东西时填这个
-    //     "expected": "新生盛宴", // 识别内容
-    //     "action": "Click", // 执行动作
-    // },
-
-    // "新月之旅":{
-    //     "recognition": "OCR", // 需要识别东西时填这个
-    //     "expected": "新月之旅", // 识别内容
-    //     "action": "Click", // 执行动作
-    // },
-
-    // "忘却中庭":{
-    //     "recognition": "OCR", // 需要识别东西时填这个
-    //     "expected": "猎杀之夜", // 识别内容
-    //     "action": "Click", // 执行动作
-    // },
-
+    // 结束：成功进入游戏，终止任务
+    "EndTask": {
+        "focus": "> 游戏已成功启动！",
+        "action": {
+            "type": "DoNothing"
+        },
+        "next": []
+    }
 }
