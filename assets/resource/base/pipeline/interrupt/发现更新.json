@@ -1,0 +1,39 @@
+{
+    // 检查“下载”按钮，点击后返回主流程
+    "CheckDownload": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "下载",
+                "roi": [600, 450, 85, 65]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "next": [],          // 结束子流程，返回StartApp
+        "post_delay": 1000   // 点击后延迟1s，确保下载开始
+    },
+
+    // 检查“开始下载”按钮，点击后返回主流程
+    "CheckStartDownload": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "开始下载",
+                "roi": [0, 0, 0, 0]  // 全屏，建议调试后优化ROI
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "next": [],          // 结束子流程，返回StartApp
+        "post_delay": 1000   // 点击后延迟1s
+    }
+}

@@ -1,0 +1,42 @@
+{
+    // 检查“点击任意位置继续”，点击屏幕中心后返回主流程
+    "CheckTapContinue": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "点击任意位置继续",
+                "roi": [0, 0, 0, 0]  // 全屏，建议调试后优化
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [640, 360, 0, 0]  // 固定屏幕中心（720p: 1280x720）
+            }
+        },
+        "next": [],          // 结束子流程，返回StartApp
+        "post_delay": 500    // 点击后延迟0.5s
+    },
+
+    // 检查“X”关闭按钮，点击后返回主流程
+    "CheckClose": {
+        "recognition": {
+            "type": "TemplateMatch",  // 用图像匹配（X按钮更稳定）
+            "param": {
+                "template": "close_button.png",  // 需准备720p裁剪图像
+                "threshold": 0.7, // 匹配得分（1就是100%匹配）
+                "roi": [0, 0, 0, 0]  // 右上角区域（示例）
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        // "green_mask":true,
+        // "method":5,
+        "next": [],          // 结束子流程，返回StartApp
+        "post_delay": 500    // 点击后延迟0.5s
+    }
+}

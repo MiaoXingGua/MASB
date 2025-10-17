@@ -1,0 +1,20 @@
+{
+    // 检查“连接游戏服务器失败/登录信息拉取失败”，点击“重试”后返回主流程
+    "CheckRetry": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "重试",
+                "roi": [785, 471, 72, 42]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "next": [],          // 结束子流程，返回StartApp
+        "post_delay": 2000   // 点击后延迟2s，等待网络响应
+    }
+}
