@@ -1,0 +1,79 @@
+{
+    // 检查“登录游戏”按钮存在，跳转点击切换账号
+    "Login_CheckLoginButton": {
+        "focus": "> 检查登录游戏按钮...",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "登录游戏",
+                "roi": [0, 0, 0, 0] // 全屏，建议优化
+            }
+        },
+        "next": ["Login_ClickSwitchAccount"],
+        "rate_limit": 2000,   // 每2s检查
+        "timeout": 15000      // 15s超时
+    },
+
+    // 检查并点击“切换账号”按钮
+    "Login_ClickSwitchAccount": {
+        "focus": "> 点击切换账号按钮...",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "切换账号",
+                "roi": [0, 0, 0, 0] // 全屏，建议优化
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "post_delay": 1000,   // 点击后延迟1s
+        "rate_limit": 2000,   // 每2s检查
+        "timeout": 15000      // 15s超时
+    },
+
+    // 检查并点击“FaceBook”登录按钮
+    "Login_CheckFacebook": {
+        "focus": "> 检查FaceBook登录按钮...",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "FaceBook",
+                "roi": [0, 0, 0, 0] // 全屏，建议优化
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "post_delay": 1000,   // 点击后延迟1s
+        "rate_limit": 2000,   // 每2s检查
+        "timeout": 15000      // 15s超时
+    },
+
+    // 检查并点击“身份继续”按钮
+    "Login_CheckContinueIdentity": {
+        "focus": "> 检查身份继续按钮...",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "身份继续",
+                "roi": [0, 0, 0, 0] // 全屏，建议优化
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "post_delay": 1000,   // 点击后延迟1s
+        "rate_limit": 2000,   // 每2s检查
+        "timeout": 15000      // 15s超时
+    }
+}

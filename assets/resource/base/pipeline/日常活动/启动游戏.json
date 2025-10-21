@@ -4,9 +4,9 @@
         1、启动APP doc提示用户
         2、直到识别 《START》点击游戏进入 每3秒检查一次
         PS: 如果 2 没有识别到《START》进入interrupt（异常事件）（异常事件写在1中）
-        2-1、如果识别到 《连接服务器失败》 则要识别到《重试》并点击
-        2-2、如果识别到 《下载》则点击
-        2-3、如果识别到 《开始下载》则点击
+        2_1、如果识别到 《连接服务器失败》 则要识别到《重试》并点击
+        2_2、如果识别到 《下载》则点击
+        2_3、如果识别到 《开始下载》则点击
         规则：
         ① Node会依次尝试执行next中的Node，直到匹配到能成功执行的Node（如果想让程序必然进入这个Node，则可以设置这个Node什么都不做就是单纯输出一下文字）
         ② 如果①中Node尝试了所有next没有成功的，则开始依次尝试interrupt中Node，如果还没有成功的，则整个pipline结束
@@ -16,11 +16,8 @@
     **/
 {
     // 入口：启动《银与血》，空操作跳转StartApp
-    "启动游戏": {
+    "启动游戏_开始": {
         "focus": "> 启动《银与血》",
-        "action": {
-            "type": "DoNothing"
-        },
         "next": ["StartApp"]
     },
 
@@ -42,7 +39,8 @@
             "CheckRetry",         // 网络异常.json：点击重试
             "CheckDownload",      // 发现更新.json：点击下载
             "CheckStartDownload", // 开始下载.json：点击开始下载
-            "CheckConfirm"        // 确认信息.json：点击确认
+            "CheckConfirm",        // 确认信息.json：点击确认
+            "Login_CheckLoginButton" // 登录游戏.json：点击切换账号
         ],
         "post_delay": 5000,   // 启动后延迟5s
         "rate_limit": 3000,   // 每3s检查
@@ -59,7 +57,7 @@
                 "roi": [50, 50, 1180, 620] // 非全屏，聚焦主界面（720p）
             }
         },
-        "next": ["EndTask"],
+        "next": ["启动游戏_结束"],
         "timeout": 10000,     // 10s超时，快速检查
         "rate_limit": 2000    // 每2s检查
     },
@@ -104,19 +102,15 @@
                 "target": true
             }
         },
-        "next": ["EndTask"],
-        "on_error": ["EndTask"], // 超时/失败跳结束
+        "next": ["启动游戏_结束"],
         "timeout": 15000,       // 15s超时
         "rate_limit": 1000,     // 每1s检查
         "post_delay": 500       // 点击后延迟0.5s
     },
 
     // 结束：成功进入游戏，终止任务
-    "EndTask": {
+    "启动游戏_结束": {
         "focus": "> 游戏已成功启动！",
-        "action": {
-            "type": "DoNothing"
-        },
-        "next": []
+        // "next": []
     }
 }
