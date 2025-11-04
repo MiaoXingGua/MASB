@@ -1,56 +1,53 @@
 /*
-  人偶商会 → 循环入口
-          ├─1─ 免费(左) → 购买 → 继续 → 回循环
-          ├─2─ 免费(右) → 刷新 → 确认 → 回循环
-          └─3─ 结束
+  循环入口
+  ├─1─ 免费(左) → 购买 → 继续 → 回循环
+  ├─2─ 免费(右) → 刷新 → 确认 → 回循环
+  └─3─ 结束
 **/
 
 {
-    // 入口：人偶商店任务
-    "人偶商店_开始": {
-        "focus": "> 启动人偶商店任务",
+    // 入口：杂货铺主任务
+    "人偶商店_杂货铺_开始": {
+        "focus": "> 启动人偶商店 - 杂货铺",
         "next": ["Puppet_CheckMerchant"]
     },
 
-    // 识别《人偶商会》点击进入
+    // 首页：点击「人偶商会」进入
     "Puppet_CheckMerchant": {
-        "focus": "> 点击人偶商会...",
+        "focus": "> 点击人偶商会进入界面",
         "recognition": {
             "type": "OCR",
             "param": {
                 "expected": "人偶商会",
-                "roi": [30, 185, 100, 45]
+                "roi": [30, 185, 100, 45]  // 精准ROI，避免误触其他文字
             }
         },
         "action": {
             "type": "Click",
-            "param": {
-                "target": true
-            }
+            "param": { "target": true }
         },
-        "next": ["Puppet_RefreshLoop"],
+        "next": ["Puppet_MainLoop"],
         "post_delay": 1500,
-        "rate_limit": 2000,
-        "timeout": 30000
+        "rate_limit": 2000
     },
 
-    // 【主循环入口】依次尝试 1→2→3
-    "Puppet_RefreshLoop": {
-        "focus": "> 刷新商品循环（最多3次）...",
+    // 【主循环入口】依次尝试 1→2→3→4
+    "Puppet_MainLoop": {
+        "focus": "> 循环入口：尝试路径1→2→3...",
         "next": [
-            "Puppet_BuyFreeLeft",     // 路径1：左屏免费
-            "Puppet_BuyFreeRight",    // 路径2：右屏免费（**箭头指向右！**）
-            "Puppet_EndTask"          // 路径3：结束
+            "Puppet_CheckFree",   // 路径1 购买免费物品
+            "Puppet_CheckFreeRefresh",  // 路径2
+            "Puppet_EndTask"                // 路径3：结束
         ],
         "rate_limit": 2000,
-        "timeout": 60000,
+        "timeout": 60000
     },
 
     // ————————————————————————
     // 【路径1】左屏免费 → 购买 → 继续 → 回循环
     // ————————————————————————
-    "Puppet_BuyFreeLeft": {
-        "focus": "> 左屏购买免费...",
+    "Puppet_CheckFree": {
+        "focus": "> 检查是否有「免费」物品...",
         "recognition": {
             "type": "OCR",
             "param": {
@@ -65,13 +62,13 @@
                 "target": true
             }
         },
-        "next": ["Puppet_ClickPurchase"],
+        "next": ["Puppet_BuyFree"],
         "post_delay": 800
     },
 
     // 【路径1-1】点击《购买》
-    "Puppet_ClickPurchase": {
-        "focus": "> 点击购买...",
+    "Puppet_BuyFree": {
+        "focus": "> 点击「购买」按钮",
         "recognition": {
             "type": "OCR",
             "param": {
@@ -105,15 +102,15 @@
                 "target": true
             }
         },
-        "next": ["Puppet_RefreshLoop"],  // **回到循环！**
+        "next": ["Puppet_MainLoop"],  // **回到循环！**
         "post_delay": 800
     },
 
     // ————————————————————————
     // 【路径2】右屏免费 → 刷新 → 确认 → 回循环
     // ————————————————————————
-    "Puppet_BuyFreeRight": {
-        "focus": "> 右屏购买免费...",
+    "Puppet_CheckFreeRefresh": {
+        "focus": "> 检查是否有「免费」刷新...",
         "recognition": {
             "type": "OCR",
             "param": {
@@ -162,13 +159,31 @@
                 "target": true
             }
         },
-        "next": ["Puppet_RefreshLoop"], // **回到循环！**
+        "next": ["Puppet_MainLoop"], // **回到循环！**
         "post_delay": 800
     },
 
 
+    // ————————————————————————
     // 【路径3】结束任务
+    // ————————————————————————
     "Puppet_EndTask": {
-        "focus": "> 人偶商店任务结束！"
+        "focus": "> 人偶商会_杂货铺 任务结束...",
+        "next": ["Puppet_Return_To_Main"]
+    },
+
+    "Puppet_Return_To_Main": {
+        "focus": "> 点击返回",
+        "recognition": {
+            "type": "OCR",
+            "param": { "expected": "返回" }
+        },
+        "action": { "type": "Click", "param": { "target": true } },
+        "next": ["人偶商店_杂货铺_结束"],
+        "post_delay": 1000
+    },
+
+    "人偶商店_杂货铺_结束": {
+        "focus": "> 人偶商会_杂货铺 任务完成！"
     }
 }
