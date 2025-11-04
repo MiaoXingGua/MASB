@@ -32,7 +32,6 @@
         },
         "next": [
             "CheckStart",            // 检查START按钮
-            "CheckCloseAnnouncement", // 检查公告关闭按钮
             "AlreadyInHomePage"      // 检查是否已在首页
         ],
         "interrupt": [
@@ -40,7 +39,11 @@
             "CheckDownload",      // 发现更新.json：点击下载
             "CheckStartDownload", // 开始下载.json：点击开始下载
             "CheckConfirm",        // 确认信息.json：点击确认
-            "Login_CheckLoginButton" // 登录游戏.json：点击切换账号
+            "Login_CheckLoginButton", // 登录游戏.json：点击切换账号
+            "CheckProtocol", // 用户协议.json
+            "CheckCloseAnnouncement", // 检查公告关闭按钮
+            "Tap_ClickAnywhere", // 点击任意处继续
+            "Qianfeng_CheckJourney" // 千峰的旅程活动
         ],
         "post_delay": 5000,   // 启动后延迟5s
         "rate_limit": 3000,   // 每3s检查
@@ -51,10 +54,11 @@
     "AlreadyInHomePage": {
         "focus": "> 检查是否在首页...",
         "recognition": {
-            "type": "OCR",
+            "type": "TemplateMatch",
             "param": {
-                "expected": ["人偶商会", "贵族商店", "月度邀请", "活动"], // 精简关键词，覆盖主要标识
-                "roi": [50, 50, 1180, 620] // 非全屏，聚焦主界面（720p）
+                "template": "贡礼_血池.png", // 720p裁剪图像
+                "threshold": 0.65,
+                "roi": [0, 0, 0, 0] // 全屏，建议调试后优化
             }
         },
         "next": ["启动游戏_结束"],
@@ -78,7 +82,10 @@
                 "target": true
             }
         },
-        "next": ["CheckCloseAnnouncement"],
+        "next": [
+            "CheckCloseAnnouncement",
+            "AlreadyInHomePage"
+        ],
         "pre_delay": 500,     // 识别后延迟0.5s
         "post_delay": 1000,   // 点击后延迟1s
         "rate_limit": 3000,   // 每3s检查
@@ -102,7 +109,6 @@
                 "target": true
             }
         },
-        "next": ["启动游戏_结束"],
         "timeout": 15000,       // 15s超时
         "rate_limit": 1000,     // 每1s检查
         "post_delay": 500       // 点击后延迟0.5s
