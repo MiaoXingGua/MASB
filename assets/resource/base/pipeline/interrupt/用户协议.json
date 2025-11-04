@@ -1,0 +1,59 @@
+{
+    // 检查用户协议界面，跳转一键勾选
+    "CheckProtocol": {
+        "focus": "> 检查用户协议界面...",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "用户协议",
+                "roi": [170, 70, 375, 60] // 全屏，建议优化
+            }
+        },
+        "next": ["Agreement_ClickSelectAll"],
+        "rate_limit": 2000,   // 每2s检查
+        "timeout": 15000      // 15s超时
+    },
+
+    // 点击“一键勾选”按钮
+    "Agreement_ClickSelectAll": {
+        "focus": "> 点击一键勾选...",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "键勾选",
+                "roi": [400, 575, 120, 50] // 全屏，建议优化
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "next": ["Agreement_ClickConfirm"],
+        "post_delay": 800,    // 点击后延迟0.8s
+        "rate_limit": 2000,   // 每2s检查
+        "timeout": 15000      // 15s超时
+    },
+
+    // 点击“确认”按钮
+    "Agreement_ClickConfirm": {
+        "focus": "> 点击确认按钮...",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "确定",
+                "roi": [795, 575, 65, 40] // 全屏，建议优化
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "post_delay": 1000,   // 点击后延迟1s
+        "rate_limit": 2000,   // 每2s检查
+        "timeout": 15000      // 15s超时
+    }
+}
