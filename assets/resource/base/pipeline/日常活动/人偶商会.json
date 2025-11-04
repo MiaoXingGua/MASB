@@ -1,23 +1,174 @@
+/*
+  人偶商会 → 循环入口
+          ├─1─ 免费(左) → 购买 → 继续 → 回循环
+          ├─2─ 免费(右) → 刷新 → 确认 → 回循环
+          └─3─ 结束
+**/
+
 {
-    // 文字识别
-    "人偶商会":{
-        "recognition": "FeatureMatch",
-        "roi": [
-            150,
-            210,
-            35,
-            35
-        ],
-        "template": "NewMessage.png", // 必选
-        "action": "Click", // 执行动作
-        "next": [
-
-        ]
+    // 入口：人偶商店任务
+    "人偶商店_开始": {
+        "focus": "> 启动人偶商店任务",
+        "next": ["Puppet_CheckMerchant"]
     },
-    // 是否有新内容
-    // 没新内容也进入？
-    // 进入
-    // 识别《免费》点击  识别《购买》点击 识别《点击任意处继续》点击
-    // 第二页 是否买打折的 识别《off》点击 识别《最大》点击 识别《购买》点击 识别《点击任意处继续》点击
 
+    // 识别《人偶商会》点击进入
+    "Puppet_CheckMerchant": {
+        "focus": "> 点击人偶商会...",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "人偶商会",
+                "roi": [30, 185, 100, 45]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "next": ["Puppet_RefreshLoop"],
+        "post_delay": 1500,
+        "rate_limit": 2000,
+        "timeout": 30000
+    },
+
+    // 【主循环入口】依次尝试 1→2→3
+    "Puppet_RefreshLoop": {
+        "focus": "> 刷新商品循环（最多3次）...",
+        "next": [
+            "Puppet_BuyFreeLeft",     // 路径1：左屏免费
+            "Puppet_BuyFreeRight",    // 路径2：右屏免费（**箭头指向右！**）
+            "Puppet_EndTask"          // 路径3：结束
+        ],
+        "rate_limit": 2000,
+        "timeout": 60000,
+    },
+
+    // ————————————————————————
+    // 【路径1】左屏免费 → 购买 → 继续 → 回循环
+    // ————————————————————————
+    "Puppet_BuyFreeLeft": {
+        "focus": "> 左屏购买免费...",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "免费",
+                // "roi": [50, 200, 600, 800]  // 左半屏
+                "roi": [320, 395, 60, 40]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "next": ["Puppet_ClickPurchase"],
+        "post_delay": 800
+    },
+
+    // 【路径1-1】点击《购买》
+    "Puppet_ClickPurchase": {
+        "focus": "> 点击购买...",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "购买",
+                "roi": [895, 535, 75, 45]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "next": ["Puppet_ClickContinue"],
+        "post_delay": 800
+    },
+
+    // 【路径1-2】点击任意处继续【最后回到循环】
+    "Puppet_ClickContinue": {
+        "focus": "> 点击任意处继续（点文字）...",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "点击任意处继续",
+                "roi": [560, 640, 155, 35]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "next": ["Puppet_RefreshLoop"],  // **回到循环！**
+        "post_delay": 800
+    },
+
+    // ————————————————————————
+    // 【路径2】右屏免费 → 刷新 → 确认 → 回循环
+    // ————————————————————————
+    "Puppet_BuyFreeRight": {
+        "focus": "> 右屏购买免费...",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "免费",
+                // "roi": [680, 0, 600, 800]  // 右半屏
+                "roi": [820, 45, 45, 35]
+            }
+        },
+        "next": ["Puppet_ClickRefreshBtn"],
+        "post_delay": 800
+    },
+
+    // 【路径2-1】点击刷新按钮（图片）
+    "Puppet_ClickRefreshBtn": {
+        "focus": "> 点击刷新按钮...",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "button_refresh_commodities.png",
+                "threshold": 0.8
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "next": ["Puppet_ClickConfirm"],
+        "post_delay": 1000
+    },
+
+    // 【路径2-2】点击《确认》【最后回到循环】
+    "Puppet_ClickConfirm": {
+        "focus": "> 点击确认...",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "确认",
+                "roi": [790, 475, 60, 40]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "next": ["Puppet_RefreshLoop"], // **回到循环！**
+        "post_delay": 800
+    },
+
+
+    // 【路径3】结束任务
+    "Puppet_EndTask": {
+        "focus": "> 人偶商店任务结束！"
+    }
 }
