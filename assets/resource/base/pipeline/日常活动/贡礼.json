@@ -1,29 +1,19 @@
-{
-    // 点击位置坐标
-    // 识别到《接收贡礼》点击 识别《额外布道》点击
-    // 识别到《今日剩余次数 11》 next （否则结束）识别《使用》点击 识别《点击任意处继续》点击 有可能升级屏幕中央点几下 识别《取消》点击 再有屏幕中央点几下（回到主界面）
-    // 这是有可能随时有《神秘好礼》next 识别《点击任意处继续》点击 识别《确认》点击
-    // 没识别到《接收贡礼》结束
-    // 文字识别
-    // "贵宾商店":{
-    //     "recognition": "OCR", // 需要识别东西时填这个
-    //     "expected": "贵宾商店", // 识别内容
-    //     "action": "Click", // 执行动作
-    // },
-    "贡礼":{
-        "recognition": "FeatureMatch",
-        "roi": [
-            150,
-            210,
-            35,
-            35
-        ],
-        "template": "NewMessage.png", // 必选
-        "action": "Click", // 执行动作
-        "next": [
 
-        ]
-    },
+    /*
+    识别图片《贡礼_血池.png》点击
+
+    1 识别文字《接受贡礼》点击
+     next 识别到《请稍后领取》点击 next
+     next 识别《点击任意处继续》点击
+        interreupt 识别 《等级提升》点击
+        next 识别《额外布道》点击
+     识别到《请稍后领取》点击
+
+    2 识别《额外布道》点击
+    识别到《今日剩余次数 11》 next （否则结束）识别《使用》点击 识别《点击任意处继续》点击 有可能升级屏幕中央点几下 识别《取消》点击 再有屏幕中央点几下（回到主界面）
+    这是有可能随时有《神秘好礼》next 识别《点击任意处继续》点击 识别《确认》点击
+    **/
+
     // 是识别【新内容】点击 or 识别《日常好礼》点击 识别《免费》点击 识别《免费》点击 识别《点击任意处继续》点击
     // 识别《每周推荐》点击 （识别《免费》点击 识别《免费》点击 识别《点击任意处继续》点击）
     // 识别《每月推荐》点击
@@ -32,4 +22,221 @@
     // 识别《免费》点击  识别《购买》点击 识别《点击任意处继续》点击
     // 第二页 是否买打折的 识别《off》点击 识别《最大》点击 识别《购买》点击 识别《点击任意处继续》点击
 
+
+{
+    // 入口：贡礼任务
+    "贡礼_开始": {
+        "focus": "> 启动贡礼任务",
+        "next": ["Gongli_EnterBloodPool"]
+    },
+
+    // 识别图片《贡礼_血池.png》点击进入
+    "Gongli_EnterBloodPool": {
+        "focus": "> 识别贡礼_血池图标...",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "贡礼_血池.png",
+                // "threshold": 0.65,
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "next": ["Gongli_CheckReceiveGift"],
+        "interrupt": [
+            "Tap_ClickAnywhere"  // 点击任意处继续.json
+        ],
+        "post_delay": 1000,
+        "rate_limit": 3000,
+        "timeout": 600000
+    },
+
+    // 识别文字《接受贡礼》点击
+    "Gongli_CheckReceiveGift": {
+        "focus": "> 点击接受贡礼...",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "接受贡礼",
+                "roi": [0, 0, 0, 0]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "next": [
+            "Gongli_Waiting",
+            "Gongli_CheckContinue"
+        ],
+        "interrupt": [],
+        "post_delay": 800,
+        "rate_limit": 2000,
+        "timeout": 15000
+    },
+
+    // 识别文字《请稍后再试》
+    "Gongli_Waiting": {
+        "focus": "> 请稍后再试...",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "请稍后领取",
+                "roi": [680, 105, 130, 40]
+            }
+        },
+        "next": ["Gongli_CheckExtraPath"],
+        "post_delay": 800,
+        "rate_limit": 2000,
+        "timeout": 15000
+    },
+
+
+    // 识别文字《点击任意处继续》点击
+    "Gongli_CheckContinue": {
+        "focus": "> 点击任意处继续（等待5秒）...",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "点击任意处继续",
+                "roi": [560, 640, 155, 35]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                // "target": [640, 360, 0, 0] // 屏幕中心
+                "target": true
+            }
+        },
+        "next": ["Gongli_CheckExtraPath"],
+        "post_delay": 800,
+        "rate_limit": 2000,
+        "timeout": 15000
+    },
+
+    // 识别文字《额外布道》点击
+    "Gongli_CheckExtraPath": {
+        "focus": "> 点击额外布道...",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "额外布道",
+                "roi": [0, 0, 0, 0]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "next": ["Gongli_CheckUse"],
+        "post_delay": 800,
+        "rate_limit": 2000,
+        "timeout": 15000
+    },
+
+    // 识别文字《使用》点击
+    "Gongli_CheckUse": {
+        "focus": "> 点击使用...",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "使用",
+                "roi": [0, 0, 0, 0]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "next": ["Gongli_CheckContinueOrCancel"],
+        "post_delay": 800,
+        "rate_limit": 2000,
+        "timeout": 15000
+    },
+
+    // 分支：点击任意处继续 OR 取消
+    "Gongli_CheckContinueOrCancel": {
+        "focus": "> 处理继续或取消...",
+        "next": [
+            "Gongli_CheckContinueFinal",
+            "Gongli_ClickCancel"
+        ],
+        "rate_limit": 2000,
+        "timeout": 15000
+    },
+
+    // 点击任意处继续（最终）
+    "Gongli_CheckContinueFinal": {
+        "focus": "> 最终点击任意处继续...",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "点击任意处继续",
+                "roi": [0, 0, 0, 0]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "next": ["Gongli_ClickCancel"],
+        "post_delay": 800,
+        "rate_limit": 2000,
+        "timeout": 15000
+    },
+
+    // 点击《取消》
+    "Gongli_ClickCancel": {
+        "focus": "> 点击取消...",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "取消",
+                "roi": [0, 0, 0, 0]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "next": [
+            "Gongli_ClickCancel",
+            "Gongli_BackToHome"
+        ],
+        // "on_error": [
+        //     "Gongli_BackToHome"
+        // ],
+        "post_delay": 800,
+        "rate_limit": 2000,
+        "timeout": 15000
+    },
+    "Gongli_BackToHome": {
+        "focus": "> 返回首页...",
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [640, 360, 0, 0] // 点屏幕中央
+            }
+        },
+        "next": ["贡礼_结束"]
+    },
+    // 贡礼结束
+    "贡礼_结束": {
+        "focus": "> 贡礼任务完成！"
+    }
 }
