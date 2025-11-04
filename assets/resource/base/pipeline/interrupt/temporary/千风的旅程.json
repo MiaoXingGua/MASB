@@ -1,0 +1,17 @@
+{
+    // 检查“千风的旅程”并跳转返回
+    "Qianfeng_CheckJourney": {
+        "focus": "> 检查千风的旅程...",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "千风的旅程",
+                "roi": [0, 0, 0, 0] // 全屏，建议优化
+            }
+        },
+        "next": ["CheckReturn"],
+        "rate_limit": 2000,   // 每2s检查
+        "timeout": 15000      // 15s超时
+    }
+
+}
