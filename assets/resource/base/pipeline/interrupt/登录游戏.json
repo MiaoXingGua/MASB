@@ -6,7 +6,7 @@
             "type": "OCR",
             "param": {
                 "expected": "登录游戏",
-                "roi": [0, 0, 0, 0] // 全屏，建议优化
+                "roi": [585, 135, 110, 45] // 全屏，建议优化
             }
         },
         "next": ["Login_ClickSwitchAccount"],
@@ -21,7 +21,7 @@
             "type": "OCR",
             "param": {
                 "expected": "切换账号",
-                "roi": [0, 0, 0, 0] // 全屏，建议优化
+                "roi": [750, 510, 110, 40] // 全屏，建议优化
             }
         },
         "action": {
@@ -30,10 +30,36 @@
                 "target": true
             }
         },
+        "next": ["Login_ClickSwitchAccountAgain"],
         "post_delay": 1000,   // 点击后延迟1s
         "rate_limit": 2000,   // 每2s检查
         "timeout": 15000      // 15s超时
     },
+
+    // 再次点击“切换账号”按钮
+    "Login_ClickSwitchAccountAgain": {
+        "focus": "> (再次)点击切换账号按钮...",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "切换账号",
+                "roi": [750, 470, 135, 45] // 全屏，建议优化
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "next": ["Login_CheckFacebook"],
+        "post_delay": 1000,   // 点击后延迟1s
+        "rate_limit": 2000,   // 每2s检查
+        "timeout": 15000      // 15s超时
+    },
+
+    // Google
+    // Google 545, 465, 75, 30
 
     // 检查并点击“FaceBook”登录按钮
     "Login_CheckFacebook": {
@@ -42,7 +68,7 @@
             "type": "OCR",
             "param": {
                 "expected": "FaceBook",
-                "roi": [0, 0, 0, 0] // 全屏，建议优化
+                "roi": [650, 465, 105, 25] // 全屏，建议优化
             }
         },
         "action": {
@@ -51,19 +77,26 @@
                 "target": true
             }
         },
+        "next": ["Login_CheckContinueIdentity"],
+        "interrupt": ["Connection_Closed"],
         "post_delay": 1000,   // 点击后延迟1s
         "rate_limit": 2000,   // 每2s检查
         "timeout": 15000      // 15s超时
     },
 
+    "Connection_Closed" :{
+        // 点击重新加载
+    },
+
     // 检查并点击“身份继续”按钮
+    // BUG: 这里只写了一遍 但是看视频似乎需要2遍操作确认 但是也通过了 是因为第2遍不需要点击只需要等待吗？
     "Login_CheckContinueIdentity": {
         "focus": "> 检查身份继续按钮...",
         "recognition": {
             "type": "OCR",
             "param": {
                 "expected": "身份继续",
-                "roi": [0, 0, 0, 0] // 全屏，建议优化
+                "roi": [580, 640, 115, 30] // 全屏，建议优化
             }
         },
         "action": {

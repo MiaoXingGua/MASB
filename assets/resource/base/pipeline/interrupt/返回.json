@@ -1,19 +1,44 @@
 {
-    // 检查“点击任意位置继续”，点击屏幕中心后返回主流程
-    "CheckTapContinue": {
+    // 检查“点击任意处继续”并点击屏幕中心
+    "Tap_ClickAnywhere": {
+        "focus": "> 点击任意处继续...",
         "recognition": {
             "type": "OCR",
             "param": {
-                "expected": "点击任意位置继续",
-                "roi": [0, 0, 0, 0]  // 全屏，建议调试后优化
+                "expected": "点击任意处继续",
+                "roi": [0, 0, 0, 0] // 全屏，建议优化
             }
         },
         "action": {
             "type": "Click",
             "param": {
-                "target": [640, 360, 0, 0]  // 固定屏幕中心（720p: 1280x720）
+                // "target": [640, 360, 0, 0] // 720p屏幕中心坐标
+                "target": true
             }
         },
+        "post_delay": 800,    // 点击后延迟0.8s
+        "rate_limit": 2000,   // 每2s检查
+        "timeout": 15000      // 15s超时
+    },
+
+    // 检查“X”关闭按钮，点击后返回主流程
+    "CheckReturn": {
+        "recognition": {
+            "type": "TemplateMatch",  // 用图像匹配（X按钮更稳定）
+            "param": {
+                "template": "button_return.png",  // 需准备720p裁剪图像
+                "threshold": 0.7, // 匹配得分（1就是100%匹配）
+                "roi": [0, 0, 0, 0]  // 右上角区域（示例）
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        // "green_mask":true,
+        // "method":5,
         "next": [],          // 结束子流程，返回StartApp
         "post_delay": 500    // 点击后延迟0.5s
     },
@@ -23,7 +48,7 @@
         "recognition": {
             "type": "TemplateMatch",  // 用图像匹配（X按钮更稳定）
             "param": {
-                "template": "close_button.png",  // 需准备720p裁剪图像
+                "template": "button_close.png",  // 需准备720p裁剪图像
                 "threshold": 0.7, // 匹配得分（1就是100%匹配）
                 "roi": [0, 0, 0, 0]  // 右上角区域（示例）
             }
