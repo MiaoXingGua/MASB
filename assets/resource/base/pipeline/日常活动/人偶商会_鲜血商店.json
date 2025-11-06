@@ -27,7 +27,7 @@
         "recognition": {
             "type": "TemplateMatch",
             "param": {
-                "template": "button_blood_store.png",
+                "template": "store_blood.png",
                 "threshold": 0.8,
                 "roi": [0, 0, 150, 720]
             }

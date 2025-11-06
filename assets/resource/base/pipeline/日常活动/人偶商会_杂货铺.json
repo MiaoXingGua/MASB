@@ -129,7 +129,7 @@
         "recognition": {
             "type": "TemplateMatch",
             "param": {
-                "template": "button_refresh_commodities.png",
+                "template": "store_refresh_commodities.png",
                 "threshold": 0.8
             }
         },
