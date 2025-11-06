@@ -38,15 +38,17 @@
             "CheckRetry",         // 网络异常.json：点击重试
             "CheckDownload",      // 发现更新.json：点击下载
             "CheckStartDownload", // 开始下载.json：点击开始下载
+            "CheckDownloadFinish", // 更新完成 请重启游戏
             "CheckConfirm",        // 确认信息.json：点击确认
             "Login_CheckLoginButton", // 登录游戏.json：点击切换账号
             "CheckProtocol", // 用户协议.json
             "CheckCloseAnnouncement", // 检查公告关闭按钮
             "Tap_ClickAnywhere", // 点击任意处继续
-            "Qianfeng_CheckJourney" // 千峰的旅程活动
+            "CheckReturn",
+            "Qianfeng_CheckJourney", // 千峰的旅程活动
         ],
         "post_delay": 5000,   // 启动后延迟5s
-        "rate_limit": 3000,   // 每3s检查
+        "rate_limit": 5000,   // 每5s检查
         "timeout": 600000     // 总超时10min
     },
 
@@ -85,6 +87,18 @@
         "next": [
             "CheckCloseAnnouncement",
             "AlreadyInHomePage"
+        ],
+        "interrupt": [
+            "CheckRetry",         // 网络异常.json：点击重试
+            "CheckDownload",      // 发现更新.json：点击下载
+            "CheckStartDownload", // 开始下载.json：点击开始下载
+            "CheckDownloadFinish", // 更新完成 请重启游戏
+            "CheckConfirm",        // 确认信息.json：点击确认
+            "Login_CheckLoginButton", // 登录游戏.json：点击切换账号
+            "CheckProtocol", // 用户协议.json
+            "Tap_ClickAnywhere", // 点击任意处继续
+            "CheckReturn",
+            "Qianfeng_CheckJourney", // 千峰的旅程活动
         ],
         "pre_delay": 500,     // 识别后延迟0.5s
         "post_delay": 1000,   // 点击后延迟1s
