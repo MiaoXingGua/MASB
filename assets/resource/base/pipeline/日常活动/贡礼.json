@@ -50,7 +50,9 @@
             "Gongli_Waiting",
             "Gongli_CheckContinue"
         ],
-        "interrupt": [],
+        "interrupt": [
+            "Gongli_LevelUp"
+        ],
         "post_delay": 800,
         "rate_limit": 2000,
         "timeout": 15000
@@ -72,6 +74,23 @@
         "timeout": 15000
     },
 
+    "Gongli_LevelUp":{
+        "focus": "> 等级提升...",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "等级提升",
+                "roi": [0, 0, 0, 0]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "post_delay": 800
+    },
 
     // 识别文字《点击任意处继续》点击
     "Gongli_CheckContinue": {
@@ -91,6 +110,7 @@
             }
         },
         "next": ["Gongli_CheckExtraPath"],
+        "interrupt": ["Gongli_LevelUp"],
         "post_delay": 800,
         "rate_limit": 2000,
         "timeout": 15000
@@ -135,6 +155,7 @@
             }
         },
         "next": ["Gongli_CheckContinueOrCancel"],
+        "interrupt": ["Gongli_LevelUp"],
         "post_delay": 800,
         "rate_limit": 2000,
         "timeout": 15000
@@ -147,6 +168,7 @@
             "Gongli_CheckContinueFinal",
             "Gongli_ClickCancel"
         ],
+        "interrupt": ["Gongli_LevelUp"],
         "rate_limit": 2000,
         "timeout": 15000
     },
