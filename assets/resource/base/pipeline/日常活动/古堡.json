@@ -1,41 +1,192 @@
 {
+    "古堡_开始": {
+        "focus": "开始探索古堡啦～",
+        "next": ["Castle_ClickEntrance"]
+    },
 
-    /*
-        识别《古堡》点击
-        《八方游历》《快速领取》《快速游历》（这里要等一会）《返回》
-        《议事堂》《召开会议》【召开会议】一直指定位置（对话选项位置1.2.3）直到识别《点击任意处继续》点击
-    **/
-    // 点击位置坐标
-    // 识别到《接收贡礼》点击 识别《额外布道》点击
-    // 识别到《今日剩余次数 11》 next （否则结束）识别《使用》点击 识别《点击任意处继续》点击 有可能升级屏幕中央点几下 识别《取消》点击 再有屏幕中央点几下（回到主界面）
-    // 这是有可能随时有《神秘好礼》next 识别《点击任意处继续》点击 识别《确认》点击
-    // 没识别到《接收贡礼》结束
-    // 文字识别
-    // "贵宾商店":{
-    //     "recognition": "OCR", // 需要识别东西时填这个
-    //     "expected": "贵宾商店", // 识别内容
-    //     "action": "Click", // 执行动作
-    // },
-    "贡礼":{
-        "recognition": "FeatureMatch",
-        "roi": [
-            150,
-            210,
-            35,
-            35
-        ],
-        "template": "NewMessage.png", // 必选
-        "action": "Click", // 执行动作
+    "Castle_ClickEntrance": {
+        "focus": "点一下【古堡】按钮",
+        "recognition": { "type": "OCR", "param": { "expected": "古堡" } },
+        "action": { "type": "Click", "param": { "target": true } },
+        "next": ["Castle_MainLoop"],
+        "post_delay": 1500
+    },
+
+    // 主循环：只有 2 个主分支（图中只有 1→ 和 2→ 两个箭头）
+    "Castle_MainLoop": {
+        "focus": "开始检查古堡里的两个主任务～",
         "next": [
+            "Castle_Path1_WorldTravel_Entry",     // 主分支 1
+            "Castle_Path2_Council_Entry"          // 主分支 2
+        ]
+    },
+
+    // ── 主分支1：八方游历（完整单向流程） ─────────────────────
+    "Castle_Path1_WorldTravel_Entry": {
+        "focus": "发现八方游历！点进去看看～",
+        "recognition": { "type": "OCR", "param": { "expected": "八方游历" } },
+        "action": { "type": "Click", "param": { "target": true } },
+        "next": ["Castle_Path1_QuickClaim"]
+    },
+
+    "Castle_Path1_QuickClaim": {
+        "focus": "点【快速领取】收奖励",
+        "recognition": { "type": "OCR", "param": { "expected": "快速领取" } },
+        "action": { "type": "Click", "param": { "target": true } },
+        "next": ["Castle_Path1_TapContinue"]
+    },
+
+    "Castle_Path1_TapContinue": {
+        "focus": "点屏幕继续～",
+        "recognition": { "type": "OCR", "param": { "expected": "点击任意处继续" } },
+        "action": { "type": "Click", "param": { "target": true } },
+        "next": ["Castle_Path1_QuickTravel"]
+    },
+
+    "Castle_Path1_QuickTravel": {
+        "focus": "再点【快速游历】出发",
+        "recognition": { "type": "OCR", "param": { "expected": "快速游历" } },
+        "action": { "type": "Click", "param": { "target": true } },
+        "next": ["Castle_Path1_Return"]
+    },
+
+    "Castle_Path1_Return": {
+        "focus": "点【返回】退出八方游历",
+        "recognition": { "type": "OCR", "param": { "expected": "返回" } },
+        "action": { "type": "Click", "param": { "target": true } },
+        // "next": ["Castle_MainLoop"]   // 双向箭头 → 回到主循环
+        // BUG：↑↑↑ 现在没有计数功能 只能先这样↓↓↓
+        "next": ["Castle_Path2_Council_Entry"]
+    },
+
+    // ── 主分支2：议事阁 + 举荐会议  ─────────────────────
+    "Castle_Path2_Council_Entry": {
+        "focus": "发现议事阁！进去开会～",
+        "recognition": { "type": "OCR", "param": { "expected": "议事阁" } },
+        "action": { "type": "Click", "param": { "target": true } },
+        "next": [
+            "Castle_Path2_Finished", // 1 会议已结束
+            "Castle_Path2_HoldMeeting" // 2开始会议
+        ]
+    },
+
+     // 识别《已结束》
+    "Castle_Path2_Finished": {
+        "focus": "> 会议结束",
+        "recognition": { "type": "OCR", "param": { "expected": "已结束" } },
+        "action": { "type": "Click", "param": { "target": true } },
+        "next": ["Castle_End"] // 进入结束分支
+    },
+
+    // Node 识别《举行会议》【点击】
+    "Castle_Path2_HoldMeeting": {
+        "focus": "点【举行会议】开始",
+        "recognition": { "type": "OCR", "param": { "expected": "举行会议" } },
+        "action": { "type": "Click", "param": { "target": true } },
+        "next": ["Castle_Path2_MeetingLoop"]
+    },
+
+     "Castle_Path2_MeetingLoop": {
+        "focus": "点【举行会议】进行中",
+        "next": [
+            "Castle_Path2_Finished", // 3 结束
+            "Castle_Path2_BottomLeftSpam", // 1 没结束 一直点击
+            // "Castle_Path2_TapContinue", // 2 点击继续（眷属升级了）
+
 
         ]
     },
-    // 是识别【新内容】点击 or 识别《日常好礼》点击 识别《免费》点击 识别《免费》点击 识别《点击任意处继续》点击
-    // 识别《每周推荐》点击 （识别《免费》点击 识别《免费》点击 识别《点击任意处继续》点击）
-    // 识别《每月推荐》点击
 
+    // 【点击】roi左下角 间隔1s（点完返回）
+    "Castle_Path2_BottomLeftSpam": {
+        "focus": "左下角疯狂点点点1秒！",
+        "action": { "type": "Click", "param": { "target": [200, 600, 0, 0] } },
+        "post_delay": 180,
+        "timeout": 1000,
+        "next": ["Castle_Path2_MeetingLoop"]   // 双向箭头 → 点完回到 Castle_Path2_MeetingLoop
+    },
 
-    // 识别《免费》点击  识别《购买》点击 识别《点击任意处继续》点击
-    // 第二页 是否买打折的 识别《off》点击 识别《最大》点击 识别《购买》点击 识别《点击任意处继续》点击
+    // 识别《点击任意处继续》【点击】（点完返回）
+    // "Castle_Path2_TapContinue": {
+    //     "focus": "点屏幕继续～",
+    //     "recognition": { "type": "OCR", "param": { "expected": "点击任意处继续" } },
+    //     "action": { "type": "Click", "param": { "target": true } },
+    //     "next": ["Castle_Path2_MeetingLoop"] // 双向箭头 → 点完回到 Castle_Path2_MeetingLoop
+    // },
 
+    // Update: 通用返回流程（可以拓展到别的地方）
+    "Castle_End": {
+        "focus": "> 退出古堡",
+        "next": [
+            "Castle_CheckHome", // 检查“返回”按钮
+            "Castle_CheckClose", // 检查“X”按钮
+            "Castle_CheckReturn", // 检查“←”按钮
+            "Castle_CheckBack", // 检查“X”按钮
+            "古堡_全部完成" // 没有前面四项就可以结束了
+        ]
+    },
+
+    // 检查“←”按钮
+    "Castle_CheckReturn": {
+        "recognition": {
+            "type": "TemplateMatch",  // 用图像匹配（X按钮更稳定）
+            "param": {
+                "template": "return_button.png",
+                // "threshold": 0.7, // 匹配得分（1就是100%匹配）
+                "roi": [20, 15, 85, 45]  // BUG：实际点击区域 但是不同流程位置可能不同 所以先注释
+            }
+        },
+        "action": { "type": "Click", "param": { "target": true } },
+        "next": ["Castle_End"],
+        "post_delay": 500    // 点击后延迟0.5s
+    },
+
+    // 检查“X”按钮
+    "Castle_CheckClose": {
+        "recognition": {
+            "type": "TemplateMatch",  // 用图像匹配（X按钮更稳定）
+            "param": {
+                "template": "close_button.png",  // 需准备720p裁剪图像
+                // "threshold": 0.7, // 匹配得分（1就是100%匹配）
+                // "roi": [1050, 135, 55, 45] // BUG：实际点击区域 但是不同流程位置可能不同 所以先注释
+            }
+        },
+        "action": { "type": "Click", "param": { "target": true } },
+        "next": ["Castle_End"],
+        "post_delay": 500    // 点击后延迟0.5s
+    },
+
+    // 检查“返回”按钮
+    "Castle_CheckBack": {
+        "focus": "> 点击返回",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "返回",
+                "roi": [125, 25, 55, 30] // BUG：实际点击区域 但是不同流程位置可能不同 所以先注释
+            }
+        },
+        "action": { "type": "Click", "param": { "target": true } },
+        "next": ["Castle_End"],
+        "post_delay": 500
+    },
+
+    // 检查“home”按钮
+    "Castle_CheckHome": {
+        "recognition": {
+            "type": "TemplateMatch",  // 用图像匹配（X按钮更稳定）
+            "param": {
+                "template": "home_button.png",  // 需准备720p裁剪图像
+                // "threshold": 0.7, // 匹配得分（1就是100%匹配）
+                "roi": [235, 5, 65, 65] // 右上角区域（示例）
+            }
+        },
+        "action": { "type": "Click", "param": { "target": true } },
+        "next": ["Castle_End"],
+        "post_delay": 500    // 点击后延迟0.5s
+    },
+
+    "古堡_全部完成": {
+        "focus": "古堡所有任务都搞定啦！可以回家休息～"
+    }
 }
