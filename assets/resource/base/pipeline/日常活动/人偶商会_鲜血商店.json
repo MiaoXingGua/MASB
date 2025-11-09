@@ -91,7 +91,10 @@
         },
         "action": {
             "type": "Click", "param": { "target": true } },
-        "next": ["Blood_ClickContinue"],
+        "next": [
+            "Blood_ClickContinue",
+            "Blood_OutOfResources"
+        ],
         "post_delay": 800
     },
 
@@ -106,23 +109,79 @@
         "post_delay": 800
     },
 
+    "Blood_OutOfResources": {
+        "focus": "> 资源不足",
+        "recognition": {
+            "type": "OCR",
+            "param": { "expected": "资源不足" },
+            "roi": [590, 105, 100, 45]
+        },
+        "next": ["Blood_EndTask" ],  // 回到晶球循环
+        "post_delay": 800
+    },
+
     // ————————————————————————
     // 路径2：结束任务（通用返回节点）
     // ————————————————————————
     "Blood_EndTask": {
         "focus": "> 人偶商店_鲜血商店 任务结束...",
-        "next": ["Blood_Return_To_Main"]
+        "next": [
+            "Blood_CheckBack", // 点击《返回》
+            "Blood_CheckReturn", // 点击《←》
+            "Blood_CheckClose", // 点击《X》
+            "人偶商店_鲜血商店_结束"
+        ]
     },
 
-    "Blood_Return_To_Main": {
+    "Blood_CheckReturn": {
+        "recognition": {
+            "type": "TemplateMatch",  // 用图像匹配（X按钮更稳定）
+            "param": {
+                "template": "return_button.png",  // 需准备720p裁剪图像
+                "threshold": 0.7, // 匹配得分（1就是100%匹配）
+                "roi": [0, 0, 0, 0]  // 右上角区域（示例）
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "next": ["Blood_EndTask"],
+        "post_delay": 500    // 点击后延迟0.5s
+    },
+
+    // 检查“X”关闭按钮，点击后返回主流程
+    "Blood_CheckClose": {
+        "recognition": {
+            "type": "TemplateMatch",  // 用图像匹配（X按钮更稳定）
+            "param": {
+                "template": "close_button.png",  // 需准备720p裁剪图像
+                "threshold": 0.7, // 匹配得分（1就是100%匹配）
+                "roi": [1050, 135, 55, 45] // 右上角区域（示例）
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "next": ["Blood_EndTask"],
+        "post_delay": 500    // 点击后延迟0.5s
+    },
+
+    "Blood_CheckBack": {
         "focus": "> 点击返回",
         "recognition": {
             "type": "OCR",
-            "param": { "expected": "返回" }
+            "param": { "expected": "返回" },
+            "roi": [125, 25, 55, 30]
         },
         "action": { "type": "Click", "param": { "target": true } },
-        "next": ["人偶商店_鲜血商店_结束"],
-        "post_delay": 1000
+        "next": ["Blood_EndTask"],
+        "post_delay": 500
     },
 
     "人偶商店_鲜血商店_结束": {
