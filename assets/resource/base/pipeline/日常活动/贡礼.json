@@ -111,6 +111,7 @@
         },
         "next": ["Gongli_CheckExtraPath"],
         "interrupt": ["Gongli_LevelUp"],
+        "pre_delay": 800,
         "post_delay": 800,
         "rate_limit": 2000,
         "timeout": 15000
