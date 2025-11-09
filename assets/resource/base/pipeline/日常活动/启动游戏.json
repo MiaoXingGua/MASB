@@ -85,7 +85,6 @@
             }
         },
         "next": [
-            "CheckCloseAnnouncement",
             "AlreadyInHomePage"
         ],
         "interrupt": [
@@ -99,6 +98,7 @@
             "Tap_ClickAnywhere", // 点击任意处继续
             "CheckReturn",
             "Qianfeng_CheckJourney", // 千峰的旅程活动
+            "CheckCloseAnnouncement",
         ],
         "pre_delay": 500,     // 识别后延迟0.5s
         "post_delay": 1000,   // 点击后延迟1s
