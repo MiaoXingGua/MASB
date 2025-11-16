@@ -1,0 +1,86 @@
+{
+     "古堡_议事阁_开始": {
+        "focus": "> 古堡_议事阁_开始",
+        "next": ["Castle_Council_Entrance"]
+    },
+
+    // 进入古堡
+    "Castle_Council_Entrance": {
+        "focus": "点一下【古堡】按钮",
+        "recognition": { "type": "OCR", "param": { "expected": "古堡" } },
+        "action": { "type": "Click", "param": { "target": true } },
+        "next": ["Castle_Council_Entry"],
+        "post_delay": 1500
+    },
+
+
+    // 议事阁 + 举荐会议
+    "Castle_Council_Entry": {
+        "focus": "发现议事阁！进去开会～",
+        "recognition": { "type": "OCR", "param": { "expected": "议事阁" } },
+        "action": { "type": "Click", "param": { "target": true } },
+        "next": [
+            "Castle_Council_Finished", // 1 会议已结束
+            "Castle_Council_HoldMeeting" // 2开始会议
+        ],
+        "post_delay": 800
+    },
+
+     // 识别《已结束》
+    //  council_finish
+    // "Castle_Council_Finished": {
+    //     "focus": "> 会议结束",
+    //     "recognition": { "type": "OCR", "param": {
+    //             "expected": "已结束" ,
+    //             "roi": [905, 630, 65, 25]
+    //         }
+    //     },
+    //     "action": { "type": "Click", "param": { "target": true } },
+    //     "next": ["古堡_议事阁_结束"],  // 进入结束分支
+    //     "post_delay": 800
+    // },
+    "Castle_Council_Finished": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "council_finish.png"
+            }
+        },
+        // "action": { "type": "Click", "param": { "target": true } },
+        "next": ["Castle_Council_End"],
+        "post_delay": 500    // 点击后延迟0.5s
+    },
+
+    // Node 识别《举行会议》【点击】
+    "Castle_Council_HoldMeeting": {
+        "focus": "点【举行会议】开始",
+        "recognition": { "type": "OCR", "param": { "expected": "举行会议" } },
+        "action": { "type": "Click", "param": { "target": true } },
+        "next": ["Castle_Council_MeetingLoop"],
+        "post_delay": 800
+    },
+
+     "Castle_Council_MeetingLoop": {
+        "focus": "点【举行会议】进行中",
+        "next": [
+            "Castle_Council_Finished", // 3 结束
+            "Castle_Council_BottomLeftSpam" // 1 没结束 一直点击
+            // "Castle_Council_TapContinue", // 2 点击继续（眷属升级了）
+        ]
+    },
+
+    // 【点击】roi左下角 间隔1s（点完返回）
+    "Castle_Council_BottomLeftSpam": {
+        "focus": "左下角疯狂点点点1秒！",
+        "action": { "type": "Click", "param": { "target": [200, 600, 0, 0] } },
+        "post_delay": 180,
+        // "timeout": 1000,
+        "next": ["Castle_Council_MeetingLoop"]   // 双向箭头 → 点完回到 Castle_MeetingLoop
+    },
+
+    // 结束
+    "Castle_Council_End": {
+        "focus": "> 退出古堡",
+        "next": ["Return_Home"]
+    }
+}
