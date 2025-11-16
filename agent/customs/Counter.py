@@ -21,12 +21,17 @@ class Counter:
         return self.count
 
     def is_max(self):
+        print(f"self.max = {self.max}")
+        print(f"self.count = {self.count}")
         if self.max <= 0:
             return False
         if self.exceed:
             return self.count > self.max
         else:
             return self.count >= self.max
+
+    def get_max(self):
+        return self.max
 
     def get_count(self):
         return self.count
@@ -61,8 +66,8 @@ class InitCounter(CustomAction):
     def run(
         self, context: Context, argv: CustomAction.RunArg
     ) -> CustomAction.RunResult | bool:
+        print("InitCounter")
         try:
-            print("InitCounter")
             args = parse_query_args(argv)
             key = args.get("key", "default")
             maxCount = args.get("max")
@@ -71,7 +76,7 @@ class InitCounter(CustomAction):
             exceed = str(exceed).lower() != "false" if exceed is not None else True
             counter_manager.reset(key, maxCount, exceed)
             counter = counter_manager.get(key)
-            print(f"初始化计数: {counter.get_count()}")
+            print(f"初始化计数: {counter.get_count()}/{maxCount}")
             return CustomAction.RunResult(success=True)
         except Exception as e:
             return Prompt.error("初始化计数", e)
@@ -90,61 +95,9 @@ class Count(CustomAction):
             counter = counter_manager.get(key)
             counter.increment()
             if text:
-                print(f"> 第{counter.get_count()}次{text}")
+                print(f"> {text} : {counter.get_count()}/{counter.get_max()}")
             if counter.is_max():
                 return CustomAction.RunResult(success=False)
             return CustomAction.RunResult(success=True)
         except Exception as e:
             return Prompt.error("计数", e)
-
-
-# Counter.py（只改这部分）
-from maa.agent.agent_server import AgentServer
-from maa.custom_action import CustomAction
-from maa.context import Context
-from .utils import parse_query_args, Prompt
-
-# 全局计数器管理器（内存单例）
-counter_manager = CounterManager()
-
-
-@AgentServer.custom_action("init_counters")
-class InitCounters(CustomAction):
-    def run(self, context: Context, argv: CustomAction.RunArg):
-        print("批量初始化计数器 (原生数组模式)")
-        try:
-            # 直接接收 list！
-            items = argv.custom_action_param
-            if not isinstance(items, list):
-                return Prompt.error("counters 必须是数组")
-
-            results = []
-            for item in items:
-                if not isinstance(item, dict):
-                    print(f"  跳过无效项: {item}")
-                    continue
-
-                key = item.get("key")
-                if not key:
-                    continue
-
-                max_val = int(item.get("max", 0))
-                exceed = item.get("exceed", True) in (True, "true", "True")
-
-                # 复用 InitCounter 逻辑
-                fake_argv = CustomAction.RunArg(
-                    custom_action="init_counter",
-                    custom_action_param=f"key={key}&max={max_val}&exceed={exceed}",
-                )
-                result = InitCounter.run(self, context, fake_argv)
-                success = result.success if hasattr(result, "success") else bool(result)
-                results.append(success)
-
-                print(
-                    f"  → 初始化 {key}: max={max_val}, exceed={exceed} -> {'OK' if success else 'Failed'}"
-                )
-
-            return CustomAction.RunResult(success=all(results))
-
-        except Exception as e:
-            return Prompt.error("批量初始化失败", e)
