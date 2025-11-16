@@ -37,7 +37,7 @@
         "next": [
             "Puppet_CheckFree",   // 路径1 购买免费物品
             "Puppet_CheckFreeRefresh",  // 路径2
-            "Puppet_EndTask"                // 路径3：结束
+            "Puppet_End"                // 路径3：结束
         ],
         "rate_limit": 2000,
         "timeout": 60000
@@ -167,23 +167,8 @@
     // ————————————————————————
     // 【路径3】结束任务
     // ————————————————————————
-    "Puppet_EndTask": {
+    "Puppet_End": {
         "focus": "> 人偶商会_杂货铺 任务结束...",
-        "next": ["Puppet_Return_To_Main"]
-    },
-
-    "Puppet_Return_To_Main": {
-        "focus": "> 点击返回",
-        "recognition": {
-            "type": "OCR",
-            "param": { "expected": "返回" }
-        },
-        "action": { "type": "Click", "param": { "target": true } },
-        "next": ["人偶商店_杂货铺_结束"],
-        "post_delay": 1000
-    },
-
-    "人偶商店_杂货铺_结束": {
-        "focus": "> 人偶商会_杂货铺 任务完成！"
+        "next": ["Return_Home"]
     }
 }
