@@ -9,9 +9,20 @@
                 "roi": [0, 0, 0, 0] // 全屏，建议优化
             }
         },
-        "next": ["CheckReturn"],
+        "action": {
+            "type": "Click",
+            "param": {
+                // "target": [640, 360, 0, 0] // 点屏幕中央
+                "target": true
+            }
+        },
+        "next": [
+            "CheckReturn",
+            "TapClickAnywhere",
+            "AlreadyInHomePage"
+        ],
+        "interrupt": ["Qianfeng_CheckJourney"],
         "rate_limit": 2000,   // 每2s检查
         "timeout": 15000      // 15s超时
     }
-
 }
