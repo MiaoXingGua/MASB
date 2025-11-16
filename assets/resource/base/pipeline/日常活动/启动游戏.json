@@ -43,7 +43,7 @@
             "Login_CheckLoginButton", // 登录游戏.json：点击切换账号
             "CheckProtocol", // 用户协议.json
             "CheckCloseAnnouncement", // 检查公告关闭按钮
-            "Tap_ClickAnywhere", // 点击任意处继续
+            "TapClickAnywhere", // 点击任意处继续
             "CheckReturn",
             "Qianfeng_CheckJourney", // 千峰的旅程活动
         ],
@@ -95,7 +95,7 @@
             "CheckConfirm",        // 确认信息.json：点击确认
             "Login_CheckLoginButton", // 登录游戏.json：点击切换账号
             "CheckProtocol", // 用户协议.json
-            "Tap_ClickAnywhere", // 点击任意处继续
+            "TapClickAnywhere", // 点击任意处继续
             "CheckReturn",
             "Qianfeng_CheckJourney", // 千峰的旅程活动
             "CheckCloseAnnouncement",
