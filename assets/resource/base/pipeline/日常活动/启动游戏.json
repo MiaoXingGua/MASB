@@ -18,11 +18,11 @@
     // 入口：启动《银与血》，空操作跳转StartApp
     "启动游戏_开始": {
         "focus": "> 启动《银与血》",
-        "next": ["StartApp"]
+        "next": ["Start_App"]
     },
 
     // 启动APP，定义正常流程和异常处理
-    "StartApp": {
+    "Start_App": {
         "focus": "> 正在启动《银与血》...",
         "action": {
             "type": "StartApp",
@@ -31,8 +31,8 @@
             }
         },
         "next": [
-            "CheckStart",            // 检查START按钮
-            "AlreadyInHomePage"      // 检查是否已在首页
+            "Start_ClickStart",            // 检查START按钮
+            "Start_AlreadyInHomePage"      // 检查是否已在首页
         ],
         "interrupt": [
             "CheckRetry",         // 网络异常.json：点击重试
@@ -46,6 +46,7 @@
             "TapClickAnywhere", // 点击任意处继续
             "CheckReturn",
             "Qianfeng_CheckJourney", // 千峰的旅程活动
+            "Return_Home"
         ],
         "post_delay": 5000,   // 启动后延迟5s
         "rate_limit": 5000,   // 每5s检查
@@ -53,7 +54,7 @@
     },
 
     // 检查是否已在首页，成功则结束
-    "AlreadyInHomePage": {
+    "Start_AlreadyInHomePage": {
         "focus": "> 检查是否在首页...",
         "recognition": {
             "type": "TemplateMatch",
@@ -63,13 +64,13 @@
                 "roi": [0, 0, 0, 0] // 全屏，建议调试后优化
             }
         },
-        "next": ["启动游戏_结束"],
+        "next": ["Start_End"],
         "timeout": 10000,     // 10s超时，快速检查
         "rate_limit": 2000    // 每2s检查
     },
 
     // 检查START按钮，成功则点击并检查公告
-    "CheckStart": {
+    "Start_ClickStart": {
         "focus": "> 等待START按钮...",
         "recognition": {
             "type": "OCR",
@@ -85,7 +86,7 @@
             }
         },
         "next": [
-            "AlreadyInHomePage"
+            "Start_AlreadyInHomePage"
         ],
         "interrupt": [
             "CheckRetry",         // 网络异常.json：点击重试
@@ -129,8 +130,7 @@
     },
 
     // 结束：成功进入游戏，终止任务
-    "启动游戏_结束": {
-        "focus": "> 游戏已成功启动！",
-        // "next": []
+    "Start_End": {
+        "focus": "> 游戏已成功启动！"
     }
 }
