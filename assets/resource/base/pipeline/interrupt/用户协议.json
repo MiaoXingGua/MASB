@@ -38,11 +38,11 @@
 
     // 点击“确认”按钮
     "Agreement_ClickConfirm": {
-        "focus": "> 点击确认按钮...",
+        "focus": "> 点击确定按钮...",
         "recognition": {
             "type": "OCR",
             "param": {
-                "expected": "确定",
+                "expected": "确定", // 这里是"确定"游戏中多数是确认
                 "roi": [795, 575, 65, 40] // 全屏，建议优化
             }
         },

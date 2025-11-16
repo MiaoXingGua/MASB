@@ -14,7 +14,6 @@
                 "target": true
             }
         },
-        "next": [],          // 结束子流程，返回StartApp
         "post_delay": 1000   // 点击后延迟1s，确保下载开始
     },
 
@@ -33,7 +32,35 @@
                 "target": true
             }
         },
-        "next": [],          // 结束子流程，返回StartApp
+        "post_delay": 1000   // 点击后延迟1s
+    },
+
+    "CheckDownloadFinish":{
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "更新完成",
+                "roi": [375, 315, 60, 25]  //
+            }
+        },
+        "next": ["CheckDownloadFinishDone"]
+    },
+    "CheckDownloadFinishDone":{
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "确认",
+                "replace": [["娟", "确"], ["站", "确"]],
+                "roi": [875, 385, 25, 20]  //
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
         "post_delay": 1000   // 点击后延迟1s
     }
+
 }
