@@ -17,9 +17,10 @@
             }
         },
         "next": [
-            "CheckReturn",
-            "TapClickAnywhere",
-            "AlreadyInHomePage"
+            // "CheckReturn",
+            // "TapClickAnywhere",
+            // "AlreadyInHomePage"
+            "Return_Home"
         ],
         "interrupt": ["Qianfeng_CheckJourney"],
         "rate_limit": 2000,   // 每2s检查
