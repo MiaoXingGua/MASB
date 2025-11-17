@@ -1,0 +1,60 @@
+{
+    "忘却中庭_英灵剑冢_开始": {
+        "focus": "> 开始 英灵剑冢 扫荡",
+        "next": ["Courtyard_Tomb_EnterYard"]
+    },
+
+    "Courtyard_Tomb_EnterYard": {
+        "focus": "> 进入【忘却中庭】",
+        "recognition": { "type": "OCR", "param": { "expected": "忘却中庭", "roi":[1150, 393, 100, 35] } },
+        "action": { "type": "Click", "param": { "target": true, "target_offset": [0,-50,0,0] } },
+        "next": ["Courtyard_Tomb_EnterTomb"],
+        "post_delay": 800
+    },
+
+    "Courtyard_Tomb_EnterTomb": {
+        "focus": "> 进入【英灵剑冢】",
+        "recognition": { "type": "OCR", "param": { "expected": "英灵剑冢", "roi":[1010, 460, 90, 40], "replace": ["家","冢"] } },
+        "action": { "type": "Click", "param": { "target": true } },
+        "next": ["Courtyard_Tomb_ClickCrypt"],
+        "post_delay": 800
+    },
+
+    "Courtyard_Tomb_ClickCrypt": {
+        "focus": "> 进入【陨魂陵墓】",
+        "recognition": { "type": "OCR", "param": { "expected": "陨魂陵墓", "roi": [70, 105, 80, 30]} },
+        "action": { "type": "Click", "param": { "target": true } },
+        "next": ["Courtyard_Tomb_Spirit"],
+        "post_delay": 1500 // 等一会 有动画
+    },
+
+    "Courtyard_Tomb_Spirit": {
+        "focus": "> 进入【无常亡魂】",
+        "recognition": { "type": "OCR", "param": { "expected": "无常亡魂", "roi": [970, 540, 125, 45]} },
+        "action": { "type": "Click", "param": { "target": true } },
+        "next": ["Courtyard_Tomb_QuickExorcise"],
+        "post_delay": 3000 // 多等一会 有动画
+    },
+
+    "Courtyard_Tomb_QuickExorcise": {
+        "focus": "> 点【快速斩杀】",
+        "recognition": { "type": "OCR", "param": { "expected": "快速斩杀", "roi": [765, 610, 125, 50]} },
+        "action": { "type": "Click", "param": { "target": true } },
+        "next": ["Courtyard_Tomb_QuickExorcise_Start"],
+        "post_delay": 800
+    },
+
+    "Courtyard_Tomb_QuickExorcise_Start": {
+        "focus": "> 点【开始扫荡】",
+        "recognition": { "type": "OCR", "param": { "expected": "开始扫荡", "roi": [770, 520, 115, 40] } },
+        "action": { "type": "Click", "param": { "target": true } },
+        "next": ["Courtyard_Tomb_End"],
+        "post_delay": 800
+    },
+
+    "Courtyard_Tomb_End": {
+        "focus": "> 英灵剑冢 扫荡 结束",
+        "next": ["Return_Home"]
+    }
+
+}
