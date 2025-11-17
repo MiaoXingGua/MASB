@@ -33,7 +33,7 @@
         },
         "action": { "type": "Click", "param": { "target": true } },
         "next": [
-            "Friend_Delete_CheckFindDaysAgo"
+            "Friend_Delete_Start"
         ],
         "post_delay": 800
     },
