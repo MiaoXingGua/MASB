@@ -1,0 +1,5 @@
+{
+    "TapTap": {
+        "action": { "type": "Click", "param": { "target": [640, 650, 0, 0] } }
+    }
+}

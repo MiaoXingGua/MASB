@@ -45,7 +45,8 @@
             "CheckCloseAnnouncement", // 检查公告关闭按钮
             "TapClickAnywhere", // 点击任意处继续
             "CheckReturn",
-            "Qianfeng_CheckJourney", // 千峰的旅程活动
+            // "Qianfeng_CheckJourney", // 千峰的旅程活动
+            "TapTap",
             "Return_Home"
         ],
         "post_delay": 5000,   // 启动后延迟5s
