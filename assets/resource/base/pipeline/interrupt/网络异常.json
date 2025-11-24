@@ -5,16 +5,11 @@
             "type": "OCR",
             "param": {
                 "expected": "重试",
-                "roi": [785, 471, 72, 42]
+                "roi": [605, 465, 75, 60]
             }
         },
         "action": {
-            "type": "Click",
-            "param": {
-                "target": true
-            }
-        },
-        "next": [],          // 结束子流程，返回StartApp
+            "type": "Click", "param": { "target": true } },
         "post_delay": 2000   // 点击后延迟2s，等待网络响应
     }
 }
