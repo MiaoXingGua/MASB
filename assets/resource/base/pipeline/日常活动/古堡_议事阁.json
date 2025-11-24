@@ -63,10 +63,30 @@
      "Castle_Council_MeetingLoop": {
         "focus": "点【举行会议】进行中",
         "next": [
+            "Castle_Council_LevelMax", // 等级已满提示
             "Castle_Council_Finished", // 3 结束
             "Castle_Council_BottomLeftSpam" // 1 没结束 一直点击
             // "Castle_Council_TapContinue", // 2 点击继续（眷属升级了）
-        ]
+        ],
+        "interrupt": []
+    },
+    // BUG ?
+    // "Castle_Council_LevelMax": {
+    //     "focus": "等级已满",
+    //     "recognition": { "type": "OCR", "param": { "expected": "等级已满" } },
+    //     "next": [
+    //         "Castle_Council_ConfirmLevelMax"
+    //     ],
+    //     "post_delay": 800
+    // },
+    "Castle_Council_LevelMax": {
+        "focus": " 确认",
+        "recognition": { "type": "OCR", "param": { "expected": "确认", "roi": [785, 470, 70, 50]} },
+        "action": { "type": "Click", "param": { "target": true } },
+        "next": [
+            "Castle_Council_MeetingLoop"
+        ],
+        "post_delay": 800
     },
 
     // 【点击】roi左下角 间隔1s（点完返回）
