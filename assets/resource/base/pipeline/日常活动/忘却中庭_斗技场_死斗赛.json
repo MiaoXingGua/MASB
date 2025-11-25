@@ -11,6 +11,7 @@
 		"next": ["Courtyard_Arena_Crucible_ClickBloodArena"],
 		"post_delay": 800
 	},
+
 	"Courtyard_Arena_Crucible_ClickBloodArena": {
 		"focus": "> 点击【鲜血斗技场】",
 		"recognition": {"type": "OCR", "param": {"expected": "鲜血斗技场", "roi": [80, 350, 120, 40]}},
@@ -20,7 +21,7 @@
 	},
 
 	"Courtyard_Arena_Crucible_ClickFixedPos": {
-		"focus": "> 点击固定位置进入死斗赛界面",
+		"focus": "> 领取死斗赛奖励",
 		"action": {"type": "Click", "param": {"target": [895, 190, 40, 40]}},
 		"next": ["Courtyard_Arena_Crucible_ClaimReward"],
 		"post_delay": 1200
@@ -60,7 +61,7 @@
 
 	"Courtyard_Arena_Crucible_ReadyToMatchOpponent": {
 		"focus": "> 准备选择对手",
-		"recognition": {"type": "OCR", "param": {"expected": "传奇角斗士"}},
+		"recognition": {"type": "OCR", "param": {"expected": "传奇角斗士", "roi": [0, 0, 1280, 720]}},
 		"next": [
 			"Courtyard_Arena_Crucible_HasFreeChance", // 有免费挑战机会
 			"Courtyard_Arena_Crucible_End" // 没有免费挑战机会
@@ -71,7 +72,7 @@
 	// 有免费挑战机会
 	"Courtyard_Arena_Crucible_HasFreeChance": {
 		"focus": "> 准备选择对手",
-		"recognition": {"type": "OCR", "param": {"expected": "免费挑战"}},
+		"recognition": {"type": "OCR", "param": {"expected": "免费挑战", "roi": [0, 0, 1280, 720]}},
 		"next": ["Courtyard_Arena_Crucible_CheckBranches"],
 		"post_delay": 1000
 	},

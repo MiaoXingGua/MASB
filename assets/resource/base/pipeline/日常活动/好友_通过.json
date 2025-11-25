@@ -1,57 +1,50 @@
 {
-    "好友_通过_开始": {
-        "focus": "> 开始 通过 好友 ",
-        "next": ["Friend_Accept_Enter"]
-    },
+	"好友_通过_开始": {
+		"focus": "> 开始 通过 好友 ",
+		"next": ["Friend_Accept_Enter"]
+	},
 
+	"Friend_Accept_Enter": {
+		"focus": "> 点击主界面好友按钮",
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["friend_main.png", "friend_main_new.png"],
+				"threshold": 0.8
+			}
+		},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Friend_Accept_ClickNewFriend", "Friend_Accept_End"],
+		"post_delay": 1500
+	},
 
-    "Friend_Accept_Enter": {
-        "focus": "> 点击主界面好友按钮",
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": ["friend_main.png", "friend_main_new.png"],
-                "threshold": 0.8
-            }
-        },
-        "action": { "type": "Click", "param": { "target": true } },
-        "next": [
-            "Friend_Accept_ClickNewFriend" ,
-            "Friend_Accept_End"
-        ],
-        "post_delay": 1500
-    },
+	"Friend_Accept_ClickNewFriend": {
+		"focus": "点开新好友页面",
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": "friend_new.png",
+				"threshold": 0.8
+			}
+		},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Friend_Accept_AllPass", "Friend_Accept_End"],
+		"post_delay": 1000
+	},
 
-    "Friend_Accept_ClickNewFriend": {
-        "focus": "点开新好友页面",
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": "friend_new.png",
-                "threshold": 0.8
-            }
-        },
-        "action": { "type": "Click", "param": { "target": true } },
-        "next": [
-            "Friend_Accept_AllPass",
-            "Friend_Accept_End"
-        ],
-        "post_delay": 1000
-    },
+	"Friend_Accept_AllPass": {
+		"focus": "全部通过！一键加好友～",
+		"recognition": {
+			"type": "OCR",
+			"param": {"expected": "全部通过"}
+		},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Friend_Accept_End"],
+		"post_delay": 800
+	},
 
-    "Friend_Accept_AllPass": {
-        "focus": "全部通过！一键加好友～",
-        "recognition": {
-            "type": "OCR",
-            "param": { "expected": "全部通过" }
-        },
-        "action": { "type": "Click", "param": { "target": true } },
-        "next": ["Friend_Accept_End"],
-        "post_delay": 800
-    },
-
-    "Friend_Accept_End": {
-        "focus": "> 好友 接受好友 结束",
-        "next": ["Return_Home"]
-    }
+	"Friend_Accept_End": {
+		"focus": "> 好友 接受好友 结束",
+		"next": ["Return_Home"]
+	}
 }

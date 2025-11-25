@@ -1,238 +1,227 @@
 {
-    // 入口：贡礼任务
-    "贡礼_开始": {
-        "focus": "> 启动贡礼任务",
-        "next": ["Gongli_EnterBloodPool"]
-    },
+	// 入口：贡礼任务
+	"贡礼_开始": {
+		"focus": "> 启动贡礼任务",
+		"next": ["Gongli_EnterBloodPool"]
+	},
 
-    // 识别图片《贡礼_血池.png》点击进入
-    "Gongli_EnterBloodPool": {
-        "focus": "> 识别贡礼_血池图标...",
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": "贡礼_血池.png",
-                // "threshold": 0.65,
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": true
-            }
-        },
-        "next": ["Gongli_CheckReceiveGift"],
-        "interrupt": [
-            "TapClickAnywhere"  // 点击任意处继续.json
-        ],
-        "pre_delay": 1500,
-        "post_delay": 1000,
-        "rate_limit": 3000,
-        "timeout": 600000
-    },
+	// 识别图片《贡礼_血池.png》点击进入
+	"Gongli_EnterBloodPool": {
+		"focus": "> 识别贡礼_血池图标...",
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": "贡礼_血池.png"
+				// "threshold": 0.65,
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"next": ["Gongli_CheckReceiveGift"],
+		"interrupt": [
+			"TapClickAnywhere" // 点击任意处继续.json
+		],
+		"pre_delay": 1500,
+		"post_delay": 1000,
+		"rate_limit": 3000,
+		"timeout": 600000
+	},
 
-    // 识别文字《接受贡礼》点击
-    "Gongli_CheckReceiveGift": {
-        "focus": "> 点击接受贡礼...",
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "expected": "接受贡礼",
-                "roi": [0, 0, 0, 0]
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": true
-            }
-        },
-        "next": [
-            "Gongli_Waiting",
-            "Gongli_CheckContinue"
-        ],
-        "interrupt": [
-            "Gongli_LevelUp"
-        ],
-        "post_delay": 800,
-        "rate_limit": 2000,
-        "timeout": 15000
-    },
+	// 识别文字《接受贡礼》点击
+	"Gongli_CheckReceiveGift": {
+		"focus": "> 点击接受贡礼...",
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "接受贡礼",
+				"roi": [0, 0, 0, 0]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"next": ["Gongli_Waiting", "Gongli_CheckContinue"],
+		"interrupt": ["Gongli_LevelUp"],
+		"post_delay": 800,
+		"rate_limit": 2000,
+		"timeout": 15000
+	},
 
-    // 识别文字《请稍后再试》
-    "Gongli_Waiting": {
-        "focus": "> 请稍后再试...",
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "expected": "请稍后领取",
-                "roi": [680, 105, 130, 40]
-            }
-        },
-        "next": ["Gongli_CheckExtraPath"],
-        "post_delay": 800,
-        "rate_limit": 2000,
-        "timeout": 15000
-    },
+	// 识别文字《请稍后再试》
+	"Gongli_Waiting": {
+		"focus": "> 请稍后再试...",
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "请稍后领取",
+				"roi": [680, 105, 130, 40]
+			}
+		},
+		"next": ["Gongli_CheckExtraPath"],
+		"post_delay": 800,
+		"rate_limit": 2000,
+		"timeout": 15000
+	},
 
-    "Gongli_LevelUp":{
-        "focus": "> 等级提升...",
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "expected": "等级提升",
-                "roi": [0, 0, 0, 0]
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": true
-            }
-        },
-        "post_delay": 800
-    },
+	"Gongli_LevelUp": {
+		"focus": "> 等级提升...",
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "等级提升",
+				"roi": [0, 0, 0, 0]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"post_delay": 800
+	},
 
-    // 识别文字《点击任意处继续》点击
-    "Gongli_CheckContinue": {
-        "focus": "> 点击任意处继续（等待5秒）...",
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "expected": "点击任意处继续",
-                "roi": [560, 640, 155, 35]
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {
-                // "target": [640, 360, 0, 0] // 屏幕中心
-                "target": true
-            }
-        },
-        "next": ["Gongli_CheckExtraPath"],
-        "interrupt": ["Gongli_LevelUp"],
-        "pre_delay": 800,
-        "post_delay": 800,
-        "rate_limit": 2000,
-        "timeout": 15000
-    },
+	// 识别文字《点击任意处继续》点击
+	"Gongli_CheckContinue": {
+		"focus": "> 点击任意处继续（等待5秒）...",
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "点击任意处继续",
+				"roi": [560, 640, 155, 35]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				// "target": [640, 360, 0, 0] // 屏幕中心
+				"target": true
+			}
+		},
+		"next": ["Gongli_CheckExtraPath"],
+		"interrupt": ["Gongli_LevelUp"],
+		"pre_delay": 800,
+		"post_delay": 800,
+		"rate_limit": 2000,
+		"timeout": 15000
+	},
 
-    // 识别文字《额外布道》点击
-    "Gongli_CheckExtraPath": {
-        "focus": "> 点击额外布道...",
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "expected": "额外布道",
-                "roi": [0, 0, 0, 0]
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": true
-            }
-        },
-        "next": ["Gongli_CheckUse"],
-        "post_delay": 800,
-        "rate_limit": 2000,
-        "timeout": 15000
-    },
+	// 识别文字《额外布道》点击
+	"Gongli_CheckExtraPath": {
+		"focus": "> 点击额外布道...",
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "额外布道",
+				"roi": [0, 0, 0, 0]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"next": ["Gongli_CheckUse"],
+		"post_delay": 800,
+		"rate_limit": 2000,
+		"timeout": 15000
+	},
 
-    // 识别文字《使用》点击
-    "Gongli_CheckUse": {
-        "focus": "> 点击使用...",
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "expected": "使用",
-                "roi": [0, 0, 0, 0]
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": true
-            }
-        },
-        "next": ["Gongli_CheckContinueOrCancel"],
-        "interrupt": ["Gongli_LevelUp"],
-        "post_delay": 800,
-        "rate_limit": 2000,
-        "timeout": 15000
-    },
+	// 识别文字《使用》点击
+	"Gongli_CheckUse": {
+		"focus": "> 点击使用...",
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "使用",
+				"roi": [0, 0, 0, 0]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"next": ["Gongli_CheckContinueOrCancel"],
+		"interrupt": ["Gongli_LevelUp"],
+		"post_delay": 800,
+		"rate_limit": 2000,
+		"timeout": 15000
+	},
 
-    // 分支：点击任意处继续 OR 取消
-    "Gongli_CheckContinueOrCancel": {
-        "focus": "> 处理继续或取消...",
-        "next": [
-            "Gongli_CheckContinueFinal",
-            "Gongli_ClickCancel"
-        ],
-        "interrupt": ["Gongli_LevelUp"],
-        "rate_limit": 2000,
-        "timeout": 15000
-    },
+	// 分支：点击任意处继续 OR 取消
+	"Gongli_CheckContinueOrCancel": {
+		"focus": "> 处理继续或取消...",
+		"next": ["Gongli_CheckContinueFinal", "Gongli_ClickCancel"],
+		"interrupt": ["Gongli_LevelUp"],
+		"rate_limit": 2000,
+		"timeout": 15000
+	},
 
-    // 点击任意处继续（最终）
-    "Gongli_CheckContinueFinal": {
-        "focus": "> 最终点击任意处继续...",
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "expected": "点击任意处继续",
-                "roi": [0, 0, 0, 0]
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": true
-            }
-        },
-        "next": ["Gongli_ClickCancel"],
-        "post_delay": 800,
-        "rate_limit": 2000,
-        "timeout": 15000
-    },
+	// 点击任意处继续（最终）
+	"Gongli_CheckContinueFinal": {
+		"focus": "> 最终点击任意处继续...",
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "点击任意处继续",
+				"roi": [0, 0, 0, 0]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"next": ["Gongli_ClickCancel"],
+		"post_delay": 800,
+		"rate_limit": 2000,
+		"timeout": 15000
+	},
 
-    // 点击《取消》
-    "Gongli_ClickCancel": {
-        "focus": "> 点击取消...",
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "expected": "取消",
-                "roi": [0, 0, 0, 0]
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": true
-            }
-        },
-        "next": [
-            "Gongli_ClickCancel",
-            "Gongli_BackToHome"
-        ],
-        "post_delay": 800,
-        "rate_limit": 2000,
-        "timeout": 15000
-    },
-    "Gongli_BackToHome": {
-        "focus": "> 返回首页...",
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [640, 360, 0, 0] // 点屏幕中央
-            }
-        },
-        "next": ["Gongli_End"]
-    },
-    // 贡礼结束
-    "Gongli_End": {
-        "focus": "> 贡礼任务完成！"
-    }
+	// 点击《取消》
+	"Gongli_ClickCancel": {
+		"focus": "> 点击取消...",
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "取消",
+				"roi": [0, 0, 0, 0]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"next": ["Gongli_ClickCancel", "Gongli_BackToHome"],
+		"post_delay": 800,
+		"rate_limit": 2000,
+		"timeout": 15000
+	},
+	"Gongli_BackToHome": {
+		"focus": "> 返回首页...",
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [640, 360, 0, 0] // 点屏幕中央
+			}
+		},
+		"next": ["Gongli_End"]
+	},
+	// 贡礼结束
+	"Gongli_End": {
+		"focus": "> 贡礼任务完成！"
+	}
 }

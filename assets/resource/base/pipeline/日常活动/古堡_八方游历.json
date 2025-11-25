@@ -1,57 +1,57 @@
 {
-    "古堡_八方游历_开始": {
-        "focus": "> 八方游历 开始",
-        "next": ["Castle_WorldTravel_Entrance"]
-    },
+	"古堡_八方游历_开始": {
+		"focus": "> 八方游历 开始",
+		"next": ["Castle_WorldTravel_Entrance"]
+	},
 
-    // 进入古堡
-    "Castle_WorldTravel_Entrance": {
-        "focus": "点一下【古堡】按钮",
-        "recognition": { "type": "OCR", "param": { "expected": "古堡" } },
-        "action": { "type": "Click", "param": { "target": true } },
-        "next": ["Castle_WorldTravel_Entry"],
-        "post_delay": 1500
-    },
+	// 进入古堡
+	"Castle_WorldTravel_Entrance": {
+		"focus": "点一下【古堡】按钮",
+		"recognition": {"type": "OCR", "param": {"expected": "古堡"}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Castle_WorldTravel_Entry"],
+		"post_delay": 1500
+	},
 
-    // 八方游历
-    "Castle_WorldTravel_Entry": {
-        "focus": "发现八方游历！点进去看看～",
-        "recognition": { "type": "OCR", "param": { "expected": "八方游历" } },
-        "action": { "type": "Click", "param": { "target": true } },
-        "next": ["Castle_WorldTravel_QuickClaim"],
-        "post_delay": 800
-    },
+	// 八方游历
+	"Castle_WorldTravel_Entry": {
+		"focus": "发现八方游历！点进去看看～",
+		"recognition": {"type": "OCR", "param": {"expected": "八方游历"}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Castle_WorldTravel_QuickClaim"],
+		"post_delay": 800
+	},
 
-    // 领取奖励
-    "Castle_WorldTravel_QuickClaim": {
-        "focus": "点【快速领取】收奖励",
-        "recognition": { "type": "OCR", "param": { "expected": "快速领取" } },
-        "action": { "type": "Click", "param": { "target": true } },
-        "next": ["Castle_WorldTravel_TapContinue"],
-        "post_delay": 800
-    },
+	// 领取奖励
+	"Castle_WorldTravel_QuickClaim": {
+		"focus": "点【快速领取】收奖励",
+		"recognition": {"type": "OCR", "param": {"expected": "快速领取"}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Castle_WorldTravel_TapContinue"],
+		"post_delay": 800
+	},
 
-    // 点击继续
-    "Castle_WorldTravel_TapContinue": {
-        "focus": "点屏幕继续～",
-        "recognition": { "type": "OCR", "param": { "expected": "点击任意处继续" } },
-        "action": { "type": "Click", "param": { "target": true } },
-        "next": ["Castle_WorldTravel_QuickTravel"],
-        "post_delay": 800
-    },
+	// 点击继续
+	"Castle_WorldTravel_TapContinue": {
+		"focus": "点屏幕继续～",
+		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续"}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Castle_WorldTravel_QuickTravel"],
+		"post_delay": 800
+	},
 
-    // 快速游历
-    "Castle_WorldTravel_QuickTravel": {
-        "focus": "再点【快速游历】出发",
-        "recognition": { "type": "OCR", "param": { "expected": "快速游历" } },
-        "action": { "type": "Click", "param": { "target": true } },
-        "next": ["Castle_WorldTravel_End"],
-        "post_delay": 800
-    },
+	// 快速游历
+	"Castle_WorldTravel_QuickTravel": {
+		"focus": "再点【快速游历】出发",
+		"recognition": {"type": "OCR", "param": {"expected": "快速游历"}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Castle_WorldTravel_End"],
+		"post_delay": 800
+	},
 
-    // 结束
-    "Castle_WorldTravel_End": {
-        "focus": "> 退出 八方游历",
-        "next": ["Return_Home"]
-    }
+	// 结束
+	"Castle_WorldTravel_End": {
+		"focus": "> 退出 八方游历",
+		"next": ["Return_Home"]
+	}
 }

@@ -1,126 +1,114 @@
 {
-    "好友_清理_开始": {
-        "focus": "> 开始 清理 好友",
-        "next": ["Friend_Delete_Enter"]
-    },
+	"好友_清理_开始": {
+		"focus": "> 开始 清理 好友",
+		"next": ["Friend_Delete_Enter"]
+	},
 
-    "Friend_Delete_Enter": {
-        "focus": "> 点击主界面好友按钮",
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": ["friend_main.png", "friend_main_new.png"],
-                "threshold": 0.8
-            }
-        },
-        "action": { "type": "Click", "param": { "target": true } },
-        "next": [
-            "Friend_Delete_SortAscending",
-            "Friend_Delete_SortDescending"
-        ],
-        "post_delay": 1500
-    },
+	"Friend_Delete_Enter": {
+		"focus": "> 点击主界面好友按钮",
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["friend_main.png", "friend_main_new.png"],
+				"threshold": 0.8
+			}
+		},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Friend_Delete_SortAscending", "Friend_Delete_SortDescending"],
+		"post_delay": 1500
+	},
 
-    "Friend_Delete_SortAscending": {
-        "focus": "> 好友是顺序排列的",
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": "friend_sort_ascending.png",
-                "threshold": 0.8,
-                "roi": [280, 645, 60, 40]
-            }
-        },
-        "action": { "type": "Click", "param": { "target": true } },
-        "next": [
-            "Friend_Delete_Start"
-        ],
-        "post_delay": 800
-    },
+	"Friend_Delete_SortAscending": {
+		"focus": "> 好友是顺序排列的",
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": "friend_sort_ascending.png",
+				"threshold": 0.8,
+				"roi": [280, 645, 60, 40]
+			}
+		},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Friend_Delete_Start"],
+		"post_delay": 800
+	},
 
-    "Friend_Delete_SortDescending": {
-        "focus": "> 好友是逆序排列的",
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": "friend_sort_descending.png",
-                "threshold": 0.8,
-                "roi": [280, 645, 60, 40]
-            }
-        },
-        "next": [
-            "Friend_Delete_Start"
-        ],
-        "post_delay": 800
-    },
+	"Friend_Delete_SortDescending": {
+		"focus": "> 好友是逆序排列的",
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": "friend_sort_descending.png",
+				"threshold": 0.8,
+				"roi": [280, 645, 60, 40]
+			}
+		},
+		"next": ["Friend_Delete_Start"],
+		"post_delay": 800
+	},
 
-    // 2 识别文字《天前》
-    "Friend_Delete_Start": {
-        "focus": "开始清理 老友",
-        "next": [
-            "Friend_Delete_CheckFindDaysAgo",
-            "Friend_Delete_End"
-        ]
-    },
+	// 2 识别文字《天前》
+	"Friend_Delete_Start": {
+		"focus": "开始清理 老友",
+		"next": ["Friend_Delete_CheckFindDaysAgo", "Friend_Delete_End"]
+	},
 
-    "Friend_Delete_CheckFindDaysAgo": {
-        "focus": "找到标记“天前”的老死党",
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                // "expected": "^([6-9]|[1-9]\\d+)天前$", // 5天以上
-                "expected": "^([4-9]|[1-9]\\d+)天前$", // 3天以上
-                "roi": [500, 180, 140, 45]
-            }
-        },
-        "next": [
-            "Friend_Delete_ClickMenu"
-        ]
-    },
+	"Friend_Delete_CheckFindDaysAgo": {
+		"focus": "找到标记“天前”的老死党",
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				// "expected": "^([6-9]|[1-9]\\d+)天前$", // 5天以上
+				"expected": "^([4-9]|[1-9]\\d+)天前$", // 3天以上
+				"roi": [500, 180, 140, 45]
+			}
+		},
+		"next": ["Friend_Delete_ClickMenu"]
+	},
 
-    // 3 点击图片《friend_menu.png》
-    "Friend_Delete_ClickMenu": {
-        "focus": "点一下右上角菜单",
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": "friend_menu.png",
-                "threshold": 0.8,
-                "roi": [1000, 180, 70, 70]
-            }
-        },
-        "action": { "type": "Click", "param": { "target": true } },
-        "next": ["Friend_Delete_ClickDelete"],
-        "post_delay": 800
-    },
+	// 3 点击图片《friend_menu.png》
+	"Friend_Delete_ClickMenu": {
+		"focus": "点一下右上角菜单",
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": "friend_menu.png",
+				"threshold": 0.8,
+				"roi": [1000, 180, 70, 70]
+			}
+		},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Friend_Delete_ClickDelete"],
+		"post_delay": 800
+	},
 
-    // 4 点击文字《删除》
-    "Friend_Delete_ClickDelete": {
-        "focus": "点【删除】",
-        "recognition": {
-            "type": "OCR",
-            "param": { "expected": "删除" }
-        },
-        "action": { "type": "Click", "param": { "target": true } },
-        "next": ["Friend_Delete_Confirm"],
-        "post_delay": 800
-    },
+	// 4 点击文字《删除》
+	"Friend_Delete_ClickDelete": {
+		"focus": "点【删除】",
+		"recognition": {
+			"type": "OCR",
+			"param": {"expected": "删除"}
+		},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Friend_Delete_Confirm"],
+		"post_delay": 800
+	},
 
-    // 5 点击文字《确认》
-    "Friend_Delete_Confirm": {
-        "focus": "再点一次【确认】，彻底说拜拜",
-        "recognition": {
-            "type": "OCR",
-            "param": { "expected": "确认" }
-        },
-        "action": { "type": "Click", "param": { "target": true } },
-        "next": ["Friend_Delete_Start"],
-        "post_delay": 800
-    },
+	// 5 点击文字《确认》
+	"Friend_Delete_Confirm": {
+		"focus": "再点一次【确认】，彻底说拜拜",
+		"recognition": {
+			"type": "OCR",
+			"param": {"expected": "确认"}
+		},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Friend_Delete_Start"],
+		"post_delay": 800
+	},
 
-    // 结束
-    "Friend_Delete_End": {
-        "focus": "> 好友 清理 结束",
-        "next": ["Return_Home"]
-    }
+	// 结束
+	"Friend_Delete_End": {
+		"focus": "> 好友 清理 结束",
+		"next": ["Return_Home"]
+	}
 }
