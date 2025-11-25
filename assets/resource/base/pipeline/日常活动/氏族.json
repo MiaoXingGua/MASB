@@ -1,0 +1,108 @@
+{
+	"氏族_开始": {
+		"focus": "> 开始 氏族流程",
+		"next": ["Clan_Entry"]
+	},
+
+	"Clan_Entry": {
+		"focus": "> 进入【氏族】",
+		"recognition": {"type": "OCR", "param": {"expected": "氏族", "roi": [725, 680, 40, 25]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Clan_SignIn"],
+		"post_delay": 1000
+	},
+
+	"Clan_SignIn": {
+		"focus": "> 点击【氏族签到】",
+		"recognition": {"type": "OCR", "param": {"expected": "氏族签到", "roi": [545, 465, 120, 40]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Clan_Claim", "Clan_ClickAnywhere2"],
+		"post_delay": 800
+	},
+
+	"Clan_Claim": {
+		"focus": "> 点击【领取】",
+		"recognition": {
+			"type": "OCR",
+			"param": {"expected": "(^|[^已])领取", "roi": [0, 0, 1280, 720]}
+		},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Clan_ClickAnywhere1"],
+		"post_delay": 800
+	},
+
+	"Clan_ClickAnywhere1": {
+		"focus": "> 点击任意处继续",
+		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [0, 0, 1280, 720]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Clan_ClickAnywhere2"],
+		"post_delay": 600
+	},
+
+	"Clan_ClickAnywhere2": {
+		"focus": "> 点击任意处继续",
+		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [0, 0, 1280, 720]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Clan_EnterAncestralVault"],
+		"post_delay": 600
+	},
+
+	"Clan_EnterAncestralVault": {
+		"focus": "> 进入【先灵秘窖】",
+		"recognition": {
+			"type": "OCR",
+			"param": {"expected": "先灵秘窖", "roi": [1040, 465, 115, 40], "replace": [["窑", "窖"]]}
+		},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Clan_ClickAnywhere3"],
+		"post_delay": 800
+	},
+
+	"Clan_ClickAnywhere3": {
+		"focus": "> 点击任意处继续",
+		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [0, 0, 1280, 720]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Clan_Return"],
+		"post_delay": 600
+	},
+
+	"Clan_Return": {
+		"focus": "> 返回",
+		"recognition": {"type": "OCR", "param": {"expected": "返回", "roi": [125, 25, 60, 30]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Clan_MemberEntry"],
+		"post_delay": 800
+	},
+
+	"Clan_MemberEntry": {
+		"focus": "> 进入【成员】",
+		"recognition": {"type": "OCR", "param": {"expected": "成员", "roi": [785, 85, 50, 30]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Clan_ClickHeart"],
+		"post_delay": 800
+	},
+
+	"Clan_ClickHeart": {
+		"focus": "> 点击 爱心",
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {"template": "clan_member_heart.png", "roi": [1095, 155, 85, 80]}
+		},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Clan_ClickAnywhere4"],
+		"post_delay": 800
+	},
+
+	"Clan_ClickAnywhere4": {
+		"focus": "> 点击任意处继续",
+		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [0, 0, 1280, 720]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Clan_End"],
+		"post_delay": 600
+	},
+
+	"Clan_End": {
+		"focus": "> 氏族流程结束",
+		"next": ["Return_Home"]
+	}
+}
