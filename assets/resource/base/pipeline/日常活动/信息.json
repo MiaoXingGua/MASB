@@ -1,0 +1,35 @@
+{
+	"信息_开始": {
+		"focus": "> 开始 信息领取流程",
+		"next": ["Message_ClickMessageEntry"]
+	},
+
+	"Message_ClickMessageEntry": {
+		"focus": "> 进入 信息",
+		"recognition": {"type": "TemplateMatch", "param": {"template": "message.png", "roi": [385, 15, 65, 40]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Message_OneKeyClaim"],
+		"post_delay": 1000
+	},
+
+	"Message_OneKeyClaim": {
+		"focus": "> 识别并点击【一键领取】",
+		"recognition": {"type": "OCR", "param": {"expected": "键领取", "roi": [300, 575, 75, 35]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Message_ClickAnywhere"],
+		"post_delay": 800
+	},
+
+	"Message_ClickAnywhere": {
+		"focus": "> 识别并点击【点击任意处继续】",
+		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [0, 0, 1280, 720]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Message_End"],
+		"post_delay": 600
+	},
+
+	"Message_End": {
+		"focus": "> 信息领取流程结束",
+		"next": ["Return_Home"]
+	}
+}
