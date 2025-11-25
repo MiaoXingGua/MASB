@@ -26,13 +26,25 @@
     "files.associations": {
         "**/assets/**/*.json": "jsonc"
     },
+    // 1. 配置JSON文件的格式化器（核心：绑定Prettier）
     "[json]": {
         "editor.formatOnSave": true,
-        "editor.insertSpaces": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode", // 新增：指定Prettier
+        "editor.insertSpaces": false, // 关闭强制空格（交给Prettier控制）
+        "editor.tabSize": 4,
+        "editor.indentSize": "tabSize"
+    },
+    // 2. 配置JSONC文件（你关联的/assets下的JSON属于这类）
+    "[jsonc]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode", // 新增：JSONC也用Prettier
+        "editor.insertSpaces": false, // 关闭强制空格
         "editor.tabSize": 4,
         "editor.indentSize": "tabSize"
     },
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter"
-    }
+    },
+    // 3. 禁用内置JSON格式化器（彻底杜绝抢占）
+    "json.format.enable": false
 }
