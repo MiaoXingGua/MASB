@@ -1,14 +1,17 @@
 {
 	"信息_开始": {
 		"focus": "> 开始 信息领取流程",
-		"next": ["Message_ClickMessageEntry"]
+		"next": ["Message_ClickMessageEntry", "Message_End"]
 	},
 
 	"Message_ClickMessageEntry": {
 		"focus": "> 进入 信息",
-		"recognition": {"type": "TemplateMatch", "param": {"template": "message.png", "roi": [385, 15, 65, 40]}},
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {"template": ["message.png", "message_new.png"], "roi": [385, 15, 65, 40]}
+		},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Message_OneKeyClaim", "Message_End"],
+		"next": ["Message_OneKeyClaim"],
 		"post_delay": 1000
 	},
 
