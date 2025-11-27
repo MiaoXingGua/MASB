@@ -1,0 +1,20 @@
+{
+    // 检查“确认”弹窗，点击后返回主流程
+    "CheckConfirm": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "确认",
+                "roi": [590, 460, 90, 60]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "next": [],          // 结束子流程，返回StartApp
+        "post_delay": 500    // 点击后延迟0.5s
+    }
+}

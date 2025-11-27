@@ -1,123 +1,96 @@
 <!-- markdownlint-disable MD033 MD041 -->
 <p align="center">
-  <img alt="LOGO" src="https://cdn.jsdelivr.net/gh/MaaAssistantArknights/design@main/logo/maa-logo_512x512.png" width="256" height="256" />
+  <img alt="LOGO" src="./logo.png" width="256" height="256" />
 </p>
 
 <div align="center">
 
-# MaaPracticeBoilerplate
+# MASB - 银与绯(银与血)小助手</br>MaaAssistantSilver&Blood</br> ✨ 自动化助手，解放双手 ✨
 
+基于 MaaFramework 架构的游戏辅助工具，结合图像识别与模拟控制技术，为玩家提供便捷的自动化操作体验。
+
+<p align="center">
+  <a href="https://www.python.org/" target="_blank"><img alt="python" src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white"></a>
+
+  <a href="https://github.com/MaaXYZ/MaaFramework/blob/main/docs/zh_cn/3.1-%E4%BB%BB%E5%8A%A1%E6%B5%81%E6%B0%B4%E7%BA%BF%E5%8D%8F%E8%AE%AE.md" target="_blank"><img alt="pipeline" src="https://img.shields.io/badge/Pipeline-%23876f69?logo=paddypower&logoColor=%23FFFFFF"></a>
+
+  <a href="https://github.com/MiaoXingGua/MASB/releases" target="_blank"><img alt="platform" src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-blueviolet"></a>
+
+  <a href="https://github.com/MiaoXingGua/MASB/commits/main/" target="_blank"><img alt="commits" src="https://img.shields.io/github/commit-activity/m/MiaoXingGua/MASB?color=%23ff69b4"></a>
+
+  <a href="https://github.com/MiaoXingGua/MASB/stargazers" target="_blank"><img alt="stars" src="https://img.shields.io/github/stars/MiaoXingGua/MASB?style=social"></a>
+  
+  <a href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=your-qq-group-key" target="_blank"><img alt="QQ交流群" src="https://img.shields.io/badge/QGroup-1063600627-0e80c1?logo=qq&logoColor=white"></a>
+</p>
 </div>
 
-本仓库为 [MaaFramework](https://github.com/MaaXYZ/MaaFramework) 所提供的项目模板，开发者可基于此模板直接创建自己的 MaaXXX 项目。
+## 功能列表
 
-> **MaaFramework** 是基于图像识别技术、运用 [MAA](https://github.com/MaaAssistantArknights/MaaAssistantArknights) 开发经验去芜存菁、完全重写的新一代自动化黑盒测试框架。
-> 低代码的同时仍拥有高扩展性，旨在打造一款丰富、领先、且实用的开源库，助力开发者轻松编写出更好的黑盒测试程序，并推广普及。
+### 基础操作
+- 🎮 **启动游戏**：自动启动游戏并进入主界面
+- 🎁 **接受贡礼**：一键领取所有可收取的贡礼
+- 📩 **收取信息**：自动读取并处理所有新信息
 
-## 即刻开始
+### 古堡系统
+- 🌍 **八方游历**：自动执行古堡八方游历相关操作
+- 🏛️ **议事阁**：处理古堡议事阁各类事务
 
-- [📄 快速开始](https://github.com/MaaXYZ/MaaFramework/blob/main/docs/zh_cn/1.1-%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.md)
-- [🎞️ 视频教程](https://www.bilibili.com/video/BV1yr421E7MW)
+### 商店系统
+- 🏪 **免费商店**：访问人偶商店杂货铺，自动领取/购买免费物品
+- 🧛 **献血商店**：自动访问人偶商店的鲜血商店
 
-## 如何开发
+### 社交系统
+- 👫 **好友-一键收赠**：批量收取好友赠送并回赠
+- 🔄 **好友-清理好友**：自动清理不活跃好友
+- 📥 **好友-申请好友**：通过好友申请并主动拓展新好友
 
-0. 使用右上角 `Use this template` - `Create a new repository` 来基于本模板创建您自己的项目。
+### 忘却中庭
+- ⚔️ **英灵剑冢**：自动挑战英灵剑冢
+- ⏳ **时计塔楼**：自动探索时计塔楼
+- 🌌 **通天深渊**：自动挑战通天深渊
+- 🎭 **斗技场_竞演赛**：参与斗技场竞演赛
+- 🔥 **斗技场_死斗赛**：参与斗技场死斗赛
 
-1. 克隆本项目及子项目（地址请修改为您基于本模板创建的新项目地址）。
+### 其他功能
+- 🏢 **氏族**：处理氏族日常相关事务
+- 📋 **任务**：领取任务奖励并完成可自动完成的任务
 
-    ```bash
-    git clone https://github.com/MaaXYZ/MaaPracticeBoilerplate.git
-    ```
+## 使用教程
 
-2. 下载 MaaFramework 的 [Release 包](https://github.com/MaaXYZ/MaaFramework/releases)，解压到 `deps` 文件夹中。
+1. 首次使用请完成初始化配置
+2. 在功能列表中勾选需要执行的任务
+3. 点击"开始运行"按钮启动自动化流程
 
-3. 下载通用资源子模块（MaaCommonAssets）
+详细操作说明请参考 [用户手册](docs/zh_cn/usage.md)（持续更新中）
 
-    ```bash
-    git submodule update --init --recursive
-    ```
+## 加入我们
 
-    请注意，子模块仓库体积较大，请确认您已经成功下载，否则后续 OCR（文字识别）将报错并无识别结果。  
-    若 git 命令始终无法成功下载，也可尝试前往 [Mirror酱](https://mirrorchyan.com/zh/projects?rid=MaaCommonAssets&source=ghtempl-readme) 手动下载后解压到 `assets/MaaCommonAssets` 文件夹中，目录结构为 `assets/MaaCommonAssets/OCR`。
+🐧 交流群：[QQ 群号](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=1063600627)
 
-4. 配置资源文件。
+欢迎反馈问题、提出建议或参与开发，一起完善工具功能！
 
-    ```bash
-    python ./configure.py
-    ```
+## 免责声明
 
-    若报错 `File Not Found: XXXXXX`，则说明上一步 MaaCommonAssets 未正常下载，请再次检查！
+本软件为开源免费工具，仅供学习交流使用。请勿用于商业用途或违反游戏规则的行为。
 
-5. 进行开发工作，按您的业务需求修改 `assets` 中的资源文件，请参考 [MaaFramework 相关文档](https://github.com/MaaXYZ/MaaFramework/blob/main/docs/zh_cn/1.1-%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.md#%E8%B5%84%E6%BA%90%E5%87%86%E5%A4%87)。
+使用过程中因软件漏洞、操作失误等导致的任何问题，开发组不承担责任，请谨慎使用。
 
-6. 完成开发后，上传您的代码并发布版本。
+## 常见问题
 
-    ```bash
-    # 配置 git 信息（仅第一次需要，后续不用再配置）
-    git config user.name "您的 GitHub 昵称"
-    git config user.email "您的 GitHub 邮箱"
-    
-    # 提交修改
-    git add .
-    git commit -m "XX 新功能"
-    git push origin HEAD -u
-    ```
-
-7. 发布您的版本
-
-    需要**先**修改仓库设置 `Settings` - `Actions` - `General` - `Read and write permissions` - `Save`
-
-    ```bash
-    # CI 检测到 tag 会自动进行发版
-    git tag v1.0.0
-    git push origin v1.0.0
-    ```
-
-8. 更多操作，请参考[个性化配置](./docs/zh_cn/个性化配置.md)（可选）
-
-## 生态共建
-
-MAA 正计划建设为一类项目，而非舟的单一软件。
-
-若您的项目依赖于 MaaFramework，我们欢迎您将它命名为 MaaXXX, MXA, MAX 等等。当然，这是许可而不是限制，您也可以自由选择其他与 MAA 无关的名字，完全取决于您自己的想法！
-
-同时，我们也非常欢迎您提出 PR，在 [社区项目列表](https://github.com/MaaXYZ/MaaFramework#%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE) 中添加上您的项目！
-
-## FAQ
-
-### 0. 我是第一次使用 git，这是什么？视频演示中那个黑框框命令行哪来的？
-
-黑框框是 git bash，几乎任何现代软件的开发都离不开 git，建议先参考 [菜鸟教程](https://www.runoob.com/git/git-install-setup.html) 或搜索一些视频，学习完 git 后再来进行后续开发工作。
-
-### 1. 我是第一次使用 Python，在命令行输入 `python ./configure.py` 或 `python -m pip install MaaFW` 之后没有反应？没有报错，也没有提示成功，什么都没有
-
-Win10 或者 Win11 系统自带了一份 "Python"，但它其实只是一个安装器，是没法用的。  
-你需要做的是关闭它或者删除它的环境变量，然后自己去 Python 官网下载并安装一份 Python。  
-[参考方法](https://www.bilibili.com/read/cv24692025/)
-
-### 2. 使用 MaaDebugger 或 MaaPicli 时弹窗报错，应用程序错误：应用程序无法正常启动
-
-![缺少运行库](https://github.com/user-attachments/assets/942df84b-f47d-4bb5-98b5-ab5d44bc7c2a)
-
-一般是电脑缺少某些运行库，请安装一下 [vc_redist](https://aka.ms/vs/17/release/vc_redist.x64.exe) 。
-
-### 3. 我在这个仓库里提了 Issue 很久没人回复
-
-这里是《项目模板》仓库，它仅仅是一个模板，一般很少会修改，开发者也较少关注。  
-在此仓库请仅提问模板相关问题，其他问题最好前往对应的仓库提出，如果有 log，最好也带上它（`debug/maa.log` 文件）
-
-- MaaFW 本身及 MaaPiCli 的问题：[MaaFramework/issues](https://github.com/MaaXYZ/MaaFramework/issues)
-- MaaDebugger 的问题：[MaaDebugger/issues](https://github.com/MaaXYZ/MaaDebugger/issues)
-- 不知道算是哪里的、其他疑问等：[讨论区](https://github.com/MaaXYZ/MaaFramework/discussions)
-
-### 4. OCR 文字识别一直没有识别结果，报错 "Failed to load det or rec", "ocrer_ is null"
-
-**请仔细阅读文档**，你无视了前面步骤的报错。我不想解释了，请再把本文档仔细阅读一遍！
+- 若遇到功能异常，请先检查游戏版本是否匹配
+- 自动化操作可能受分辨率、游戏设置影响，建议使用默认游戏配置
+- 更多问题请查看 [FAQ](docs/zh_cn/faq.md) 或提交 [Issue](https://github.com/MiaoXingGua/MASB/issues)
 
 ## 鸣谢
 
-本项目由 **[MaaFramework](https://github.com/MaaXYZ/MaaFramework)** 强力驱动！
+- 核心框架：[MaaXYZ/MaaFramework](https://github.com/MaaXYZ/MaaFramework)
+- GUI 组件：[SweetSmellFox/MFAAvalonia](https://github.com/SweetSmellFox/MFAAvalonia)
+- 测试工具：[MaaXYZ/MaaDebugger](https://github.com/MaaXYZ/MaaDebugger)
 
-感谢以下开发者对本项目作出的贡献（下面链接改成你自己的项目地址）:
+## 统计
 
-[![Contributors](https://contrib.rocks/image?repo=MaaXYZ/MaaFramework&max=1000)](https://github.com/MaaXYZ/MaaFramework/graphs/contributors)
+[![Star History Chart](https://api.star-history.com/svg?repos=MiaoXingGua/MASB&type=Date)](https://www.star-history.com/#MiaoXingGua/MASB&Date)
+
+## 许可证
+
+本项目采用 [MIT 许可证](LICENSE) 进行分发，详情请查看 LICENSE 文件。

@@ -1,13 +1,11 @@
 {
     "tabWidth": 4,
-    "printWidth": 120,
+    "printWidth": 150,
     "useTabs": false,
     "bracketSameLine": true,
     "bracketSpacing": false,
     "endOfLine": "auto",
-    "plugins": [
-        "prettier-plugin-multiline-arrays"
-    ],
+    "plugins": ["prettier-plugin-multiline-arrays"],
     "multilineArraysWrapThreshold": 1,
     "overrides": [
         {
@@ -22,12 +20,15 @@
         },
         {
             "files": [
-                "*.json"
+                "**/*.json",
+                "**/*.jsonc"
             ],
             "options": {
-                "parser": "json",
+                "parser": "jsonc",
                 "useTabs": true,
-                "bracketSameLine": false
+                "tabWidth": 4,
+                "bracketSameLine": false,
+                "trailingComma": "none"
             }
         }
     ]

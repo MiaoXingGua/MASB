@@ -1,84 +1,119 @@
 {
-    "controller": [
-        {
-            "name": "安卓端",
-            "type": "Adb"
-        },
-        {
-            "name": "桌面端",
-            "type": "Win32",
-            "win32": {
-                "class_regex": ".*",
-                "window_regex": "Visual Studio"
-            }
-        }
-    ],
-    "resource": [
-        {
-            "name": "官服",
-            "path": [
-                "{PROJECT_DIR}/resource"
-            ]
-        },
-        {
-            "name": "B 服",
-            "path": [
-                "{PROJECT_DIR}/resource",
-                "{PROJECT_DIR}/resource_bilibili"
-            ]
-        }
-    ],
-    "agent": {
-        "child_exec": "python",
-        "child_args": [
-            "{PROJECT_DIR}/agent/main.py"
-        ]
-    },
-    "task": [
-        {
-            "name": "普通任务",
-            "entry": "MyTask1"
-        },
-        {
-            "name": "选项任务",
-            "entry": "MyTask2",
-            "option": [
-                "任务选项1"
-            ]
-        },
-        {
-            "name": "参数任务",
-            "entry": "MyTask3",
-            "option": [
-                "任务选项1"
-            ],
-            "pipeline_override": {}
-        },
-        {
-            "name": "带Custom的任务",
-            "entry": "MyTask4"
-        }
-    ],
-    "option": {
-        "任务选项1": {
-            "cases": [
-                {
-                    "name": "文本1",
-                    "pipeline_override": {
-                        "OcrTask": {
-                            "text": "文本1"
-                        }
-                    }
-                },
-                {
-                    "name": "文本2",
-                    "pipeline_override": {
-                        "OcrTask": {
-                            "text": "文本2"
-                        }
-                    }
-                }
-            ]
-        }
-    }
+	"name": "MASB - MaaAssistantSilver&Blood 银与绯",
+	"url": "https://github.com/MiaoXingGua/MASB",
+	"custom_title": "",
+	"mirrorchyan_rid": "MASB",
+	"mirrorchyan_multiplatform": true,
+	"version": "v0.0.1",
+	"mfa_min_version": "v1.4.1",
+	"message": "- 银 与 绯 -",
+	"controller": [
+		{
+			"name": "安卓模拟器（Android）",
+			"type": "Adb"
+		}
+	],
+	"resource": [
+		{
+			"name": "国际服",
+			"path": ["{PROJECT_DIR}/resource/base"]
+		}
+	],
+	"agent": {
+		"child_exec": "python",
+		"child_args": ["{PROJECT_DIR}/agent/main.py"]
+	},
+	"task": [
+		{
+			"name": "启动游戏",
+			"entry": "启动游戏_开始",
+			"doc": "启动游戏并进入主界面"
+		},
+		{
+			"name": "接受贡礼",
+			"entry": "贡礼_开始",
+			"doc": "自动领取所有可领取的贡礼"
+		},
+		{
+			"name": "收取信息",
+			"entry": "信息_开始",
+			"doc": "自动读取并收取所有新信息"
+		},
+
+		{
+			"name": "八方游历",
+			"entry": "古堡_八方游历_开始",
+			"doc": "执行古堡八方游历相关操作"
+		},
+		{
+			"name": "议事阁",
+			"entry": "古堡_议事阁_开始",
+			"doc": "处理古堡议事阁事务"
+		},
+
+		{
+			"name": "免费商店",
+			"entry": "人偶商店_杂货铺_开始",
+			"doc": "访问人偶商店的杂货铺并领取/购买免费物品"
+		},
+		{
+			"name": "鲜血商店",
+			"entry": "人偶商店_鲜血商店_开始",
+			"doc": "访问人偶商店的鲜血商店"
+		},
+
+		{
+			"name": "好友-一键收赠",
+			"entry": "好友_收礼_开始",
+			"doc": "收取好友赠送并赠送好友"
+		},
+		{
+			"name": "好友-清理好友",
+			"entry": "好友_清理_开始",
+			"doc": "清理不活跃好友"
+		},
+		{
+			"name": "好友-申请好友",
+			"entry": "好友_通过_开始",
+			"doc": "通过好友申请并主动申请新好友（自动衔接好友_申请_开始）"
+		},
+
+		{
+			"name": "忘却中庭-英灵剑冢",
+			"entry": "忘却中庭_英灵剑冢_开始",
+			"doc": "挑战英灵剑冢"
+		},
+		{
+			"name": "忘却中庭-时计塔楼",
+			"entry": "忘却中庭_时计塔楼_开始",
+			"doc": "探索时计塔楼"
+		},
+		{
+			"name": "忘却中庭-通天深渊",
+			"entry": "忘却中庭_通天深渊_开始",
+			"doc": "挑战通天深渊"
+		},
+		{
+			"name": "忘却中庭-斗技场_竞演赛",
+			"entry": "忘却中庭_斗技场_竞演赛_开始",
+			"doc": "参与斗技场竞演赛"
+		},
+		{
+			"name": "忘却中庭-斗技场_死斗赛",
+			"entry": "忘却中庭_斗技场_死斗赛_开始",
+			"doc": "参与斗技场死斗赛"
+		},
+
+		{
+			"name": "氏族",
+			"entry": "氏族_开始",
+			"doc": "处理氏族相关事务"
+		},
+		{
+			"name": "任务",
+			"entry": "任务_开始",
+			"doc": "领取任务奖励并完成可自动完成的任务"
+		}
+	],
+	"option": {}
 }

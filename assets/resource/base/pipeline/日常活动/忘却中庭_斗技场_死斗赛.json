@@ -1,0 +1,176 @@
+{
+	"忘却中庭_斗技场_死斗赛_开始": {
+		"focus": "> 开始 【死斗赛】",
+		"next": ["Courtyard_Arena_Crucible_EnterYard"],
+		"interrupt": ["CheckRetry", "CheckRelogin"]
+	},
+
+	"Courtyard_Arena_Crucible_EnterYard": {
+		"focus": "> 进入【忘却中庭】",
+		"recognition": {"type": "OCR", "param": {"expected": "忘却中庭", "roi": [1145, 388, 110, 45], "only_rec": true}},
+		"action": {"type": "Click", "param": {"target": true, "target_offset": [0, -50, 0, 0]}},
+		"next": ["Courtyard_Arena_Crucible_ClickBloodArena"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"post_delay": 800
+	},
+
+	"Courtyard_Arena_Crucible_ClickBloodArena": {
+		"focus": "> 点击【鲜血斗技场】",
+		"recognition": {"type": "OCR", "param": {"expected": "鲜血斗技场", "roi": [75, 345, 130, 50]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Courtyard_Arena_Crucible_ClickFixedPos"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"post_delay": 1000
+	},
+
+	"Courtyard_Arena_Crucible_ClickFixedPos": {
+		"focus": "> 领取【死斗赛奖励】",
+		"action": {"type": "Click", "param": {"target": [890, 185, 0, 0]}},
+		"next": ["Courtyard_Arena_Crucible_ClaimReward"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"post_delay": 1200
+	},
+
+	"Courtyard_Arena_Crucible_ClaimReward": {
+		"focus": "> 点击【领取】",
+		"recognition": {"type": "OCR", "param": {"expected": "领取", "roi": [815, 575, 80, 60]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Courtyard_Arena_Crucible_ClickAnywhere"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"post_delay": 600
+	},
+
+	"Courtyard_Arena_Crucible_ClickAnywhere": {
+		"focus": "> 点击任意处继续",
+		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 175, 50]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Courtyard_Arena_Crucible_ClickCancel"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"post_delay": 600
+	},
+
+	"Courtyard_Arena_Crucible_ClickCancel": {
+		"focus": "> 点击【取消】",
+		"recognition": {"type": "OCR", "param": {"expected": "取消", "roi": [400, 580, 80, 45]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Courtyard_Arena_Crucible_ClickDeathMatch"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"post_delay": 600
+	},
+
+	"Courtyard_Arena_Crucible_ClickDeathMatch": {
+		"focus": "> 点击【死斗赛】进入挑战界面",
+		"recognition": {"type": "OCR", "param": {"expected": "死斗赛", "roi": [740, 95, 115, 60]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Courtyard_Arena_Crucible_ReadyToMatchOpponent"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"post_delay": 1000
+	},
+
+	"Courtyard_Arena_Crucible_ReadyToMatchOpponent": {
+		"focus": "> 准备选择对手",
+		"recognition": {"type": "OCR", "param": {"expected": "传奇角斗士", "roi": [0, 0, 0, 0]}},
+		"next": [
+			"Courtyard_Arena_Crucible_HasFreeChance", // 有免费挑战机会
+			"Courtyard_Arena_Crucible_End" // 没有免费挑战机会
+		],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"post_delay": 1000
+	},
+
+	// 有免费挑战机会
+	"Courtyard_Arena_Crucible_HasFreeChance": {
+		"focus": "> 发现免费挑战机会",
+		"recognition": {"type": "OCR", "param": {"expected": "免费挑战", "roi": [0, 0, 0, 0]}},
+		"next": ["Courtyard_Arena_Crucible_CheckBranches"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"post_delay": 1000
+	},
+
+	// 开始筛选对手
+	"Courtyard_Arena_Crucible_CheckBranches": {
+		"focus": "> 检查3个挑战位+刷新按钮",
+		"next": [
+			"Courtyard_Arena_Crucible_Branch1",
+			"Courtyard_Arena_Crucible_Branch2",
+			"Courtyard_Arena_Crucible_Branch3",
+			"Courtyard_Arena_Crucible_Refresh"
+		],
+		"interrupt": ["CheckRetry", "CheckRelogin"]
+	},
+	// 40w   ^((0)|([1-9]\\d{0,4})|([1-3]\\d{5}))$
+	// 42w ^(0|[1-9]\\d{0,4}|[0-3]\\d{5}|4[0-1]\\d{4})$
+	"Courtyard_Arena_Crucible_Branch1": {
+		"focus": ">  检查①战斗力 < 42w",
+		"recognition": {"type": "OCR", "param": {"expected": "^(0|[1-9]\\d{0,4}|[0-3]\\d{5}|4[0-1]\\d{4})$", "roi": [555, 380, 85, 35]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Courtyard_Arena_Crucible_EnterBattle"],
+		"interrupt": ["CheckRetry", "CheckRelogin"]
+	},
+
+	"Courtyard_Arena_Crucible_Branch2": {
+		"focus": "> 检查②战斗力 < 42w",
+		"recognition": {"type": "OCR", "param": {"expected": "^(0|[1-9]\\d{0,4}|[0-3]\\d{5}|4[0-1]\\d{4})$", "roi": [835, 380, 85, 35]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Courtyard_Arena_Crucible_EnterBattle"],
+		"interrupt": ["CheckRetry", "CheckRelogin"]
+	},
+
+	"Courtyard_Arena_Crucible_Branch3": {
+		"focus": "> 检查③战斗力 < 42w",
+		"recognition": {"type": "OCR", "param": {"expected": "^(0|[1-9]\\d{0,4}|[0-3]\\d{5}|4[0-1]\\d{4})$", "roi": [1115, 380, 85, 35]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Courtyard_Arena_Crucible_EnterBattle"],
+		"interrupt": ["CheckRetry", "CheckRelogin"]
+	},
+
+	"Courtyard_Arena_Crucible_Refresh": {
+		"focus": "> 三个都≥42万，点刷新",
+		"recognition": {"type": "TemplateMatch", "param": {"template": "courtyard_arena_crucible_refresh.png", "roi": [0, 0, 0, 0]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Courtyard_Arena_Crucible_CheckBranches"], // 刷新完再重新检查
+		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"post_delay": 1500
+	},
+
+	"Courtyard_Arena_Crucible_EnterBattle": {
+		"focus": "> 【死斗赛】点击【进入战斗】",
+		"recognition": {"type": "OCR", "param": {"expected": "进入战斗", "roi": [0, 0, 0, 0]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Courtyard_Arena_Crucible_Battle"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"post_delay": 3000
+	},
+
+	"Courtyard_Arena_Crucible_Battle": {
+		"next": [
+			"Courtyard_Arena_Crucible_QuickBattle", // 快速战斗
+			"Courtyard_Arena_Crucible_ReadyToMatchOpponent", // 回到了挑选对手界面
+			"Courtyard_Arena_Crucible_TapTap" // 随便点点
+		],
+		"interrupt": ["CheckRetry", "CheckRelogin"]
+	},
+
+	"Courtyard_Arena_Crucible_QuickBattle": {
+		"focus": "> 点击【快速战斗】",
+		"recognition": {"type": "OCR", "param": {"expected": "快速战斗", "roi": [0, 0, 0, 0]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Courtyard_Arena_Crucible_Battle"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"post_delay": 3000
+	},
+
+	"Courtyard_Arena_Crucible_TapTap": {
+		"focus": "> 随便点点",
+		"action": {"type": "Click", "param": {"target": [640, 650, 0, 0]}},
+		"next": ["Courtyard_Arena_Crucible_Battle"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"post_delay": 1200
+	},
+
+	"Courtyard_Arena_Crucible_End": {
+		"focus": "> 【死斗赛】 结束",
+		"next": ["Return_Home"],
+		"interrupt": ["CheckRetry", "CheckRelogin"]
+	}
+}

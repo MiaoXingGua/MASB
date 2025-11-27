@@ -1,0 +1,6 @@
+{
+	"CloseAd": {
+		"recognition": {"type": "OCR", "param": {"expected": "神秘好礼", "roi": [0, 0, 0, 0]}},
+		"next": ["CheckClose"]
+	}
+}

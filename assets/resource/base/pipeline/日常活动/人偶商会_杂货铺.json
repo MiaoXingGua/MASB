@@ -1,0 +1,104 @@
+{
+	// 入口：杂货铺主任务
+	"人偶商店_杂货铺_开始": {
+		"focus": "> 启动【商店：杂货铺】",
+		"next": ["Puppet_CheckMerchant"],
+		"interrupt": ["CheckRetry", "CheckRelogin"]
+	},
+
+	// 首页：点击「人偶商会」进入
+	"Puppet_CheckMerchant": {
+		"focus": "> 进入【人偶商会】",
+		"recognition": {"type": "OCR", "param": {"expected": "人偶商会", "roi": [25, 180, 110, 55]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Puppet_MainLoop"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"post_delay": 1500,
+		"rate_limit": 2000
+	},
+
+	// 【主循环入口】依次尝试 1→2→3→4
+	"Puppet_MainLoop": {
+		// "focus": "> 循环入口：尝试路径1→2→3...",
+		"next": [
+			"Puppet_CheckFree", // 路径1 购买免费物品
+			"Puppet_CheckFreeRefresh", // 路径2
+			"Puppet_End" // 路径3：结束
+		],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"rate_limit": 2000,
+		"timeout": 60000
+	},
+
+	// ————————————————————————
+	// 【路径1】左屏免费 → 购买 → 继续 → 回循环
+	// ————————————————————————
+	"Puppet_CheckFree": {
+		"focus": "> 检查是否有【免费物品】",
+		"recognition": {"type": "OCR", "param": {"expected": "免费", "roi": [315, 390, 70, 50]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Puppet_BuyFree"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"post_delay": 800
+	},
+
+	// 【路径1-1】点击《购买》
+	"Puppet_BuyFree": {
+		"focus": "> 点击【购买】",
+		"recognition": {"type": "OCR", "param": {"expected": "购买", "roi": [890, 530, 85, 55]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Puppet_ClickContinue"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"post_delay": 800
+	},
+
+	// 【路径1-2】点击任意处继续【最后回到循环】
+	"Puppet_ClickContinue": {
+		"focus": "> 点击任意处继续",
+		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Puppet_MainLoop"], // **回到循环！**
+		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"post_delay": 800
+	},
+
+	// ————————————————————————
+	// 【路径2】右屏免费 → 刷新 → 确认 → 回循环
+	// ————————————————————————
+	"Puppet_CheckFreeRefresh": {
+		"focus": "> 检查是否有【免费刷新】",
+		"recognition": {"type": "OCR", "param": {"expected": "免费", "roi": [815, 40, 55, 45]}},
+		"next": ["Puppet_ClickRefreshBtn"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"post_delay": 800
+	},
+
+	// 【路径2-1】点击刷新按钮（图片）
+	"Puppet_ClickRefreshBtn": {
+		"focus": "> 点击【刷新】",
+		"recognition": {"type": "TemplateMatch", "param": {"template": "store_refresh_commodities.png", "threshold": 0.8, "roi": [0, 0, 1280, 720]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Puppet_ClickConfirm"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"post_delay": 1000
+	},
+
+	// 【路径2-2】点击《确认》【最后回到循环】
+	"Puppet_ClickConfirm": {
+		"focus": "> 点击【确认】",
+		"recognition": {"type": "OCR", "param": {"expected": "确认", "roi": [785, 470, 70, 50]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Puppet_MainLoop"], // **回到循环！**
+		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"post_delay": 800
+	},
+
+	// ————————————————————————
+	// 【路径3】结束任务
+	// ————————————————————————
+	"Puppet_End": {
+		"focus": "> 【商店：杂货铺】结束",
+		"next": ["Return_Home"],
+		"interrupt": ["CheckRetry", "CheckRelogin"]
+	}
+}

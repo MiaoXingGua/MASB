@@ -1,0 +1,58 @@
+{
+	"任务_开始": {
+		"focus": "> 开始 【任务】领取流程",
+		"next": ["Task_ClickTaskEntry"],
+		"interrupt": ["CheckRetry", "CheckRelogin"]
+	},
+
+	"Task_ClickTaskEntry": {
+		"focus": "> 进入 任务",
+		"recognition": {"type": "TemplateMatch", "param": {"template": "task.png", "roi": [10, 550, 70, 65]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Task_ClaimAllDaily"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"post_delay": 1000
+	},
+
+	"Task_ClaimAllDaily": {
+		"focus": "> 领取 日常任务 奖励",
+		"recognition": {"type": "OCR", "param": {"expected": "领取所有", "roi": [1035, 635, 120, 50]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Task_ClickAnywhere"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"post_delay": 800
+	},
+
+	"Task_ClickAnywhere": {
+		"focus": "> 点击任意处继续",
+		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [0, 0, 0, 0]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Task_ClickWeekly"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"post_delay": 600
+	},
+
+	"Task_ClickWeekly": {
+		"focus": "> 切换到【周常】",
+		"recognition": {"type": "OCR", "param": {"expected": "周常", "roi": [735, 80, 65, 45]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Task_ClaimAllWeekly"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"post_delay": 800
+	},
+
+	"Task_ClaimAllWeekly": {
+		"focus": "> 领取 周常任务 奖励",
+		"recognition": {"type": "OCR", "param": {"expected": "领取所有", "roi": [0, 0, 0, 0]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Task_End"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"post_delay": 600
+	},
+
+	"Task_End": {
+		"focus": "> 【任务】 结束",
+		"next": ["Return_Home"],
+		"interrupt": ["CheckRetry", "CheckRelogin"]
+	}
+}
