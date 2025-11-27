@@ -24,8 +24,15 @@
 		"focus": "> 点击【竞演赛】进入挑战界面",
 		"recognition": {"type": "OCR", "param": {"expected": "竞演赛", "roi": [405, 105, 115, 45]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Arena_Gauntlet_ReadyToMatchOpponent"],
+		"next": ["Courtyard_Arena_Gauntlet_ReadyToMatchOpponent", "Courtyard_Arena_Gauntlet_Closed"],
 		"post_delay": 1000
+	},
+
+	"Courtyard_Arena_Gauntlet_Closed": {
+		"focus": "> 新赛季准备中",
+		"recognition": {"type": "OCR", "param": {"expected": "新赛季准备中", "roi": [0, 0, 1280, 720]}},
+		"next": ["Courtyard_Arena_Gauntlet_End"],
+		"post_delay": 800
 	},
 
 	"Courtyard_Arena_Gauntlet_ReadyToMatchOpponent": {
