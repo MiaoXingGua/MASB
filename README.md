@@ -4,19 +4,23 @@
 </p>
 
 <div align="center">
-# MASB - MaaAssistantSilver&Blood 银与绯
 
-# ✨ 自动化助手，让操作更高效 ✨
+# MASB - 银与绯(银与血)小助手</br>MaaAssistantSilver&Blood</br> ✨ 自动化助手，解放双手 ✨
 
 基于 MaaFramework 架构的游戏辅助工具，结合图像识别与模拟控制技术，为玩家提供便捷的自动化操作体验。
 
 <p align="center">
   <a href="https://www.python.org/" target="_blank"><img alt="python" src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white"></a>
+
   <a href="https://github.com/MaaXYZ/MaaFramework/blob/main/docs/zh_cn/3.1-%E4%BB%BB%E5%8A%A1%E6%B5%81%E6%B0%B4%E7%BA%BF%E5%8D%8F%E8%AE%AE.md" target="_blank"><img alt="pipeline" src="https://img.shields.io/badge/Pipeline-%23876f69?logo=paddypower&logoColor=%23FFFFFF"></a>
-  <a href="https://github.com/your-username/MASB/releases" target="_blank"><img alt="platform" src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-blueviolet"></a>
-  <a href="https://github.com/your-username/MASB/commits/main/" target="_blank"><img alt="commits" src="https://img.shields.io/github/commit-activity/m/your-username/MASB?color=%23ff69b4"></a>
-  <a href="https://github.com/your-username/MASB/stargazers" target="_blank"><img alt="stars" src="https://img.shields.io/github/stars/your-username/MASB?style=social"></a>
-  <a href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=your-qq-group-key" target="_blank"><img alt="QQ交流群" src="https://img.shields.io/badge/QGroup-YourGroupID-0e80c1?logo=qq&logoColor=white"></a>
+
+  <a href="https://github.com/MiaoXingGua/MASB/releases" target="_blank"><img alt="platform" src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-blueviolet"></a>
+
+  <a href="https://github.com/MiaoXingGua/MASB/commits/main/" target="_blank"><img alt="commits" src="https://img.shields.io/github/commit-activity/m/MiaoXingGua/MASB?color=%23ff69b4"></a>
+
+  <a href="https://github.com/MiaoXingGua/MASB/stargazers" target="_blank"><img alt="stars" src="https://img.shields.io/github/stars/MiaoXingGua/MASB?style=social"></a>
+  
+  <a href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=your-qq-group-key" target="_blank"><img alt="QQ交流群" src="https://img.shields.io/badge/QGroup-1063600627-0e80c1?logo=qq&logoColor=white"></a>
 </p>
 </div>
 
@@ -75,7 +79,7 @@
 
 - 若遇到功能异常，请先检查游戏版本是否匹配
 - 自动化操作可能受分辨率、游戏设置影响，建议使用默认游戏配置
-- 更多问题请查看 [FAQ](docs/zh_cn/faq.md) 或提交 [Issue](https://github.com/your-username/MASB/issues)
+- 更多问题请查看 [FAQ](docs/zh_cn/faq.md) 或提交 [Issue](https://github.com/MiaoXingGua/MASB/issues)
 
 ## 鸣谢
 
@@ -85,7 +89,7 @@
 
 ## 统计
 
-[![Star History Chart](https://api.star-history.com/svg?repos=your-username/MASB&type=Date)](https://www.star-history.com/#your-username/MASB&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=MiaoXingGua/MASB&type=Date)](https://www.star-history.com/#MiaoXingGua/MASB&Date)
 
 ## 许可证
 
