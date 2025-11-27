@@ -1,52 +1,46 @@
 {
 	"好友_通过_开始": {
-		"focus": "> 开始 通过 好友 ",
-		"next": ["Friend_Accept_Enter"]
+		"focus": "> 开始 【通过好友】",
+		"next": ["Friend_Accept_Enter"],
+		"interrupt": ["CheckRetry", "CheckRelogin"]
 	},
 
 	"Friend_Accept_Enter": {
-		"focus": "> 点击主界面好友按钮",
+		"focus": "> 进入【好友界面】",
 		"recognition": {
 			"type": "TemplateMatch",
-			"param": {
-				"template": ["friend_main.png", "friend_main_new.png"],
-				"threshold": 0.8,
-				"roi": [0, 0, 0, 0] // 补充全屏roi
-			}
+			"param": {"template": ["friend_main.png", "friend_main_new.png"], "threshold": 0.8, "roi": [0, 0, 0, 0]}
 		},
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Friend_Accept_ClickNewFriend", "Friend_Accept_End"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"post_delay": 1500
 	},
 
 	"Friend_Accept_ClickNewFriend": {
-		"focus": "点开新好友页面",
+		"focus": "> 进入【新好友界面】",
 		"recognition": {
 			"type": "TemplateMatch",
-			"param": {
-				"template": "friend_new.png",
-				"threshold": 0.8,
-				"roi": [0, 0, 0, 0] // 补充全屏roi
-			}
+			"param": {"template": "friend_new.png", "threshold": 0.8, "roi": [0, 0, 0, 0]}
 		},
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Friend_Accept_AllPass", "Friend_Accept_End"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"post_delay": 1000
 	},
 
 	"Friend_Accept_AllPass": {
-		"focus": "全部通过！一键加好友～",
-		"recognition": {
-			"type": "OCR",
-			"param": {"expected": "全部通过", "roi": [0, 0, 0, 0]}
-		}, // 补充全屏roi
+		"focus": "> 【全部通过】",
+		"recognition": {"type": "OCR", "param": {"expected": "全部通过", "roi": [0, 0, 0, 0]}},
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Friend_Accept_End"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"post_delay": 800
 	},
 
 	"Friend_Accept_End": {
-		"focus": "> 好友 接受好友 结束",
-		"next": ["Return_Home"]
+		"focus": "> 【通过好友】 结束",
+		"next": ["Return_Home"],
+		"interrupt": ["CheckRetry", "CheckRelogin"]
 	}
 }

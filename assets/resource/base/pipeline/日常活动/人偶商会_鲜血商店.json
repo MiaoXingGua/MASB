@@ -1,39 +1,29 @@
 {
 	// 入口：鲜血商店主任务
 	"人偶商店_鲜血商店_开始": {
-		"focus": "> 启动人偶商店 - 鲜血商店",
-		"next": ["Blood_CheckMerchant"]
+		"focus": "> 开始【商店：鲜血商店】",
+		"next": ["Blood_CheckMerchant"],
+		"interrupt": ["CheckRetry", "CheckRelogin"]
 	},
 
 	// 首页：点击「人偶商会」进入
 	"Blood_CheckMerchant": {
-		"focus": "> 点击人偶商会进入界面",
-		"recognition": {
-			"type": "OCR",
-			"param": {
-				"expected": "人偶商会",
-				"roi": [25, 180, 110, 55] // 原[30,185,100,45] → xy-5、wh+10
-			}
-		},
+		"focus": "> 进入【人偶商会】",
+		"recognition": {"type": "OCR", "param": {"expected": "人偶商会", "roi": [25, 180, 110, 55]}},
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Blood_WaitForBloodStore"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"post_delay": 1500,
 		"rate_limit": 2000
 	},
 
 	// 等待识别到「血池商店」图标
 	"Blood_WaitForBloodStore": {
-		"focus": "> 等待血池商店图标出现",
-		"recognition": {
-			"type": "TemplateMatch",
-			"param": {
-				"template": "store_blood.png",
-				"threshold": 0.8,
-				"roi": [0, 0, 160, 730] // 原[0,0,150,720] → xy-5(0-5=0)、wh+10
-			}
-		},
+		"focus": "> 进入【鲜血商店】",
+		"recognition": {"type": "TemplateMatch", "param": {"template": "store_blood.png", "threshold": 0.8, "roi": [0, 0, 160, 730]}},
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Blood_EnterCrystalLoop"], // 进入晶球循环
+		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"post_delay": 1500,
 		"rate_limit": 2000
 	},
@@ -42,28 +32,23 @@
 	// 晶球独立循环：1→购买→继续→循环
 	// ————————————————————————
 	"Blood_EnterCrystalLoop": {
-		"focus": "> 进入血池晶球独立循环",
+		// "focus": "> 进入血池晶球独立循环",
 		"next": [
 			"Blood_CheckCrystal", // 路径1：检查晶球
 			// "Blood_CheckCommonCrystal",
 			"Blood_End" // 路径2：无晶球 → 结束
 		],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"rate_limit": 2000,
 		"timeout": 60000
 	},
 
 	"Blood_CheckCrystal": {
-		"focus": "> 检查是否有「晶球」",
-		"recognition": {
-			"type": "OCR",
-			"param": {
-				"expected": "晶球",
-				"replace": ["品球", "晶球"],
-				"roi": [0, 0, 0, 0] // 补充全屏roi
-			}
-		},
-		"next": ["Blood_ClickPurchase"],
+		"focus": "> 检查是否有【晶球】",
+		"recognition": {"type": "OCR", "param": {"expected": "晶球", "replace": ["品球", "晶球"], "roi": [0, 0, 0, 0]}},
 		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Blood_ClickPurchase"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"post_delay": 1500,
 		"rate_limit": 2000
 	},
@@ -82,43 +67,28 @@
 	// },
 
 	"Blood_ClickPurchase": {
-		"focus": "> 点击「购买」晶球",
-		"recognition": {
-			"type": "OCR",
-			"param": {
-				"expected": "购买",
-				"roi": [895, 530, 75, 50] // 原[900,535,65,40] → xy-5、wh+10
-			}
-		},
-		"action": {
-			"type": "Click",
-			"param": {"target": true}
-		},
+		"focus": "> 购买【晶球】",
+		"recognition": {"type": "OCR", "param": {"expected": "购买", "roi": [895, 530, 75, 50]}},
+		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Blood_ClickContinue", "Blood_OutOfResources"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"post_delay": 800
 	},
 
 	"Blood_ClickContinue": {
-		"focus": "> 点击「点击任意处继续」",
-		"recognition": {
-			"type": "OCR",
-			"param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]} // 原[560,640,155,35] → xy-5、wh+10
-		},
+		"focus": "> 点击任意处继续",
+		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Blood_EnterCrystalLoop"], // 回到晶球循环
+		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"post_delay": 800
 	},
 
 	"Blood_OutOfResources": {
 		"focus": "> 资源不足",
-		"recognition": {
-			"type": "OCR",
-			"param": {
-				"expected": "资源不足",
-				"roi": [585, 100, 110, 55] // 原[590,105,100,45] → xy-5、wh+10
-			}
-		},
+		"recognition": {"type": "OCR", "param": {"expected": "资源不足", "roi": [585, 100, 110, 55]}},
 		"next": ["Blood_End"], // 回到晶球循环
+		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"post_delay": 800
 	},
 
@@ -126,7 +96,8 @@
 	// 路径2：结束任务（通用返回节点）
 	// ————————————————————————
 	"Blood_End": {
-		"focus": "> 人偶商店_鲜血商店 任务结束...",
-		"next": ["Return_Home"]
+		"focus": "> 【商店：鲜血商店】结束",
+		"next": ["Return_Home"],
+		"interrupt": ["CheckRetry", "CheckRelogin"]
 	}
 }

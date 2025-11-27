@@ -1,19 +1,15 @@
 {
 	// 入口：启动《银与血》，空操作跳转StartApp
 	"启动游戏_开始": {
-		"focus": "> 启动《银与血》",
-		"next": ["Start_App"]
+		"focus": "> 启动【银与血】",
+		"next": ["Start_App"],
+		"interrupt": ["CheckRetry", "CheckRelogin"]
 	},
 
 	// 启动APP，定义正常流程和异常处理
 	"Start_App": {
 		"focus": "> 正在启动《银与血》...",
-		"action": {
-			"type": "StartApp",
-			"param": {
-				"package": "com.moonton.silverblood.ap"
-			}
-		},
+		"action": {"type": "StartApp", "param": {"package": "com.moonton.silverblood.ap"}},
 		"next": [
 			"Start_ClickStart", // 检查START按钮
 			"Start_AlreadyInHomePage" // 检查是否已在首页
@@ -41,15 +37,9 @@
 	// 检查是否已在首页，成功则结束
 	"Start_AlreadyInHomePage": {
 		"focus": "> 检查是否在首页...",
-		"recognition": {
-			"type": "TemplateMatch",
-			"param": {
-				"template": "贡礼_血池.png", // 720p裁剪图像
-				"threshold": 0.65,
-				"roi": [0, 0, 0, 0] // 全屏，建议调试后优化
-			}
-		},
+		"recognition": {"type": "TemplateMatch", "param": {"template": "贡礼_血池.png", "threshold": 0.65, "roi": [0, 0, 0, 0]}},
 		"next": ["Start_End"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"timeout": 10000, // 10s超时，快速检查
 		"rate_limit": 2000 // 每2s检查
 	},
@@ -57,19 +47,8 @@
 	// 检查START按钮，成功则点击并检查公告
 	"Start_ClickStart": {
 		"focus": "> 等待START按钮...",
-		"recognition": {
-			"type": "OCR",
-			"param": {
-				"expected": "START",
-				"roi": [532, 524, 195, 117] // 原[537,529,185,107] → xy-5、wh+10
-			}
-		},
-		"action": {
-			"type": "Click",
-			"param": {
-				"target": true
-			}
-		},
+		"recognition": {"type": "OCR", "param": {"expected": "START", "roi": [532, 524, 195, 117]}},
+		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Start_AlreadyInHomePage"],
 		"interrupt": [
 			"CheckRetry", // 网络异常.json：点击重试
@@ -93,20 +72,9 @@
 	// 检查公告“X”按钮，15秒内检测到则点击，未检测到结束
 	"CheckCloseAnnouncement": {
 		"focus": "> 检查公告关闭（X）...",
-		"recognition": {
-			"type": "TemplateMatch",
-			"param": {
-				"template": "close_button.png",
-				"threshold": 0.8, // 更严格匹配
-				"roi": [1095, 45, 110, 110] // 原[1100,50,100,100] → xy-5、wh+10
-			}
-		},
-		"action": {
-			"type": "Click",
-			"param": {
-				"target": true
-			}
-		},
+		"recognition": {"type": "TemplateMatch", "param": {"template": "close_button.png", "threshold": 0.8, "roi": [1095, 45, 110, 110]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"timeout": 15000, // 15s超时
 		"rate_limit": 1000, // 每1s检查
 		"post_delay": 500 // 点击后延迟0.5s
@@ -114,7 +82,8 @@
 
 	// 结束：成功进入游戏，终止任务
 	"Start_End": {
-		"focus": "> 游戏已成功启动！",
-		"next": ["Return_Home"]
+		"focus": "> 《银与血》启动成功",
+		"next": ["Return_Home"],
+		"interrupt": ["CheckRetry", "CheckRelogin"]
 	}
 }

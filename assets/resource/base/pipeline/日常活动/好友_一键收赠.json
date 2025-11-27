@@ -1,39 +1,36 @@
 {
 	"好友_收礼_开始": {
-		"focus": "> 开始 好友 收礼",
-		"next": ["Friend_Receipt_Enter"]
+		"focus": "> 开始 【好友收礼】",
+		"next": ["Friend_Receipt_Enter"],
+		"interrupt": ["CheckRetry", "CheckRelogin"]
 	},
 
 	"Friend_Receipt_Enter": {
-		"focus": "> 点击主界面好友按钮",
+		"focus": "> 进入【好友界面】",
 		"recognition": {
 			"type": "TemplateMatch",
-			"param": {
-				"template": ["friend_main.png", "friend_main_new.png"],
-				"threshold": 0.8,
-				"roi": [0, 0, 0, 0] // 补充全屏roi
-			}
+			"param": {"template": ["friend_main.png", "friend_main_new.png"], "threshold": 0.8, "roi": [0, 0, 0, 0]}
 		},
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Friend_Receipt_Gift"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"post_delay": 1500
 	},
 
 	// 领取礼物
 	"Friend_Receipt_Gift": {
-		"focus": "发现一键收赠！点一下收礼物～",
-		"recognition": {
-			"type": "OCR",
-			"param": {"expected": "键收赠", "roi": [0, 0, 0, 0]}
-		}, // 补充全屏roi
+		"focus": "> 点击【一键收赠】",
+		"recognition": {"type": "OCR", "param": {"expected": "键收赠", "roi": [0, 0, 0, 0]}},
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Friend_Receipt_End"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"post_delay": 1000
 	},
 
 	// 结束
 	"Friend_Receipt_End": {
-		"focus": "> 好友 收礼 结束",
-		"next": ["Return_Home"]
+		"focus": "> 【好友收礼】 结束",
+		"next": ["Return_Home"],
+		"interrupt": ["CheckRetry", "CheckRelogin"]
 	}
 }
