@@ -27,14 +27,21 @@
 		"focus": "点【快速领取】收奖励",
 		"recognition": {"type": "OCR", "param": {"expected": "快速领取"}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Castle_WorldTravel_TapContinue"],
+		"next": ["Castle_WorldTravel_TapContinue", "Castle_WorldTravel_NoClaim"],
+		"post_delay": 800
+	},
+
+	"Castle_WorldTravel_NoClaim": {
+		"focus": "> 没有奖励",
+		"recognition": {"type": "OCR", "param": {"expected": "无可领取奖励", "roi": [520, 105, 245, 45]}},
+		"next": ["Castle_WorldTravel_End"],
 		"post_delay": 800
 	},
 
 	// 点击继续
 	"Castle_WorldTravel_TapContinue": {
 		"focus": "点屏幕继续～",
-		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续"}},
+		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [560, 640, 155, 35]}},
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Castle_WorldTravel_QuickTravel"],
 		"post_delay": 800
