@@ -6,7 +6,10 @@
 
 	"Courtyard_Timeworn_EnterYard": {
 		"focus": "> 识别并点击【忘却中庭】",
-		"recognition": {"type": "OCR", "param": {"expected": "忘却中庭", "roi": [1145, 388, 110, 45]}}, // 原[1150,393,100,35] → xy-5、wh+10
+		"recognition": {
+			"type": "OCR",
+			"param": {"expected": "忘却中庭", "roi": [1145, 388, 110, 45], "only_rec": true}
+		}, // 原[1150,393,100,35] → xy-5、wh+10
 		"action": {"type": "Click", "param": {"target": true, "target_offset": [0, -50, 0, 0]}},
 		"next": ["Courtyard_Timeworn_ClickTower"],
 		"interrupt": ["CheckRetry", "CheckRelogin"],
