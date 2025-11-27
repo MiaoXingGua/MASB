@@ -10,7 +10,8 @@
 			"type": "TemplateMatch",
 			"param": {
 				"template": ["friend_main.png", "friend_main_new.png"],
-				"threshold": 0.8
+				"threshold": 0.8,
+				"roi": [0, 0, 0, 0] // 补充全屏roi
 			}
 		},
 		"action": {"type": "Click", "param": {"target": true}},
@@ -25,7 +26,7 @@
 			"param": {
 				"template": "friend_sort_ascending.png",
 				"threshold": 0.8,
-				"roi": [280, 645, 60, 40]
+				"roi": [275, 640, 70, 50] // 原[280,645,60,40] → xy-5、wh+10
 			}
 		},
 		"action": {"type": "Click", "param": {"target": true}},
@@ -40,7 +41,7 @@
 			"param": {
 				"template": "friend_sort_descending.png",
 				"threshold": 0.8,
-				"roi": [280, 645, 60, 40]
+				"roi": [275, 640, 70, 50] // 原[280,645,60,40] → xy-5、wh+10
 			}
 		},
 		"next": ["Friend_Delete_Start"],
@@ -60,7 +61,7 @@
 			"param": {
 				// "expected": "^([6-9]|[1-9]\\d+)天前$", // 5天以上
 				"expected": "^([4-9]|[1-9]\\d+)天前$", // 3天以上
-				"roi": [500, 180, 140, 45]
+				"roi": [495, 175, 150, 55] // 原[500,180,140,45] → xy-5、wh+10
 			}
 		},
 		"next": ["Friend_Delete_ClickMenu"]
@@ -74,7 +75,7 @@
 			"param": {
 				"template": "friend_menu.png",
 				"threshold": 0.8,
-				"roi": [1000, 180, 70, 70]
+				"roi": [995, 175, 80, 80] // 原[1000,180,70,70] → xy-5、wh+10
 			}
 		},
 		"action": {"type": "Click", "param": {"target": true}},
@@ -87,8 +88,8 @@
 		"focus": "点【删除】",
 		"recognition": {
 			"type": "OCR",
-			"param": {"expected": "删除"}
-		},
+			"param": {"expected": "删除", "roi": [0, 0, 0, 0]}
+		}, // 补充全屏roi
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Friend_Delete_Confirm"],
 		"post_delay": 800
@@ -99,8 +100,8 @@
 		"focus": "再点一次【确认】，彻底说拜拜",
 		"recognition": {
 			"type": "OCR",
-			"param": {"expected": "确认"}
-		},
+			"param": {"expected": "确认", "roi": [0, 0, 0, 0]}
+		}, // 补充全屏roi
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Friend_Delete_Start"],
 		"post_delay": 800

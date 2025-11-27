@@ -7,7 +7,7 @@
 	// 进入古堡
 	"Castle_WorldTravel_Entrance": {
 		"focus": "点一下【古堡】按钮",
-		"recognition": {"type": "OCR", "param": {"expected": "古堡"}},
+		"recognition": {"type": "OCR", "param": {"expected": "古堡", "roi": [0, 0, 0, 0]}}, // 补充全屏roi
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Castle_WorldTravel_Entry"],
 		"post_delay": 1500
@@ -16,7 +16,7 @@
 	// 八方游历
 	"Castle_WorldTravel_Entry": {
 		"focus": "发现八方游历！点进去看看～",
-		"recognition": {"type": "OCR", "param": {"expected": "八方游历"}},
+		"recognition": {"type": "OCR", "param": {"expected": "八方游历", "roi": [0, 0, 0, 0]}}, // 补充全屏roi
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Castle_WorldTravel_QuickClaim"],
 		"post_delay": 800
@@ -25,7 +25,7 @@
 	// 领取奖励
 	"Castle_WorldTravel_QuickClaim": {
 		"focus": "点【快速领取】收奖励",
-		"recognition": {"type": "OCR", "param": {"expected": "快速领取"}},
+		"recognition": {"type": "OCR", "param": {"expected": "快速领取", "roi": [0, 0, 0, 0]}}, // 补充全屏roi
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Castle_WorldTravel_TapContinue", "Castle_WorldTravel_NoClaim"],
 		"post_delay": 800
@@ -33,7 +33,13 @@
 
 	"Castle_WorldTravel_NoClaim": {
 		"focus": "> 没有奖励",
-		"recognition": {"type": "OCR", "param": {"expected": "无可领取奖励", "roi": [520, 105, 245, 45]}},
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "无可领取奖励",
+				"roi": [515, 100, 255, 55] // 原[520,105,245,45] → xy-5、wh+10
+			}
+		},
 		"next": ["Castle_WorldTravel_End"],
 		"post_delay": 800
 	},
@@ -41,7 +47,13 @@
 	// 点击继续
 	"Castle_WorldTravel_TapContinue": {
 		"focus": "点屏幕继续～",
-		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [560, 640, 155, 35]}},
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "点击任意处继续",
+				"roi": [555, 635, 165, 45] // 原[560,640,155,35] → xy-5、wh+10
+			}
+		},
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Castle_WorldTravel_QuickTravel"],
 		"post_delay": 800
@@ -50,7 +62,7 @@
 	// 快速游历
 	"Castle_WorldTravel_QuickTravel": {
 		"focus": "再点【快速游历】出发",
-		"recognition": {"type": "OCR", "param": {"expected": "快速游历"}},
+		"recognition": {"type": "OCR", "param": {"expected": "快速游历", "roi": [0, 0, 0, 0]}}, // 补充全屏roi
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Castle_WorldTravel_End"],
 		"post_delay": 800

@@ -12,7 +12,7 @@
 			"type": "OCR",
 			"param": {
 				"expected": "人偶商会",
-				"roi": [30, 185, 100, 45]
+				"roi": [25, 180, 110, 55] // 原[30,185,100,45] → xy-5、wh+10
 			}
 		},
 		"action": {"type": "Click", "param": {"target": true}},
@@ -29,7 +29,7 @@
 			"param": {
 				"template": "store_blood.png",
 				"threshold": 0.8,
-				"roi": [0, 0, 150, 720]
+				"roi": [0, 0, 160, 730] // 原[0,0,150,720] → xy-5(0-5=0)、wh+10
 			}
 		},
 		"action": {"type": "Click", "param": {"target": true}},
@@ -58,7 +58,8 @@
 			"type": "OCR",
 			"param": {
 				"expected": "晶球",
-				"replace": ["品球", "晶球"]
+				"replace": ["品球", "晶球"],
+				"roi": [0, 0, 0, 0] // 补充全屏roi
 			}
 		},
 		"next": ["Blood_ClickPurchase"],
@@ -86,7 +87,7 @@
 			"type": "OCR",
 			"param": {
 				"expected": "购买",
-				"roi": [900, 535, 65, 40]
+				"roi": [895, 530, 75, 50] // 原[900,535,65,40] → xy-5、wh+10
 			}
 		},
 		"action": {
@@ -101,7 +102,7 @@
 		"focus": "> 点击「点击任意处继续」",
 		"recognition": {
 			"type": "OCR",
-			"param": {"expected": "点击任意处继续"}
+			"param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]} // 原[560,640,155,35] → xy-5、wh+10
 		},
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Blood_EnterCrystalLoop"], // 回到晶球循环
@@ -114,7 +115,7 @@
 			"type": "OCR",
 			"param": {
 				"expected": "资源不足",
-				"roi": [590, 105, 100, 45]
+				"roi": [585, 100, 110, 55] // 原[590,105,100,45] → xy-5、wh+10
 			}
 		},
 		"next": ["Blood_End"], // 回到晶球循环

@@ -10,7 +10,8 @@
 			"type": "TemplateMatch",
 			"param": {
 				"template": ["friend_main.png", "friend_main_new.png"],
-				"threshold": 0.8
+				"threshold": 0.8,
+				"roi": [0, 0, 0, 0] // 补充全屏roi
 			}
 		},
 		"action": {"type": "Click", "param": {"target": true}},
@@ -24,7 +25,8 @@
 			"type": "TemplateMatch",
 			"param": {
 				"template": "friend_new.png",
-				"threshold": 0.8
+				"threshold": 0.8,
+				"roi": [0, 0, 0, 0] // 补充全屏roi
 			}
 		},
 		"action": {"type": "Click", "param": {"target": true}},
@@ -36,8 +38,8 @@
 		"focus": "全部通过！一键加好友～",
 		"recognition": {
 			"type": "OCR",
-			"param": {"expected": "全部通过"}
-		},
+			"param": {"expected": "全部通过", "roi": [0, 0, 0, 0]}
+		}, // 补充全屏roi
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Friend_Accept_End"],
 		"post_delay": 800

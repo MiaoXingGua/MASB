@@ -6,7 +6,7 @@
 
 	"Courtyard_Arena_Gauntlet_EnterYard": {
 		"focus": "> 进入【忘却中庭】",
-		"recognition": {"type": "OCR", "param": {"expected": "忘却中庭", "roi": [1150, 393, 100, 35]}},
+		"recognition": {"type": "OCR", "param": {"expected": "忘却中庭", "roi": [1145, 388, 110, 45]}}, // 原[1150,393,100,35] → xy-5、wh+10
 		"action": {"type": "Click", "param": {"target": true, "target_offset": [0, -50, 0, 0]}},
 		"next": ["Courtyard_Arena_Gauntlet_ClickBloodArena"],
 		"post_delay": 800
@@ -14,7 +14,7 @@
 
 	"Courtyard_Arena_Gauntlet_ClickBloodArena": {
 		"focus": "> 点击【鲜血斗技场】",
-		"recognition": {"type": "OCR", "param": {"expected": "鲜血斗技场", "roi": [80, 350, 120, 40]}},
+		"recognition": {"type": "OCR", "param": {"expected": "鲜血斗技场", "roi": [75, 345, 130, 50]}}, // 原[80,350,120,40] → xy-5、wh+10
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Courtyard_Arena_Gauntlet_ClickDeathMatch"],
 		"post_delay": 1000
@@ -22,7 +22,7 @@
 
 	"Courtyard_Arena_Gauntlet_ClickDeathMatch": {
 		"focus": "> 点击【竞演赛】进入挑战界面",
-		"recognition": {"type": "OCR", "param": {"expected": "竞演赛", "roi": [405, 105, 115, 45]}},
+		"recognition": {"type": "OCR", "param": {"expected": "竞演赛", "roi": [400, 100, 125, 55]}}, // 原[405,105,115,45] → xy-5、wh+10
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Courtyard_Arena_Gauntlet_ReadyToMatchOpponent", "Courtyard_Arena_Gauntlet_Closed"],
 		"post_delay": 1000
@@ -30,27 +30,25 @@
 
 	"Courtyard_Arena_Gauntlet_Closed": {
 		"focus": "> 新赛季准备中",
-		"recognition": {"type": "OCR", "param": {"expected": "新赛季准备中", "roi": [0, 0, 1280, 720]}},
+		"recognition": {"type": "OCR", "param": {"expected": "新赛季准备中", "roi": [0, 0, 0, 0]}}, // 原[0,0,1280,720] → 替换为全屏标识
 		"next": ["Courtyard_Arena_Gauntlet_End"],
 		"post_delay": 800
 	},
 
 	"Courtyard_Arena_Gauntlet_ReadyToMatchOpponent": {
 		"focus": "> 准备选择对手",
-		"recognition": {"type": "OCR", "param": {"expected": "今日可购买次数", "roi": [500, 20, 210, 35]}},
+		"recognition": {"type": "OCR", "param": {"expected": "今日可购买次数", "roi": [495, 15, 220, 45]}}, // 原[500,20,210,35] → xy-5、wh+10
 		"next": [
 			"Courtyard_Arena_Gauntlet_HasFreeChance", // 有免费挑战机会
 			"Courtyard_Arena_Gauntlet_End" // 没有免费挑战机会
 		]
-		// "post_delay": 1000
 	},
 
 	// 有免费挑战机会
 	"Courtyard_Arena_Gauntlet_HasFreeChance": {
 		"focus": "> 准备选择对手",
-		"recognition": {"type": "OCR", "param": {"expected": "免费挑战", "roi": [570, 150, 70, 35]}},
+		"recognition": {"type": "OCR", "param": {"expected": "免费挑战", "roi": [565, 145, 80, 45]}}, // 原[570,150,70,35] → xy-5、wh+10
 		"next": ["Courtyard_Arena_Gauntlet_CheckBranches"]
-		// "post_delay": 1000
 	},
 
 	// 开始筛选对手
@@ -72,7 +70,7 @@
 			"type": "OCR",
 			"param": {
 				"expected": "^(0|[1-9]\\d{0,4}|1[0-3]\\d{4})$",
-				"roi": [595, 415, 60, 25]
+				"roi": [590, 410, 70, 35] // 原[595,415,60,25] → xy-5、wh+10
 			}
 		},
 		"action": {"type": "Click", "param": {"target": true}},
@@ -85,7 +83,7 @@
 			"type": "OCR",
 			"param": {
 				"expected": "^(0|[1-9]\\d{0,4}|1[0-3]\\d{4})$",
-				"roi": [860, 415, 60, 25]
+				"roi": [855, 410, 70, 35] // 原[860,415,60,25] → xy-5、wh+10
 			}
 		},
 		"action": {"type": "Click", "param": {"target": true}},
@@ -98,7 +96,7 @@
 			"type": "OCR",
 			"param": {
 				"expected": "^(0|[1-9]\\d{0,4}|1[0-3]\\d{4})$",
-				"roi": [1135, 415, 60, 25]
+				"roi": [1130, 410, 70, 35] // 原[1135,415,60,25] → xy-5、wh+10
 			}
 		},
 		"action": {"type": "Click", "param": {"target": true}},
@@ -107,7 +105,10 @@
 
 	"Courtyard_Arena_Gauntlet_Refresh": {
 		"focus": "> 三个都 ≥ 14万，点刷新",
-		"recognition": {"type": "TemplateMatch", "param": {"template": "courtyard_arena_crucible_refresh.png"}},
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {"template": "courtyard_arena_crucible_refresh.png", "roi": [0, 0, 0, 0]}
+		}, // 补充全屏roi
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Courtyard_Arena_Gauntlet_CheckBranches"], // 刷新完再重新检查
 		"post_delay": 1500
@@ -115,7 +116,7 @@
 
 	"Courtyard_Arena_Gauntlet_EnterBattle": {
 		"focus": "> 进入战斗",
-		"recognition": {"type": "OCR", "param": {"expected": "进入战斗", "roi": [595, 495, 110, 40]}},
+		"recognition": {"type": "OCR", "param": {"expected": "进入战斗", "roi": [590, 490, 120, 50]}}, // 原[595,495,110,40] → xy-5、wh+10
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Courtyard_Arena_Gauntlet_Battle"],
 		"post_delay": 3000
@@ -131,7 +132,7 @@
 
 	"Courtyard_Arena_Gauntlet_QuickBattle": {
 		"focus": "> 点击【快速战斗】",
-		"recognition": {"type": "OCR", "param": {"expected": "快速战斗", "roi": [1145, 495, 110, 45]}},
+		"recognition": {"type": "OCR", "param": {"expected": "快速战斗", "roi": [1140, 490, 120, 55]}}, // 原[1145,495,110,45] → xy-5、wh+10
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Courtyard_Arena_Gauntlet_Battle"],
 		"post_delay": 1000

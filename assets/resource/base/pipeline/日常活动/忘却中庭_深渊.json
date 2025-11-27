@@ -14,7 +14,7 @@
 
 	"Courtyard_Abyss_EnterYard": {
 		"focus": "> 进入【忘却中庭】",
-		"recognition": {"type": "OCR", "param": {"expected": "忘却中庭", "roi": [1150, 393, 100, 35]}},
+		"recognition": {"type": "OCR", "param": {"expected": "忘却中庭", "roi": [1145, 388, 110, 45]}}, // 原[1150,393,100,35] → xy-5、wh+10
 		"action": {"type": "Click", "param": {"target": true, "target_offset": [0, -50, 0, 0]}},
 		"next": [
 			"Courtyard_Abyss_EnterAbyss",
@@ -25,7 +25,7 @@
 
 	"Courtyard_Abyss_EnterAbyss": {
 		"focus": "> 进入【通天深渊】",
-		"recognition": {"type": "OCR", "param": {"expected": "通天深渊", "roi": [240, 170, 95, 25]}},
+		"recognition": {"type": "OCR", "param": {"expected": "通天深渊", "roi": [235, 165, 105, 35]}}, // 原[240,170,95,25] → xy-5、wh+10
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Courtyard_Abyss_Counter_Increase"],
 		"post_delay": 800
@@ -42,7 +42,7 @@
 
 	"Courtyard_Abyss_DailyChances": {
 		"focus": "> 点击【每日通关】",
-		"recognition": {"type": "OCR", "param": {"expected": "^每日通关[1-3]"}},
+		"recognition": {"type": "OCR", "param": {"expected": "^每日通关[1-3]", "roi": [0, 0, 0, 0]}}, // 补充全屏roi
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Courtyard_Abyss_Battle"],
 		"post_delay": 800
@@ -81,7 +81,8 @@
 		"recognition": {
 			"type": "TemplateMatch", // 用图像匹配（X按钮更稳定）
 			"param": {
-				"template": "return_button.png"
+				"template": "return_button.png",
+				"roi": [0, 0, 0, 0] // 补充全屏roi
 				// "threshold": 0.7, // 匹配得分（1就是100%匹配）
 				// "roi": [20, 15, 85, 45]
 			}
@@ -96,7 +97,7 @@
 
 	"Courtyard_Abyss_EnterBattle": {
 		"focus": "> 点击【开始战斗】",
-		"recognition": {"type": "OCR", "param": {"expected": "开始战斗", "roi": [950, 615, 110, 45]}},
+		"recognition": {"type": "OCR", "param": {"expected": "开始战斗", "roi": [945, 610, 120, 55]}}, // 原[950,615,110,45] → xy-5、wh+10
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Courtyard_Abyss_Fight"],
 		"post_delay": 800
@@ -105,7 +106,7 @@
 	// 完成部署 开战
 	"Courtyard_Abyss_Fight": {
 		"focus": "> 开战",
-		"recognition": {"type": "OCR", "param": {"expected": "完成", "roi": [1160, 605, 65, 40]}},
+		"recognition": {"type": "OCR", "param": {"expected": "完成", "roi": [1155, 600, 75, 50]}}, // 原[1160,605,65,40] → xy-5、wh+10
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Courtyard_Abyss_NextFight", "Courtyard_Abyss_Click", "Courtyard_Abyss_NextBattle"],
 		"post_delay": 800
@@ -114,7 +115,7 @@
 	// 下一层 战斗
 	"Courtyard_Abyss_NextFight": {
 		"focus": "> 开战",
-		"recognition": {"type": "OCR", "param": {"expected": "下一层", "roi": [1085, 620, 130, 35]}},
+		"recognition": {"type": "OCR", "param": {"expected": "下一层", "roi": [1080, 615, 140, 45]}}, // 原[1085,620,130,35] → xy-5、wh+10
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Courtyard_Abyss_Fight", "Courtyard_Abyss_Click", "Courtyard_Abyss_NextBattle"],
 		"post_delay": 800

@@ -1,18 +1,3 @@
-/**
-        打开游戏功能
-        1、启动APP doc提示用户
-        2、直到识别 《START》点击游戏进入 每3秒检查一次
-        PS: 如果 2 没有识别到《START》进入interrupt（异常事件）（异常事件写在1中）
-        2_1、如果识别到 《连接服务器失败》 则要识别到《重试》并点击
-        2_2、如果识别到 《下载》则点击
-        2_3、如果识别到 《开始下载》则点击
-        规则：
-        ① Node会依次尝试执行next中的Node，直到匹配到能成功执行的Node（如果想让程序必然进入这个Node，则可以设置这个Node什么都不做就是单纯输出一下文字）
-        ② 如果①中Node尝试了所有next没有成功的，则开始依次尝试interrupt中Node，如果还没有成功的，则整个pipline结束
-        ③ 匹配到next中的Node，进入后会一直顺序执行（不会回头），而匹配到interrupt中的Node，但这个Node的pipline结束则会回到则会回到一开始的interrupt的Node的父Node中
-
-
-    **/
 {
 	// 入口：启动《银与血》，空操作跳转StartApp
 	"启动游戏_开始": {
@@ -76,7 +61,7 @@
 			"type": "OCR",
 			"param": {
 				"expected": "START",
-				"roi": [537, 529, 185, 107]
+				"roi": [532, 524, 195, 117] // 原[537,529,185,107] → xy-5、wh+10
 			}
 		},
 		"action": {
@@ -97,7 +82,6 @@
 			"CheckProtocol", // 用户协议.json
 			"TapClickAnywhere", // 点击任意处继续
 			"CheckReturn",
-			"Qianfeng_CheckJourney", // 千峰的旅程活动
 			"CheckCloseAnnouncement"
 		],
 		"pre_delay": 500, // 识别后延迟0.5s
@@ -114,7 +98,7 @@
 			"param": {
 				"template": "close_button.png",
 				"threshold": 0.8, // 更严格匹配
-				"roi": [1100, 50, 100, 100] // 右上角区域
+				"roi": [1095, 45, 110, 110] // 原[1100,50,100,100] → xy-5、wh+10
 			}
 		},
 		"action": {
@@ -130,6 +114,7 @@
 
 	// 结束：成功进入游戏，终止任务
 	"Start_End": {
-		"focus": "> 游戏已成功启动！"
+		"focus": "> 游戏已成功启动！",
+		"next": ["Return_Home"]
 	}
 }

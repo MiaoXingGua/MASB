@@ -10,7 +10,8 @@
 			"type": "TemplateMatch",
 			"param": {
 				"template": ["friend_main.png", "friend_main_new.png"],
-				"threshold": 0.8
+				"threshold": 0.8,
+				"roi": [0, 0, 0, 0] // 补充全屏roi
 			}
 		},
 		"action": {"type": "Click", "param": {"target": true}},
@@ -23,8 +24,8 @@
 		"focus": "发现一键收赠！点一下收礼物～",
 		"recognition": {
 			"type": "OCR",
-			"param": {"expected": "键收赠"}
-		},
+			"param": {"expected": "键收赠", "roi": [0, 0, 0, 0]}
+		}, // 补充全屏roi
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Friend_Receipt_End"],
 		"post_delay": 1000

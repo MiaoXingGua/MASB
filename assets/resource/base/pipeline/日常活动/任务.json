@@ -6,7 +6,7 @@
 
 	"Task_ClickTaskEntry": {
 		"focus": "> 进入 任务",
-		"recognition": {"type": "TemplateMatch", "param": {"template": "task.png", "roi": [15, 555, 60, 55]}},
+		"recognition": {"type": "TemplateMatch", "param": {"template": "task.png", "roi": [10, 550, 70, 65]}}, // 原[15,555,60,55] → xy-5、wh+10
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Task_ClaimAllDaily"],
 		"post_delay": 1000
@@ -14,7 +14,7 @@
 
 	"Task_ClaimAllDaily": {
 		"focus": "> 领取 日常任务 奖励",
-		"recognition": {"type": "OCR", "param": {"expected": "领取所有", "roi": [1040, 640, 110, 40]}},
+		"recognition": {"type": "OCR", "param": {"expected": "领取所有", "roi": [1035, 635, 120, 50]}}, // 原[1040,640,110,40] → xy-5、wh+10
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Task_ClickAnywhere"],
 		"post_delay": 800
@@ -22,7 +22,7 @@
 
 	"Task_ClickAnywhere": {
 		"focus": "> 点击任意处继续",
-		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [0, 0, 1280, 720]}},
+		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [0, 0, 0, 0]}}, // 原[0,0,1280,720] → 替换为全屏标识
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Task_ClickWeekly"],
 		"post_delay": 600
@@ -30,7 +30,7 @@
 
 	"Task_ClickWeekly": {
 		"focus": "> 切换到【周常】",
-		"recognition": {"type": "OCR", "param": {"expected": "周常", "roi": [740, 85, 55, 35]}},
+		"recognition": {"type": "OCR", "param": {"expected": "周常", "roi": [735, 80, 65, 45]}}, // 原[740,85,55,35] → xy-5、wh+10
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Task_ClaimAllWeekly"],
 		"post_delay": 800
@@ -38,7 +38,7 @@
 
 	"Task_ClaimAllWeekly": {
 		"focus": "> 领取 周常任务 奖励",
-		"recognition": {"type": "OCR", "param": {"expected": "领取所有", "roi": [0, 0, 1280, 720]}},
+		"recognition": {"type": "OCR", "param": {"expected": "领取所有", "roi": [0, 0, 0, 0]}}, // 原[0,0,1280,720] → 替换为全屏标识
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Task_End"],
 		"post_delay": 600

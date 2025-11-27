@@ -6,7 +6,7 @@
 
 	"Courtyard_Arena_Crucible_EnterYard": {
 		"focus": "> 进入【忘却中庭】",
-		"recognition": {"type": "OCR", "param": {"expected": "忘却中庭", "roi": [1150, 393, 100, 35]}},
+		"recognition": {"type": "OCR", "param": {"expected": "忘却中庭", "roi": [1145, 388, 110, 45]}}, // 原[1150,393,100,35] → xy-5、wh+10
 		"action": {"type": "Click", "param": {"target": true, "target_offset": [0, -50, 0, 0]}},
 		"next": ["Courtyard_Arena_Crucible_ClickBloodArena"],
 		"post_delay": 800
@@ -14,7 +14,7 @@
 
 	"Courtyard_Arena_Crucible_ClickBloodArena": {
 		"focus": "> 点击【鲜血斗技场】",
-		"recognition": {"type": "OCR", "param": {"expected": "鲜血斗技场", "roi": [80, 350, 120, 40]}},
+		"recognition": {"type": "OCR", "param": {"expected": "鲜血斗技场", "roi": [75, 345, 130, 50]}}, // 原[80,350,120,40] → xy-5、wh+10
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Courtyard_Arena_Crucible_ClickFixedPos"],
 		"post_delay": 1000
@@ -29,7 +29,7 @@
 
 	"Courtyard_Arena_Crucible_ClaimReward": {
 		"focus": "> 领取奖励",
-		"recognition": {"type": "OCR", "param": {"expected": "领取", "roi": [820, 580, 70, 50]}},
+		"recognition": {"type": "OCR", "param": {"expected": "领取", "roi": [815, 575, 80, 60]}}, // 原[820,580,70,50] → xy-5、wh+10
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Courtyard_Arena_Crucible_ClickAnywhere"],
 		"post_delay": 600
@@ -37,7 +37,7 @@
 
 	"Courtyard_Arena_Crucible_ClickAnywhere": {
 		"focus": "> 点击任意处继续",
-		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [560, 640, 165, 40]}},
+		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 175, 50]}}, // 原[560,640,165,40] → xy-5、wh+10
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Courtyard_Arena_Crucible_ClickCancel"],
 		"post_delay": 600
@@ -45,7 +45,7 @@
 
 	"Courtyard_Arena_Crucible_ClickCancel": {
 		"focus": "> 点掉取消按钮",
-		"recognition": {"type": "OCR", "param": {"expected": "取消", "roi": [405, 585, 70, 35]}},
+		"recognition": {"type": "OCR", "param": {"expected": "取消", "roi": [400, 580, 80, 45]}}, // 原[405,585,70,35] → xy-5、wh+10
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Courtyard_Arena_Crucible_ClickDeathMatch"],
 		"post_delay": 600
@@ -53,7 +53,7 @@
 
 	"Courtyard_Arena_Crucible_ClickDeathMatch": {
 		"focus": "> 点击【死斗赛】进入挑战界面",
-		"recognition": {"type": "OCR", "param": {"expected": "死斗赛", "roi": [745, 100, 105, 50]}},
+		"recognition": {"type": "OCR", "param": {"expected": "死斗赛", "roi": [740, 95, 115, 60]}}, // 原[745,100,105,50] → xy-5、wh+10
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Courtyard_Arena_Crucible_ReadyToMatchOpponent"],
 		"post_delay": 1000
@@ -61,7 +61,7 @@
 
 	"Courtyard_Arena_Crucible_ReadyToMatchOpponent": {
 		"focus": "> 准备选择对手",
-		"recognition": {"type": "OCR", "param": {"expected": "传奇角斗士", "roi": [0, 0, 1280, 720]}},
+		"recognition": {"type": "OCR", "param": {"expected": "传奇角斗士", "roi": [0, 0, 0, 0]}}, // 原[0,0,1280,720] → 替换为全屏标识
 		"next": [
 			"Courtyard_Arena_Crucible_HasFreeChance", // 有免费挑战机会
 			"Courtyard_Arena_Crucible_End" // 没有免费挑战机会
@@ -72,7 +72,7 @@
 	// 有免费挑战机会
 	"Courtyard_Arena_Crucible_HasFreeChance": {
 		"focus": "> 准备选择对手",
-		"recognition": {"type": "OCR", "param": {"expected": "免费挑战", "roi": [0, 0, 1280, 720]}},
+		"recognition": {"type": "OCR", "param": {"expected": "免费挑战", "roi": [0, 0, 0, 0]}}, // 原[0,0,1280,720] → 替换为全屏标识
 		"next": ["Courtyard_Arena_Crucible_CheckBranches"],
 		"post_delay": 1000
 	},
@@ -95,7 +95,7 @@
 			"type": "OCR",
 			"param": {
 				"expected": "^(0|[1-9]\\d{0,4}|[0-3]\\d{5}|4[0-1]\\d{4})$",
-				"roi": [560, 385, 80, 40]
+				"roi": [555, 380, 90, 50] // 原[560,385,80,40] → xy-5、wh+10
 			}
 		},
 		"action": {"type": "Click", "param": {"target": true}},
@@ -108,7 +108,7 @@
 			"type": "OCR",
 			"param": {
 				"expected": "^(0|[1-9]\\d{0,4}|[0-3]\\d{5}|4[0-1]\\d{4})$",
-				"roi": [840, 385, 75, 25]
+				"roi": [835, 380, 85, 35] // 原[840,385,75,25] → xy-5、wh+10
 			}
 		},
 		"action": {"type": "Click", "param": {"target": true}},
@@ -121,7 +121,7 @@
 			"type": "OCR",
 			"param": {
 				"expected": "^(0|[1-9]\\d{0,4}|[0-3]\\d{5}|4[0-1]\\d{4})$",
-				"roi": [1120, 385, 80, 30]
+				"roi": [1115, 380, 90, 40] // 原[1120,385,80,30] → xy-5、wh+10
 			}
 		},
 		"action": {"type": "Click", "param": {"target": true}},
@@ -130,7 +130,10 @@
 
 	"Courtyard_Arena_Crucible_Refresh": {
 		"focus": "> 三个都≥42万，点刷新",
-		"recognition": {"type": "TemplateMatch", "param": {"template": "courtyard_arena_crucible_refresh.png"}},
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {"template": "courtyard_arena_crucible_refresh.png", "roi": [0, 0, 0, 0]}
+		}, // 补充全屏roi
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Courtyard_Arena_Crucible_CheckBranches"], // 刷新完再重新检查
 		"post_delay": 1500
@@ -138,7 +141,7 @@
 
 	"Courtyard_Arena_Crucible_EnterBattle": {
 		"focus": "> 【死斗赛】点击【进入战斗】",
-		"recognition": {"type": "OCR", "param": {"expected": "进入战斗"}},
+		"recognition": {"type": "OCR", "param": {"expected": "进入战斗", "roi": [0, 0, 0, 0]}}, // 补充全屏roi
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Courtyard_Arena_Crucible_Battle"],
 		"post_delay": 3000
@@ -154,7 +157,7 @@
 
 	"Courtyard_Arena_Crucible_QuickBattle": {
 		"focus": "> 点击【快速战斗】",
-		"recognition": {"type": "OCR", "param": {"expected": "快速战斗"}},
+		"recognition": {"type": "OCR", "param": {"expected": "快速战斗", "roi": [0, 0, 0, 0]}}, // 补充全屏roi
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Courtyard_Arena_Crucible_Battle"],
 		"post_delay": 3000

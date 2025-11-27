@@ -18,7 +18,8 @@
 			"type": "TemplateMatch",
 			"param": {
 				"template": ["friend_main.png", "friend_main_new.png"],
-				"threshold": 0.8
+				"threshold": 0.8,
+				"roi": [0, 0, 0, 0] // 补充全屏roi
 			}
 		},
 		"action": {"type": "Click", "param": {"target": true}},
@@ -33,7 +34,7 @@
 			"param": {
 				"template": "friend_apply.png",
 				"threshold": 0.8,
-				"roi": [25, 260, 60, 80]
+				"roi": [20, 255, 70, 90] // 原[25,260,60,80] → xy-5、wh+10
 			}
 		},
 		"action": {"type": "Click", "param": {"target": true}},
@@ -55,8 +56,8 @@
 		"focus": "全部申请～",
 		"recognition": {
 			"type": "OCR",
-			"param": {"expected": "全部申请"}
-		},
+			"param": {"expected": "全部申请", "roi": [0, 0, 0, 0]}
+		}, // 补充全屏roi
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Friend_Apply_Full", "Friend_Apply_Refresh"],
 		"post_delay": 500
@@ -65,9 +66,8 @@
 	// 好友已满
 	"Friend_Apply_Full": {
 		"focus": "> 好友已满～",
-		"recognition": {"type": "OCR", "param": {"expected": "好友已满"}},
+		"recognition": {"type": "OCR", "param": {"expected": "好友已满", "roi": [0, 0, 0, 0]}}, // 补充全屏roi
 		"next": ["Friend_Apply_End"]
-		// "post_delay": 200
 	},
 
 	// 刷新 friend_Apply_refresh.png
@@ -78,7 +78,7 @@
 			"param": {
 				"template": "friend_apply_refresh.png",
 				"threshold": 0.8,
-				"roi": [1180, 65, 75, 35]
+				"roi": [1175, 60, 85, 45] // 原[1180,65,75,35] → xy-5、wh+10
 			}
 		},
 		"action": {"type": "Click", "param": {"target": true}},
@@ -87,7 +87,6 @@
 	},
 
 	// 停止刷新
-
 	"Friend_Apply_End": {
 		"focus": "> 好友 申请 结束",
 		"next": ["Return_Home"]
