@@ -8,7 +8,7 @@
 		"focus": "> 进入 信息",
 		"recognition": {"type": "TemplateMatch", "param": {"template": "message.png", "roi": [385, 15, 65, 40]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Message_OneKeyClaim"],
+		"next": ["Message_OneKeyClaim", "Message_End"],
 		"post_delay": 1000
 	},
 
