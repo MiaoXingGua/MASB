@@ -20,7 +20,7 @@
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Clan_Claim", "Clan_ClickAnywhere2"],
 		"interrupt": ["CheckRetry", "CheckRelogin"],
-		"post_delay": 800
+		"post_delay": 1000
 	},
 
 	"Clan_Claim": {
@@ -29,7 +29,7 @@
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Clan_ClickAnywhere1"],
 		"interrupt": ["CheckRetry", "CheckRelogin"],
-		"post_delay": 800
+		"post_delay": 1000
 	},
 
 	"Clan_ClickAnywhere1": {
@@ -38,7 +38,7 @@
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Clan_ClickAnywhere2"],
 		"interrupt": ["CheckRetry", "CheckRelogin"],
-		"post_delay": 600
+		"post_delay": 1000
 	},
 
 	"Clan_ClickAnywhere2": {
@@ -47,16 +47,19 @@
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Clan_EnterAncestralVault"],
 		"interrupt": ["CheckRetry", "CheckRelogin"],
-		"post_delay": 600
+		"post_delay": 1000
 	},
 
 	"Clan_EnterAncestralVault": {
 		"focus": "> 进入【先灵秘窖】",
 		"recognition": {"type": "OCR", "param": {"expected": "先灵秘窖", "roi": [1035, 460, 125, 50], "replace": [["窑", "窖"]]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Clan_ClickAnywhere3"],
+		"next": [
+			"Clan_ClickAnywhere3", // 有新任务被完成
+			"Clan_Return" // 没有
+		],
 		"interrupt": ["CheckRetry", "CheckRelogin"],
-		"post_delay": 800
+		"post_delay": 1000
 	},
 
 	"Clan_ClickAnywhere3": {
@@ -65,7 +68,7 @@
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Clan_Return"],
 		"interrupt": ["CheckRetry", "CheckRelogin"],
-		"post_delay": 600
+		"post_delay": 1000
 	},
 
 	"Clan_Return": {
@@ -74,25 +77,36 @@
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Clan_MemberEntry"],
 		"interrupt": ["CheckRetry", "CheckRelogin"],
-		"post_delay": 800
+		"post_delay": 1000
 	},
 
 	"Clan_MemberEntry": {
 		"focus": "> 进入【成员】",
 		"recognition": {"type": "OCR", "param": {"expected": "成员", "roi": [780, 80, 60, 40]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Clan_ClickHeart"],
+		"next": [
+			"Clan_HeartDone", // 点过赞了
+			"Clan_ClickHeart" // 点赞
+		],
 		"interrupt": ["CheckRetry", "CheckRelogin"],
-		"post_delay": 800
+		"post_delay": 1000
 	},
 
 	"Clan_ClickHeart": {
-		"focus": "> 点击 爱心",
-		"recognition": {"type": "TemplateMatch", "param": {"template": "clan_member_heart.png", "roi": [1090, 150, 95, 90]}},
+		"focus": "> 【点赞】",
+		"recognition": {"type": "TemplateMatch", "param": {"template": "clan_member_heart.png", "roi": [1090, 150, 95, 80]}},
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Clan_ClickAnywhere4"],
 		"interrupt": ["CheckRetry", "CheckRelogin"],
-		"post_delay": 800
+		"post_delay": 1000
+	},
+
+	"Clan_HeartDone": {
+		"focus": "> 点过赞了",
+		"recognition": {"type": "TemplateMatch", "param": {"template": "clan_member_heart_done.png", "roi": [1090, 150, 95, 80]}},
+		"next": ["Clan_End"],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"post_delay": 1000
 	},
 
 	"Clan_ClickAnywhere4": {
@@ -101,7 +115,7 @@
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Clan_End"],
 		"interrupt": ["CheckRetry", "CheckRelogin"],
-		"post_delay": 600
+		"post_delay": 1000
 	},
 
 	"Clan_End": {
