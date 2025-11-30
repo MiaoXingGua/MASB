@@ -40,7 +40,7 @@
 		"focus": "> 请稍后再试...",
 		"recognition": {"type": "OCR", "param": {"expected": "请稍后领取", "roi": [675, 100, 140, 50]}},
 		"next": ["Gongli_CheckExtraPath"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"interrupt": ["Gongli_LevelUp", "CheckRetry", "CheckRelogin"],
 		"post_delay": 800,
 		"rate_limit": 2000,
 		"timeout": 15000
