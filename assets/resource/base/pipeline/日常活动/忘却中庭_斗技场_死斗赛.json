@@ -18,7 +18,10 @@
 		"focus": "> 点击【鲜血斗技场】",
 		"recognition": {"type": "OCR", "param": {"expected": "鲜血斗技场", "roi": [75, 345, 130, 50]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Arena_Crucible_ClickFixedPos"],
+		"next": [
+			// "Courtyard_Arena_Crucible_ClickFixedPos", // 领取死斗奖励(可能会没有)
+			"Courtyard_Arena_Crucible_ClickDeathMatch" // 没有奖励  那么直接开始死斗
+		],
 		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"post_delay": 1000
 	},
@@ -69,7 +72,7 @@
 
 	"Courtyard_Arena_Crucible_ReadyToMatchOpponent": {
 		"focus": "> 准备选择对手",
-		"recognition": {"type": "OCR", "param": {"expected": "传奇角斗士", "roi": [0, 0, 0, 0]}},
+		"recognition": {"type": "OCR", "param": {"expected": "免费次数", "roi": [545, 15, 110, 45]}},
 		"next": [
 			"Courtyard_Arena_Crucible_HasFreeChance", // 有免费挑战机会
 			"Courtyard_Arena_Crucible_End" // 没有免费挑战机会
@@ -81,7 +84,7 @@
 	// 有免费挑战机会
 	"Courtyard_Arena_Crucible_HasFreeChance": {
 		"focus": "> 发现免费挑战机会",
-		"recognition": {"type": "OCR", "param": {"expected": "免费挑战", "roi": [0, 0, 0, 0]}},
+		"recognition": {"type": "OCR", "param": {"expected": "免费挑战", "roi": [515, 75, 95, 50]}},
 		"next": ["Courtyard_Arena_Crucible_CheckBranches"],
 		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"post_delay": 1000
