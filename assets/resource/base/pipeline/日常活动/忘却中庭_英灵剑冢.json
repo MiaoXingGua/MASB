@@ -45,7 +45,20 @@
 		"focus": "> 点【快速斩杀】",
 		"recognition": {"type": "OCR", "param": {"expected": "快速斩杀", "roi": [760, 605, 135, 60]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Tomb_QuickExorcise_Start"],
+		"next": [
+			"Courtyard_Tomb_ExorciseAllreadyDone", // 今天以挑战过了
+			"Courtyard_Tomb_QuickExorcise_Start", // 开始挑战
+			"Courtyard_Tomb_QuickExorcise" // 重试挑战
+		],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"post_delay": 800
+	},
+
+	// 没有扫荡次数
+	"Courtyard_Tomb_ExorciseAllreadyDone": {
+		"focus": "> 点【扫荡】",
+		"recognition": {"type": "OCR", "param": {"expected": "挑战次数已用完", "roi": [0, 0, 0, 0]}},
+		"next": ["Courtyard_Tomb_End"],
 		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"post_delay": 800
 	},
