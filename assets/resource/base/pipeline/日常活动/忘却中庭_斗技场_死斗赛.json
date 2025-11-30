@@ -19,19 +19,25 @@
 		"recognition": {"type": "OCR", "param": {"expected": "鲜血斗技场", "roi": [75, 345, 130, 50]}},
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": [
-			// "Courtyard_Arena_Crucible_ClickFixedPos", // 领取死斗奖励(可能会没有)
-			"Courtyard_Arena_Crucible_ClickDeathMatch" // 没有奖励  那么直接开始死斗
+			"Courtyard_Arena_Crucible_ClickReward", // 领取死斗奖励(可能会没有)
+			"Courtyard_Arena_Crucible_ClickDeathMatch" // 没有奖励  那么直接开始死斗(赛季刚开始 没有成绩时 会没有奖励图标)
 		],
 		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"post_delay": 1000
 	},
 
-	"Courtyard_Arena_Crucible_ClickFixedPos": {
+	// courtyard_arena_crucible_reward.png
+	"Courtyard_Arena_Crucible_ClickReward": {
 		"focus": "> 领取【死斗赛奖励】",
-		"action": {"type": "Click", "param": {"target": [890, 185, 0, 0]}},
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {"template": "courtyard_arena_crucible_reward.png", "threshold": 0.8, "roi": [850, 140, 85, 65]}
+		},
+		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Courtyard_Arena_Crucible_ClaimReward"],
 		"interrupt": ["CheckRetry", "CheckRelogin"],
-		"post_delay": 1200
+		"post_delay": 1200,
+		"rate_limit": 2000
 	},
 
 	"Courtyard_Arena_Crucible_ClaimReward": {
