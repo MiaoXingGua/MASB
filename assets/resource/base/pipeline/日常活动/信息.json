@@ -21,7 +21,7 @@
 		"focus": "> 点击【一键领取】",
 		"recognition": {"type": "OCR", "param": {"expected": "键领取", "roi": [300, 575, 75, 35]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Message_ClickAnywhere"],
+		"next": ["Message_ClickAnywhere", "Message_End"],
 		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"post_delay": 800
 	},
