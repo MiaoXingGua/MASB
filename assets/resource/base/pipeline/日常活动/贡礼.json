@@ -9,7 +9,7 @@
 	// 识别图片《贡礼_血池.png》点击进入
 	"Gongli_EnterBloodPool": {
 		"focus": "> 进入【血池】",
-		"recognition": {"type": "TemplateMatch", "param": {"template": "贡礼_血池.png", "roi": [0, 0, 0, 0]}},
+		"recognition": {"type": "TemplateMatch", "param": {"template": "blood_pool.png", "roi": [30, 330, 160, 10]}},
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Gongli_CheckReceiveGift"],
 		"interrupt": [
@@ -26,7 +26,7 @@
 	// 识别文字《接受贡礼》点击
 	"Gongli_CheckReceiveGift": {
 		"focus": "> 点击【接受贡礼】",
-		"recognition": {"type": "OCR", "param": {"expected": "接受贡礼", "roi": [0, 0, 0, 0]}},
+		"recognition": {"type": "OCR", "param": {"expected": "接受贡礼", "roi": [1095, 605, 130, 60]}},
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Gongli_Waiting", "Gongli_CheckContinue"],
 		"interrupt": ["Gongli_LevelUp", "CheckRetry", "CheckRelogin"],
@@ -48,7 +48,7 @@
 
 	"Gongli_LevelUp": {
 		"focus": "> 等级提升",
-		"recognition": {"type": "OCR", "param": {"expected": "等级提升", "roi": [0, 0, 0, 0]}},
+		"recognition": {"type": "OCR", "param": {"expected": "等级提升", "roi": [570, 390, 140, 65]}}, // [581, 399, 119, 44]
 		"action": {"type": "Click", "param": {"target": true}},
 		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"post_delay": 800
@@ -70,7 +70,7 @@
 	// 识别文字《额外布道》点击
 	"Gongli_CheckExtraPath": {
 		"focus": "> 点击【额外布道】",
-		"recognition": {"type": "OCR", "param": {"expected": "额外布道", "roi": [0, 0, 0, 0]}},
+		"recognition": {"type": "OCR", "param": {"expected": "额外布道", "roi": [860, 605, 130, 60]}}, // [872, 615, 109, 37]
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Gongli_CheckUse"],
 		"interrupt": ["CheckRetry", "CheckRelogin"],
@@ -82,7 +82,7 @@
 	// 识别文字《使用》点击
 	"Gongli_CheckUse": {
 		"focus": "> 点击【使用】",
-		"recognition": {"type": "OCR", "param": {"expected": "使用", "roi": [0, 0, 0, 0]}},
+		"recognition": {"type": "OCR", "param": {"expected": "使用", "roi": [760, 505, 80, 60]}}, // [770, 517, 59, 37],
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Gongli_CheckContinueOrCancel"],
 		"interrupt": ["Gongli_LevelUp", "CheckRetry", "CheckRelogin"],
@@ -115,7 +115,7 @@
 	// 点击《取消》
 	"Gongli_ClickCancel": {
 		"focus": "> 点击【取消】",
-		"recognition": {"type": "OCR", "param": {"expected": "取消", "roi": [0, 0, 0, 0]}},
+		"recognition": {"type": "OCR", "param": {"expected": "取消", "roi": [440, 505, 80, 60]}}, // [449, 517, 57, 38]
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Gongli_ClickCancel", "Gongli_End"],
 		"interrupt": ["CheckRetry", "CheckRelogin"],
