@@ -76,7 +76,10 @@
 	// 【路径2-1】点击刷新按钮（图片）
 	"Puppet_ClickRefreshBtn": {
 		"focus": "> 点击【刷新】",
-		"recognition": {"type": "TemplateMatch", "param": {"template": "store_refresh_commodities.png", "threshold": 0.8, "roi": [0, 0, 1280, 720]}},
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {"template": "store_refresh_commodities.png", "threshold": 0.8, "roi": [880, 70, 70, 70]}
+		},
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Puppet_ClickConfirm"],
 		"interrupt": ["CheckRetry", "CheckRelogin"],
