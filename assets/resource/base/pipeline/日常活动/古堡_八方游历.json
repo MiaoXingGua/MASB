@@ -38,7 +38,7 @@
 	"Castle_WorldTravel_NoClaim": {
 		"focus": "> 无可领取奖励",
 		"recognition": {"type": "OCR", "param": {"expected": "无可领取奖励", "roi": [515, 100, 255, 55]}},
-		"next": ["Castle_WorldTravel_End"],
+		"next": ["Castle_WorldTravel_QuickTravel"],
 		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"post_delay": 800
 	},
