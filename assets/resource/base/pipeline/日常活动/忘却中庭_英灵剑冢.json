@@ -2,7 +2,7 @@
 	"忘却中庭_英灵剑冢_开始": {
 		"focus": "> 开始 【英灵剑冢】 扫荡",
 		"next": ["Courtyard_Tomb_EnterYard"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
+		"interrupt": ["CheckRetry", "CheckRelogin", "CloseAd"]
 	},
 
 	"Courtyard_Tomb_EnterYard": {

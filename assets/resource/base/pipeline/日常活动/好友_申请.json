@@ -2,7 +2,7 @@
 	"好友_申请_开始": {
 		"focus": "> 开始 【申请好友】",
 		"next": ["Friend_Apply_Counter"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
+		"interrupt": ["CheckRetry", "CheckRelogin", "CloseAd"]
 	},
 
 	// 初始化计数器
@@ -66,7 +66,10 @@
 	// 刷新 friend_Apply_refresh.png
 	"Friend_Apply_Refresh": {
 		"focus": "> 【刷新】",
-		"recognition": {"type": "TemplateMatch", "param": {"template": "friend_apply_refresh.png", "threshold": 0.8, "roi": [1175, 60, 85, 45]}},
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {"template": "friend_apply_refresh.png", "threshold": 0.8, "roi": [1175, 60, 85, 45]}
+		},
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Friend_Apply_Counter_increase", "Friend_Apply_End"],
 		"interrupt": ["CheckRetry", "CheckRelogin"],

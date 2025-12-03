@@ -2,7 +2,7 @@
 	"任务_开始": {
 		"focus": "> 开始 【任务】领取流程",
 		"next": ["Task_ClickTaskEntry"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
+		"interrupt": ["CheckRetry", "CheckRelogin", "CloseAd"]
 	},
 
 	"Task_ClickTaskEntry": {

@@ -2,7 +2,7 @@
 	"古堡_八方游历_开始": {
 		"focus": "> 开始 【古堡_八方游历】",
 		"next": ["Castle_WorldTravel_Entrance"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
+		"interrupt": ["CheckRetry", "CheckRelogin", "CloseAd"]
 	},
 
 	// 进入古堡

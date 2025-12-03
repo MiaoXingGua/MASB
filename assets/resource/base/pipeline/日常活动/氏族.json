@@ -2,7 +2,7 @@
 	"氏族_开始": {
 		"focus": "> 开始 【氏族】",
 		"next": ["Clan_Entry"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
+		"interrupt": ["CheckRetry", "CheckRelogin", "CloseAd"]
 	},
 
 	"Clan_Entry": {

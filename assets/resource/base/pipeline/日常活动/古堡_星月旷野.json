@@ -3,7 +3,7 @@
 	"古堡_星月旷野_开始": {
 		"focus": "> 开始 【古堡_星月旷野】",
 		"next": ["Castle_Wilderness_EnterCastle"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
+		"interrupt": ["CheckRetry", "CheckRelogin", "CloseAd"]
 	},
 
 	// 点击【古堡】

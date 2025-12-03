@@ -2,7 +2,7 @@
 	"忘却中庭_时计塔楼_开始": {
 		"focus": "> 开始 【时计塔楼】",
 		"next": ["Courtyard_Timeworn_EnterYard"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
+		"interrupt": ["CheckRetry", "CheckRelogin", "CloseAd"]
 	},
 
 	"Courtyard_Timeworn_EnterYard": {

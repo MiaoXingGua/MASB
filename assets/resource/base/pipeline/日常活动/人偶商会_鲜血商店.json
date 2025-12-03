@@ -3,7 +3,7 @@
 	"人偶商店_鲜血商店_开始": {
 		"focus": "> 开始【商店：鲜血商店】",
 		"next": ["Blood_CheckMerchant"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
+		"interrupt": ["CheckRetry", "CheckRelogin", "CloseAd"]
 	},
 
 	// 首页：点击「人偶商会」进入

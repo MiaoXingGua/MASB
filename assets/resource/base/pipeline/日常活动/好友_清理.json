@@ -2,7 +2,7 @@
 	"好友_清理_开始": {
 		"focus": "> 开始 【清理好友】",
 		"next": ["Friend_Delete_Enter"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
+		"interrupt": ["CheckRetry", "CheckRelogin", "CloseAd"]
 	},
 
 	"Friend_Delete_Enter": {
@@ -19,7 +19,10 @@
 
 	"Friend_Delete_SortAscending": {
 		"focus": "> 好友是顺序排列的",
-		"recognition": {"type": "TemplateMatch", "param": {"template": "friend_sort_ascending.png", "threshold": 0.8, "roi": [275, 640, 70, 50]}},
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {"template": "friend_sort_ascending.png", "threshold": 0.8, "roi": [275, 640, 70, 50]}
+		},
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Friend_Delete_Start"],
 		"interrupt": ["CheckRetry", "CheckRelogin"],
@@ -28,7 +31,10 @@
 
 	"Friend_Delete_SortDescending": {
 		"focus": "> 好友是逆序排列的",
-		"recognition": {"type": "TemplateMatch", "param": {"template": "friend_sort_descending.png", "threshold": 0.8, "roi": [275, 640, 70, 50]}},
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {"template": "friend_sort_descending.png", "threshold": 0.8, "roi": [275, 640, 70, 50]}
+		},
 		"next": ["Friend_Delete_Start"],
 		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"post_delay": 800

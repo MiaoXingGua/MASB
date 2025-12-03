@@ -2,7 +2,7 @@
 	"信息_开始": {
 		"focus": "> 开始 【查看信息】",
 		"next": ["Message_ClickMessageEntry", "Message_End"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
+		"interrupt": ["CheckRetry", "CheckRelogin", "CloseAd"]
 	},
 
 	"Message_ClickMessageEntry": {

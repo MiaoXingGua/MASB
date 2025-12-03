@@ -2,7 +2,7 @@
 	"忘却中庭_斗技场_死斗赛_开始": {
 		"focus": "> 开始 【死斗赛】",
 		"next": ["Courtyard_Arena_Crucible_EnterYard"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
+		"interrupt": ["CheckRetry", "CheckRelogin", "CloseAd"]
 	},
 
 	"Courtyard_Arena_Crucible_EnterYard": {

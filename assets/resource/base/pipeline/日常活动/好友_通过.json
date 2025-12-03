@@ -2,7 +2,7 @@
 	"好友_通过_开始": {
 		"focus": "> 开始 【通过好友】",
 		"next": ["Friend_Accept_Enter"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
+		"interrupt": ["CheckRetry", "CheckRelogin", "CloseAd"]
 	},
 
 	"Friend_Accept_Enter": {

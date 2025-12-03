@@ -2,7 +2,7 @@
 	"好友_收礼_开始": {
 		"focus": "> 开始 【好友收礼】",
 		"next": ["Friend_Receipt_Enter"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
+		"interrupt": ["CheckRetry", "CheckRelogin", "CloseAd"]
 	},
 
 	"Friend_Receipt_Enter": {

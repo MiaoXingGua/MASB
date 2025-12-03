@@ -2,7 +2,7 @@
 	"古堡_议事阁_开始": {
 		"focus": "> 开始 【古堡_议事阁】",
 		"next": ["Castle_Council_Entrance"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
+		"interrupt": ["CheckRetry", "CheckRelogin", "CloseAd"]
 	},
 
 	// 进入古堡
