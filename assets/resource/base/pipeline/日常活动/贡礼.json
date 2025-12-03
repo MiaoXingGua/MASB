@@ -29,7 +29,7 @@
 		"recognition": {"type": "OCR", "param": {"expected": "接受贡礼", "roi": [1095, 605, 130, 60]}},
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Gongli_Waiting", "Gongli_CheckContinue"],
-		"interrupt": ["Gongli_LevelUp", "Gongli_BackpackIsFull", "CheckRetry", "CheckRelogin"],
+		"interrupt": ["LevelUp", "Gongli_BackpackIsFull", "CheckRetry", "CheckRelogin"],
 		"post_delay": 800
 		// "rate_limit": 2000,
 		// "timeout": 15000
@@ -86,7 +86,7 @@
 			"Gongli_CheckContinueFinal", // 领完了 点击任意处继续
 			"Gongli_ClickCancel" // 领取需要付费了 取消
 		],
-		"interrupt": ["Gongli_LevelUp", "CheckRetry", "CheckRelogin"],
+		"interrupt": ["LevelUp", "CheckRetry", "CheckRelogin"],
 		"post_delay": 800
 		// "rate_limit": 2000,
 		// "timeout": 15000
@@ -96,7 +96,7 @@
 	// "Gongli_CheckContinueOrCancel": {
 	// 	"focus": "> 【继续】或【取消】",
 	// 	"next": ["Gongli_CheckContinueFinal", "Gongli_ClickCancel"],
-	// 	"interrupt": ["Gongli_LevelUp", "CheckRetry", "CheckRelogin"],
+	// 	"interrupt": ["LevelUp", "CheckRetry", "CheckRelogin"],
 	// 	"rate_limit": 2000,
 	// 	"timeout": 15000
 	// },
