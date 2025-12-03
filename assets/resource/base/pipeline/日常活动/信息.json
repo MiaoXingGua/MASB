@@ -21,7 +21,21 @@
 		"focus": "> 点击【一键领取】",
 		"recognition": {"type": "OCR", "param": {"expected": "键领取", "roi": [300, 575, 75, 35]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Message_ClickAnywhere", "Message_End"],
+		"next": [
+			"Message_ClickAnywhere", // 成功领取
+			"Message_BackpackIsFull", // 背包已满
+			"Message_End"
+		],
+		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"post_delay": 800
+	},
+
+	// BUG 应该是执行 interrupt 《自动分解装备》 然后回来 执行 《信息_开始》
+	"Message_BackpackIsFull": {
+		"focus": "> 点击【确定】",
+		"recognition": {"type": "OCR", "param": {"expected": "确认", "roi": [600, 465, 80, 65]}}, // [609, 472, 61, 44]
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Message_End"],
 		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"post_delay": 800
 	},
