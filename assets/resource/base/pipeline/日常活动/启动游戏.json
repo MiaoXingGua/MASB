@@ -37,7 +37,7 @@
 	// 检查是否已在首页，成功则结束
 	"Start_AlreadyInHomePage": {
 		"focus": "> 检查是否在首页...",
-		"recognition": {"type": "TemplateMatch", "param": {"template": "贡礼_血池.png", "threshold": 0.65, "roi": [0, 0, 0, 0]}},
+		"recognition": {"type": "TemplateMatch", "param": {"template": "blood_pool.png", "threshold": 0.65, "roi": [0, 0, 0, 0]}},
 		"next": ["Start_End"],
 		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"timeout": 10000, // 10s超时，快速检查
