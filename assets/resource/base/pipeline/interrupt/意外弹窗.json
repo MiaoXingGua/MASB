@@ -1,6 +1,21 @@
 {
 	"CloseAd": {
-		"recognition": {"type": "OCR", "param": {"expected": "神秘好礼", "roi": [0, 0, 0, 0]}},
-		"next": ["CheckClose"]
+		"recognition": {
+			"type": "TemplateMatch", // 用图像匹配（X按钮更稳定）
+			"param": {
+				"template": "ad_close.png" // 需准备720p裁剪图像
+				// "threshold": 0.7, // 匹配得分（1就是100%匹配）
+				// "roi": [1050, 135, 55, 45] // BUG：实际点击区域 但是不同流程位置可能不同 所以先注释
+			}
+		},
+		"action": {"type": "Click", "param": {"target": true}},
+		"post_delay": 500 // 点击后延迟0.5s
+	},
+	"LevelUp": {
+		"focus": "> 等级提升",
+		"recognition": {"type": "OCR", "param": {"expected": "等级提升", "roi": [570, 390, 140, 65]}}, // [581, 399, 119, 44]
+		"action": {"type": "Click", "param": {"target": true}},
+		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"post_delay": 800
 	}
 }

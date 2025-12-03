@@ -40,7 +40,7 @@
 		"focus": "> 请稍后再试...",
 		"recognition": {"type": "OCR", "param": {"expected": "请稍后领取", "roi": [675, 100, 140, 50]}},
 		"next": ["Gongli_CheckExtraPath"],
-		"interrupt": ["Gongli_LevelUp", "Gongli_BackpackIsFull", "CheckRetry", "CheckRelogin"],
+		"interrupt": ["LevelUp", "Gongli_BackpackIsFull", "CheckRetry", "CheckRelogin"],
 		"post_delay": 800
 		// "rate_limit": 2000,
 		// "timeout": 15000
@@ -52,21 +52,13 @@
 		"action": {"type": "Click", "param": {"target": true}}
 	},
 
-	"Gongli_LevelUp": {
-		"focus": "> 等级提升",
-		"recognition": {"type": "OCR", "param": {"expected": "等级提升", "roi": [570, 390, 140, 65]}}, // [581, 399, 119, 44]
-		"action": {"type": "Click", "param": {"target": true}},
-		"interrupt": ["CheckRetry", "CheckRelogin"],
-		"post_delay": 800
-	},
-
 	// 识别文字《点击任意处继续》点击
 	"Gongli_CheckContinue": {
 		"focus": "> 点击任意处继续（等待5秒）...",
 		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Gongli_CheckExtraPath"],
-		"interrupt": ["Gongli_LevelUp", "CheckRetry", "CheckRelogin"],
+		"interrupt": ["LevelUp", "CheckRetry", "CheckRelogin"],
 		"pre_delay": 800,
 		"post_delay": 800
 		// "rate_limit": 2000,
