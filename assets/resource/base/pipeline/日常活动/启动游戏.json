@@ -16,6 +16,8 @@
 		],
 		"interrupt": [
 			"CheckRetry", // 网络异常.json：点击重试
+			"InitFalse", // 账号初始化失败
+			"CheckRelogin", // 网络异常.json：重新登录
 			"CheckDownload", // 发现更新.json：点击下载
 			"CheckStartDownload", // 开始下载.json：点击开始下载
 			"CheckDownloadFinish", // 更新完成 请重启游戏
@@ -53,6 +55,7 @@
 		"interrupt": [
 			"CheckRetry", // 网络异常.json：点击重试
 			"CheckRelogin", // 网络异常.json：重新登录
+			"InitFalse", // 账号初始化失败
 			"CheckDownload", // 发现更新.json：点击下载
 			"CheckStartDownload", // 开始下载.json：点击开始下载
 			"CheckDownloadFinish", // 更新完成 请重启游戏

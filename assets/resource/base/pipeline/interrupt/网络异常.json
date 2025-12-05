@@ -4,23 +4,37 @@
 		"focus": "连接游戏服务器失败/登录信息拉取失败",
 		"recognition": {
 			"type": "OCR",
-			"param": {"expected": ["连接游戏服务器", "信息拉取"], "roi": [0, 0, 0, 0], "replace": ["购", "败"]}
+			"param": {"expected": ["连接游戏服务器", "信息拉取"], "roi": [225, 200, 855, 250], "replace": ["购", "败"]}
 		},
 		"next": ["_CheckRetry"]
 	},
 	"_CheckRetry": {
-		"recognition": {"type": "OCR", "param": {"expected": "重试", "roi": [0, 0, 0, 0]}},
+		"recognition": {"type": "OCR", "param": {"expected": "重试", "roi": [770, 460, 95, 65]}}, // [782, 469, 76, 45]
 		"action": {"type": "Click", "param": {"target": true}},
 		"post_delay": 2000 // 点击后延迟2s，等待网络响应
 	},
 
 	"CheckRelogin": {
 		"focus": "无法连接服务器",
-		"recognition": {"type": "OCR", "param": {"expected": "无法连接服务器", "roi": [0, 0, 0, 0]}},
+		"recognition": {"type": "OCR", "param": {"expected": "无法连接服务器", "roi": [210, 225, 1055, 460]}},
 		"next": ["_CheckRelogin"]
 	},
 	"_CheckRelogin": {
-		"recognition": {"type": "OCR", "param": {"expected": "重新登录", "roi": [0, 0, 0, 0]}},
+		"recognition": {"type": "OCR", "param": {"expected": "重新登陆", "roi": [275, 455, 155, 65]}}, // [289, 468, 133, 45] 惊人的错别字 登录 登陆 分不清
+		"action": {"type": "Click", "param": {"target": true}},
+		"post_delay": 2000 // 点击后延迟2s，等待网络响应
+	},
+
+	"InitFalse": {
+		"focus": "账号初始化失败",
+		"recognition": {
+			"type": "OCR",
+			"param": {"expected": ["账号初始化失败"], "roi": [225, 200, 855, 250]}
+		},
+		"next": ["_InitFalse"]
+	},
+	"_InitFalse": {
+		"recognition": {"type": "OCR", "param": {"expected": "重试", "roi": [590, 455, 100, 65]}}, // [602, 469, 78, 45]
 		"action": {"type": "Click", "param": {"target": true}},
 		"post_delay": 2000 // 点击后延迟2s，等待网络响应
 	}
