@@ -51,7 +51,7 @@
 		"focus": "> 点击【领取所有】",
 		"recognition": {"type": "OCR", "param": {"expected": "领取所有", "roi": [1045, 625, 145, 60]}}, // [1060, 637, 124, 38]
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["TimeDreamInvite_ClickContinue", "TimeDreamInvite_CheckNoReward"],
+		"next": ["TimeDreamInvite_ClickContinue", "TimeDreamInvite_End"], // TimeDreamInvite_CheckNoReward
 		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"post_delay": 800
 	},
@@ -61,19 +61,19 @@
 		"focus": "> 点击任意处继续",
 		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["TimeDreamInvite_CheckNoReward"],
+		"next": ["TimeDreamInvite_End"], // TimeDreamInvite_CheckNoReward
 		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"post_delay": 800
 	},
 
 	// 识别【无可领取奖励】
-	"TimeDreamInvite_CheckNoReward": {
-		"focus": "> 无可领取奖励",
-		"recognition": {"type": "OCR", "param": {"expected": "无可领取奖励", "roi": [0, 0, 0, 0]}},
-		"next": ["TimeDreamInvite_End"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
-		"post_delay": 800
-	},
+	// "TimeDreamInvite_CheckNoReward": {
+	// 	"focus": "> 无可领取奖励",
+	// 	"recognition": {"type": "OCR", "param": {"expected": "无可领取奖励", "roi": [0, 0, 0, 0]}},
+	// 	"next": ["TimeDreamInvite_End"],
+	// 	"interrupt": ["CheckRetry", "CheckRelogin"],
+	// 	"post_delay": 800
+	// },
 
 	// 任务结束
 	"TimeDreamInvite_End": {

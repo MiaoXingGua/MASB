@@ -9,7 +9,7 @@
 	// 点击【月度邀约】
 	"MonthlyInvite_EnterMonthlyInvite": {
 		"focus": "> 点击【月度邀约】",
-		"recognition": {"type": "OCR", "param": {"expected": "月度邀约", "roi": [230, 175, 105, 55]}}, // [250, 189, 83, 33]
+		"recognition": {"type": "OCR", "param": {"expected": "度邀约", "roi": [230, 175, 105, 55]}}, // [250, 189, 83, 33]
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["MonthlyInvite_ClickDailyTask"],
 		"interrupt": ["CheckRetry", "CheckRelogin"],
@@ -53,7 +53,7 @@
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": [
 			"MonthlyInvite_ClickContinue2",
-			"MonthlyInvite_CheckNoReward" // 无奖励
+			"MonthlyInvite_End" // 无奖励 // MonthlyInvite_CheckNoReward
 		],
 		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"post_delay": 800
@@ -64,19 +64,19 @@
 		"focus": "> 点击任意处继续",
 		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["MonthlyInvite_CheckNoReward"],
+		"next": ["MonthlyInvite_End"], // MonthlyInvite_CheckNoReward
 		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"post_delay": 800
 	},
 
 	// 识别【无可领取奖励】（奖励）
-	"MonthlyInvite_CheckNoReward": {
-		"focus": "> 无可领取奖励（奖励）",
-		"recognition": {"type": "OCR", "param": {"expected": "无可领取奖励", "roi": [0, 0, 0, 0]}},
-		"next": ["MonthlyInvite_End"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
-		"post_delay": 800
-	},
+	// "MonthlyInvite_CheckNoReward": {
+	// 	"focus": "> 无可领取奖励（奖励）",
+	// 	"recognition": {"type": "OCR", "param": {"expected": "无可领取奖励", "roi": [0, 0, 0, 0]}},
+	// 	"next": ["MonthlyInvite_End"],
+	// 	"interrupt": ["CheckRetry", "CheckRelogin"],
+	// 	"post_delay": 800
+	// },
 
 	// 任务结束
 	"MonthlyInvite_End": {
