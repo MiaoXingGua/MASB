@@ -1,5 +1,6 @@
 name: install
-
+permissions:
+  contents: write
 on:
   push:
     tags:
@@ -102,6 +103,35 @@ jobs:
           rm -f "${ARCHIVE_FILE_PATH}"
           echo "Archive cleanup command executed for MFAAvalonia."
 
+      # ========== 新增：安装 maafw 到本地依赖目录 ==========
+      - name: Install maafw to local directory
+        shell: bash
+        run: |
+          # 创建本地依赖目录（与 agent 同路径）
+          mkdir -p install/agent/libs
+          # 安装 maafw 到本地目录（不同系统适配）
+          if [[ "${{ matrix.os }}" == "win" ]]; then
+            # Windows 下指定安装路径
+            python -m pip install maafw --target=install/agent/libs --platform=win_amd64 --only-binary=:all:
+          elif [[ "${{ matrix.os }}" == "macos" ]]; then
+            # macOS 区分架构
+            if [[ "${{ matrix.arch }}" == "x86_64" ]]; then
+              python -m pip install maafw --target=install/agent/libs --platform=macosx_x86_64 --only-binary=:all:
+            else
+              python -m pip install maafw --target=install/agent/libs --platform=macosx_arm64 --only-binary=:all:
+            fi
+          elif [[ "${{ matrix.os }}" == "linux" ]]; then
+            # Linux 区分架构
+            if [[ "${{ matrix.arch }}" == "x86_64" ]]; then
+              python -m pip install maafw --target=install/agent/libs --platform=manylinux_x86_64 --only-binary=:all:
+            else
+              python -m pip install maafw --target=install/agent/libs --platform=manylinux_aarch64 --only-binary=:all:
+            fi
+          elif [[ "${{ matrix.os }}" == "android" ]]; then
+            # Android 适配（按需调整）
+            python -m pip install maafw --target=install/agent/libs --platform=android_aarch64 --only-binary=:all:
+          fi
+
       - name: Install
         shell: bash
         run: |
@@ -123,6 +153,15 @@ jobs:
           else
             echo "Skipping copy MFA for Android."
           fi
+
+      # ========== 新增：添加依赖路径到 main.py（关键） ==========
+      - name: Add libs path to main.py
+        shell: bash
+        run: |
+          # 在 main.py 开头添加依赖路径（确保能找到 maafw）
+          sed -i '1i import sys; sys.path.append("./libs")' install/agent/main.py
+          # 验证：检查 main.py 是否修改成功
+          cat install/agent/main.py | head -5
 
       - uses: actions/upload-artifact@v4
         with:
