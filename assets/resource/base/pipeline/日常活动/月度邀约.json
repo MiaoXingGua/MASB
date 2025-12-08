@@ -2,8 +2,11 @@
 	// 入口：月度邀约任务
 	"月度邀约_开始": {
 		"focus": "> 开始 【月度邀约】",
-		"next": ["MonthlyInvite_EnterMonthlyInvite"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
+		"next": [
+			"MonthlyInvite_EnterMonthlyInvite",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		]
 	},
 
 	// 点击【月度邀约】
@@ -11,8 +14,11 @@
 		"focus": "> 点击【月度邀约】",
 		"recognition": {"type": "OCR", "param": {"expected": "度邀约", "roi": [230, 175, 105, 55]}}, // [250, 189, 83, 33]
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["MonthlyInvite_ClickDailyTask"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": [
+			"MonthlyInvite_ClickDailyTask",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 1500
 	},
 
@@ -21,8 +27,11 @@
 		"focus": "> 点击【每日任务】",
 		"recognition": {"type": "OCR", "param": {"expected": "每日任务", "roi": [1090, 35, 115, 50]}}, // [1100, 46, 93, 30]
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["MonthlyInvite_ClickClaimAllDaily"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": [
+			"MonthlyInvite_ClickClaimAllDaily",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 800
 	},
 
@@ -31,8 +40,11 @@
 		"focus": "> 点击【领取所有】",
 		"recognition": {"type": "OCR", "param": {"expected": "领取所有", "roi": [1045, 625, 145, 60]}}, // [1058, 637, 124, 38]
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["MonthlyInvite_ClickReward"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": [
+			"MonthlyInvite_ClickReward",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 800
 	},
 
@@ -41,8 +53,11 @@
 		"focus": "> 点击【奖励】",
 		"recognition": {"type": "OCR", "param": {"expected": "奖励", "roi": [895, 40, 65, 45]}}, // [908, 50, 46, 25]
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["MonthlyInvite_ClickClaimAllReward"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": [
+			"MonthlyInvite_ClickClaimAllReward",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 800
 	},
 
@@ -53,9 +68,10 @@
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": [
 			"MonthlyInvite_ClickContinue2",
-			"MonthlyInvite_End" // 无奖励 // MonthlyInvite_CheckNoReward
+			"MonthlyInvite_End",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
 		],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"post_delay": 800
 	},
 
@@ -64,8 +80,11 @@
 		"focus": "> 点击任意处继续",
 		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["MonthlyInvite_End"], // MonthlyInvite_CheckNoReward
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": [
+			"MonthlyInvite_End",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		], // MonthlyInvite_CheckNoReward
 		"post_delay": 800
 	},
 
@@ -81,7 +100,10 @@
 	// 任务结束
 	"MonthlyInvite_End": {
 		"focus": "> 【月度邀约】 结束",
-		"next": ["Return_Home"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
+		"next": [
+			"Return_Home",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		]
 	}
 }

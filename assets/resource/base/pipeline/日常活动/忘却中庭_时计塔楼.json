@@ -1,16 +1,23 @@
 {
 	"忘却中庭_时计塔楼_开始": {
 		"focus": "> 开始 【时计塔楼】",
-		"next": ["Courtyard_Timeworn_EnterYard"],
-		"interrupt": ["CheckRetry", "CheckRelogin", "CloseAd"]
+		"next": [
+			"Courtyard_Timeworn_EnterYard",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin",
+			"[JumpBack]CloseAd"
+		]
 	},
 
 	"Courtyard_Timeworn_EnterYard": {
 		"focus": "> 点击【忘却中庭】",
 		"recognition": {"type": "OCR", "param": {"expected": "忘却中庭", "roi": [1145, 388, 110, 45], "only_rec": true}},
 		"action": {"type": "Click", "param": {"target": true, "target_offset": [0, -50, 0, 0]}},
-		"next": ["Courtyard_Timeworn_ClickTower"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": [
+			"Courtyard_Timeworn_ClickTower",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 800
 	},
 
@@ -18,8 +25,11 @@
 		"focus": "> 点击【时计塔楼】",
 		"recognition": {"type": "OCR", "param": {"expected": "时计塔楼", "roi": [1005, 130, 135, 50]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Timeworn_QuickSweep"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": [
+			"Courtyard_Timeworn_QuickSweep",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 1000
 	},
 
@@ -27,16 +37,23 @@
 		"focus": "> 点击【快速扫荡】",
 		"recognition": {"type": "OCR", "param": {"expected": "快速扫荡", "roi": [850, 655, 120, 50]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Timeworn_StartSweep", "Courtyard_Timeworn_SweepHasDone"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": [
+			"Courtyard_Timeworn_StartSweep",
+			"Courtyard_Timeworn_SweepHasDone",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 800
 	},
 
 	"Courtyard_Timeworn_SweepHasDone": {
 		"focus": "> 扫荡过了",
 		"recognition": {"type": "OCR", "param": {"expected": "已扫荡", "roi": [470, 105, 190, 50]}},
-		"next": ["Courtyard_Timeworn_End"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": [
+			"Courtyard_Timeworn_End",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 800
 	},
 
@@ -44,8 +61,11 @@
 		"focus": "> 点击【开始扫荡】",
 		"recognition": {"type": "OCR", "param": {"expected": "开始扫荡", "roi": [765, 490, 125, 55]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Timeworn_ClickAnywhere"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": [
+			"Courtyard_Timeworn_ClickAnywhere",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 2000
 	},
 
@@ -53,14 +73,20 @@
 		"focus": "> 点击任意处继续",
 		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 175, 50]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Timeworn_End"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": [
+			"Courtyard_Timeworn_End",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 600
 	},
 
 	"Courtyard_Timeworn_End": {
 		"focus": "> 【时计塔楼】 结束",
-		"next": ["Return_Home"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
+		"next": [
+			"Return_Home",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		]
 	}
 }

@@ -2,8 +2,12 @@
 	// 入口：贡礼任务
 	"贡礼_开始": {
 		"focus": "> 开始【贡礼】",
-		"next": ["Gongli_EnterBloodPool"],
-		"interrupt": ["CheckRetry", "CheckRelogin", "CloseAd"]
+		"next": [
+			"Gongli_EnterBloodPool",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin",
+			"[JumpBack]CloseAd"
+		]
 	},
 
 	// 识别图片《贡礼_血池.png》点击进入
@@ -11,13 +15,12 @@
 		"focus": "> 进入【血池】",
 		"recognition": {"type": "TemplateMatch", "param": {"template": "blood_pool.png", "threshold": 0.6, "roi": [30, 330, 160, 100]}}, //[40, 340, 138, 78],
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Gongli_CheckReceiveGift"],
-		"interrupt": [
-			"TapClickAnywhere", // 点击任意处继续.json
-			"CheckRetry",
-			"CheckRelogin"
+		"next": [
+			"Gongli_CheckReceiveGift",
+			"[JumpBack]TapClickAnywhere",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
 		],
-		// "pre_delay": 1500,
 		"post_delay": 1000
 		// "rate_limit": 3000,
 		// "timeout": 600000
@@ -28,8 +31,14 @@
 		"focus": "> 点击【接受贡礼】",
 		"recognition": {"type": "OCR", "param": {"expected": "接受贡礼", "roi": [1095, 605, 130, 60]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Gongli_Waiting", "Gongli_CheckContinue"],
-		"interrupt": ["LevelUp", "Gongli_BackpackIsFull", "CheckRetry", "CheckRelogin"],
+		"next": [
+			"Gongli_Waiting",
+			"Gongli_CheckContinue",
+			"[JumpBack]LevelUp",
+			"[JumpBack]Gongli_BackpackIsFull",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 800
 		// "rate_limit": 2000,
 		// "timeout": 15000
@@ -39,8 +48,13 @@
 	"Gongli_Waiting": {
 		"focus": "> 请稍后再试...",
 		"recognition": {"type": "OCR", "param": {"expected": "请稍后领取", "roi": [675, 100, 140, 50]}},
-		"next": ["Gongli_CheckExtraPath"],
-		"interrupt": ["LevelUp", "Gongli_BackpackIsFull", "CheckRetry", "CheckRelogin"],
+		"next": [
+			"Gongli_CheckExtraPath",
+			"[JumpBack]LevelUp",
+			"[JumpBack]Gongli_BackpackIsFull",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 800
 		// "rate_limit": 2000,
 		// "timeout": 15000
@@ -57,8 +71,12 @@
 		"focus": "> 点击任意处继续（等待5秒）...",
 		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Gongli_CheckExtraPath"],
-		"interrupt": ["LevelUp", "CheckRetry", "CheckRelogin"],
+		"next": [
+			"Gongli_CheckExtraPath",
+			"[JumpBack]LevelUp",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"pre_delay": 800,
 		"post_delay": 800
 		// "rate_limit": 2000,
@@ -70,8 +88,11 @@
 		"focus": "> 点击【额外布道】",
 		"recognition": {"type": "OCR", "param": {"expected": "额外布道", "roi": [860, 605, 130, 60]}}, // [872, 615, 109, 37]
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Gongli_CheckUse"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": [
+			"Gongli_CheckUse",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 800
 		// "rate_limit": 2000,
 		// "timeout": 15000
@@ -83,10 +104,12 @@
 		"recognition": {"type": "OCR", "param": {"expected": "使用", "roi": [760, 505, 80, 60]}}, // [770, 517, 59, 37],
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": [
-			"Gongli_CheckContinueFinal", // 领完了 点击任意处继续
-			"Gongli_ClickCancel" // 领取需要付费了 取消
+			"Gongli_CheckContinueFinal",
+			"Gongli_ClickCancel",
+			"[JumpBack]LevelUp",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
 		],
-		"interrupt": ["LevelUp", "CheckRetry", "CheckRelogin"],
 		"post_delay": 800
 		// "rate_limit": 2000,
 		// "timeout": 15000
@@ -106,8 +129,11 @@
 		"focus": "> 点击任意处继续",
 		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Gongli_ClickCancel2"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": [
+			"Gongli_ClickCancel2",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 800
 		// "rate_limit": 2000,
 		// "timeout": 15000
@@ -118,8 +144,12 @@
 		"focus": "> 点击【取消】",
 		"recognition": {"type": "OCR", "param": {"expected": "取消", "roi": [415, 465, 80, 60]}}, // [424, 476, 61, 37],
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Gongli_ClickCancel2", "Gongli_End"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": [
+			"Gongli_ClickCancel2",
+			"Gongli_End",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 800
 		// "rate_limit": 2000,
 		// "timeout": 15000
@@ -129,8 +159,12 @@
 		"focus": "> 点击【取消】",
 		"recognition": {"type": "OCR", "param": {"expected": "取消", "roi": [435, 505, 80, 60]}}, // [449, 517, 57, 38],
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Gongli_ClickCancel", "Gongli_End"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": [
+			"Gongli_ClickCancel",
+			"Gongli_End",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 800
 		// "rate_limit": 2000,
 		// "timeout": 15000
@@ -138,9 +172,12 @@
 
 	// 贡礼结束
 	"Gongli_End": {
+		"next": [
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"focus": "> 【贡礼】结束",
-		"action": {"type": "Click", "param": {"target": [320, 360, 0, 0]}},
+		"action": {"type": "Click", "param": {"target": [320, 360, 0, 0]}}
 		// "next": ["Return_Home"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
 	}
 }

@@ -1,16 +1,23 @@
 {
 	"忘却中庭_英灵剑冢_开始": {
 		"focus": "> 开始 【英灵剑冢】 扫荡",
-		"next": ["Courtyard_Tomb_EnterYard"],
-		"interrupt": ["CheckRetry", "CheckRelogin", "CloseAd"]
+		"next": [
+			"Courtyard_Tomb_EnterYard",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin",
+			"[JumpBack]CloseAd"
+		]
 	},
 
 	"Courtyard_Tomb_EnterYard": {
 		"focus": "> 进入【忘却中庭】",
 		"recognition": {"type": "OCR", "param": {"expected": "忘却中庭", "roi": [1145, 388, 110, 45], "only_rec": true}},
 		"action": {"type": "Click", "param": {"target": true, "target_offset": [0, -50, 0, 0]}},
-		"next": ["Courtyard_Tomb_EnterTomb"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": [
+			"Courtyard_Tomb_EnterTomb",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 800
 	},
 
@@ -18,8 +25,11 @@
 		"focus": "> 进入【英灵剑冢】",
 		"recognition": {"type": "OCR", "param": {"expected": "英灵剑冢", "roi": [1005, 455, 100, 50], "replace": ["家", "冢"]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Tomb_ClickCrypt"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": [
+			"Courtyard_Tomb_ClickCrypt",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 800
 	},
 
@@ -27,8 +37,11 @@
 		"focus": "> 进入【陨魂陵墓】",
 		"recognition": {"type": "OCR", "param": {"expected": "陨魂陵墓", "roi": [65, 100, 90, 40]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Tomb_Spirit"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": [
+			"Courtyard_Tomb_Spirit",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 1500 // 等一会 有动画
 	},
 
@@ -36,8 +49,11 @@
 		"focus": "> 进入【无常亡魂】",
 		"recognition": {"type": "OCR", "param": {"expected": "无常亡魂", "roi": [965, 535, 135, 55]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Tomb_QuickExorcise"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": [
+			"Courtyard_Tomb_QuickExorcise",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 3000 // 多等一会 有动画
 	},
 
@@ -46,11 +62,12 @@
 		"recognition": {"type": "OCR", "param": {"expected": "快速斩杀", "roi": [760, 605, 135, 60]}},
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": [
-			"Courtyard_Tomb_ExorciseAllreadyDone", // 今天以挑战过了
-			"Courtyard_Tomb_QuickExorcise_Start", // 开始挑战
-			"Courtyard_Tomb_QuickExorcise" // 重试挑战
+			"Courtyard_Tomb_ExorciseAllreadyDone",
+			"Courtyard_Tomb_QuickExorcise_Start",
+			"Courtyard_Tomb_QuickExorcise",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
 		],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"post_delay": 800
 	},
 
@@ -58,8 +75,11 @@
 	"Courtyard_Tomb_ExorciseAllreadyDone": {
 		"focus": "> 点【扫荡】",
 		"recognition": {"type": "OCR", "param": {"expected": "挑战次数已用完", "roi": [0, 0, 0, 0]}},
-		"next": ["Courtyard_Tomb_End"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": [
+			"Courtyard_Tomb_End",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 800
 	},
 
@@ -67,14 +87,20 @@
 		"focus": "> 点【开始扫荡】",
 		"recognition": {"type": "OCR", "param": {"expected": "开始扫荡", "roi": [765, 515, 125, 50]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Tomb_End"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": [
+			"Courtyard_Tomb_End",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 800
 	},
 
 	"Courtyard_Tomb_End": {
 		"focus": "> 【英灵剑冢】 扫荡 结束",
-		"next": ["Return_Home"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
+		"next": [
+			"Return_Home",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		]
 	}
 }

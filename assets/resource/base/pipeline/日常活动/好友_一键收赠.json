@@ -1,8 +1,12 @@
 {
 	"好友_收礼_开始": {
 		"focus": "> 开始 【好友收礼】",
-		"next": ["Friend_Receipt_Enter"],
-		"interrupt": ["CheckRetry", "CheckRelogin", "CloseAd"]
+		"next": [
+			"Friend_Receipt_Enter",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin",
+			"[JumpBack]CloseAd"
+		]
 	},
 
 	"Friend_Receipt_Enter": {
@@ -12,8 +16,11 @@
 			"param": {"template": ["friend_main.png", "friend_main_new.png"], "threshold": 0.8, "roi": [0, 0, 0, 0]}
 		},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Friend_Receipt_Gift"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": [
+			"Friend_Receipt_Gift",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 1500
 	},
 
@@ -22,15 +29,21 @@
 		"focus": "> 点击【一键收赠】",
 		"recognition": {"type": "OCR", "param": {"expected": "键收赠", "roi": [0, 0, 0, 0]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Friend_Receipt_End"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": [
+			"Friend_Receipt_End",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 1000
 	},
 
 	// 结束
 	"Friend_Receipt_End": {
 		"focus": "> 【好友收礼】 结束",
-		"next": ["Return_Home"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
+		"next": [
+			"Return_Home",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		]
 	}
 }
