@@ -9,7 +9,7 @@
 		"next": ["_CheckRetry"]
 	},
 	"_CheckRetry": {
-		"recognition": {"type": "OCR", "param": {"expected": "重试", "roi": [770, 460, 95, 65]}}, // [782, 469, 76, 45]
+		"recognition": {"type": "OCR", "param": {"expected": "重试", "roi": [770, 460, 95, 65]}}, // [782, 469, 76, 45] // BUG: 重试几次后，应该重新登陆
 		"action": {"type": "Click", "param": {"target": true}},
 		"post_delay": 2000 // 点击后延迟2s，等待网络响应
 	},
