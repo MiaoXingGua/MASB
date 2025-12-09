@@ -98,12 +98,20 @@
 		"recognition": {"type": "OCR", "param": {"expected": "完成", "roi": [1155, 600, 75, 50]}},
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": [
-			"Courtyard_Abyss_NextFight",
-			"Courtyard_Abyss_Click",
-			"Courtyard_Abyss_NextBattle",
+			"Courtyard_Abyss_NextFight", // 下一场
+			"Courtyard_Abyss_Click", // 一直点
+			"Courtyard_Abyss_NextBattle", // 返回
 			"[JumpBack]CheckRetry",
 			"[JumpBack]CheckRelogin"
 		],
+		"post_delay": 800
+	},
+
+	"Courtyard_Abyss_Defeat": {
+		"focus": "> 失败退出",
+		"recognition": {"type": "OCR", "param": {"expected": "放弃", "roi": [1165, 620, 75, 55]}}, // [1178, 632, 54, 32],
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Courtyard_Abyss_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
@@ -129,6 +137,7 @@
 			"Courtyard_Abyss_Fight",
 			"Courtyard_Abyss_NextFight",
 			"Courtyard_Abyss_NextBattle",
+			"Courtyard_Abyss_Defeat", // 失败
 			"[JumpBack]CheckRetry",
 			"[JumpBack]CheckRelogin"
 		],
