@@ -2,11 +2,7 @@
 	// 入口：贵宾商店任务
 	"贵宾商店_开始": {
 		"focus": "> 开始 【贵宾商店】",
-		"next": [
-			"VIPShop_EnterVIPShop",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		]
+		"next": ["VIPShop_EnterVIPShop", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
 	},
 
 	// 点击【贵宾商店】
@@ -14,24 +10,16 @@
 		"focus": "> 点击【贵宾商店】",
 		"recognition": {"type": "OCR", "param": {"expected": "贵宾商店", "roi": [130, 170, 105, 55]}}, // [144, 189, 81, 34]
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"VIPShop_ClickDailyGift",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["VIPShop_ClickDailyGift", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 1500
 	},
 
 	// 点击【日常好礼】
 	"VIPShop_ClickDailyGift": {
 		"focus": "> 点击【日常好礼】",
-		"recognition": {"type": "OCR", "param": {"expected": "日常好礼", "roi": [70, 165, 105, 50]}}, // [82, 177, 86, 29]
+		"recognition": {"type": "OCR", "param": {"expected": "日常好礼", "roi": [70, 290, 105, 45]}}, // [82, 303, 86, 23]
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"VIPShop_ClickMonthlyRecommend",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["VIPShop_ClickMonthlyRecommend", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
@@ -40,12 +28,7 @@
 		"focus": "> 点击【每月推荐】",
 		"recognition": {"type": "OCR", "param": {"expected": "每月推荐", "roi": [800, 60, 115, 50]}}, // [812, 72, 96, 29]
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"VIPShop_ClickFreeMonthly",
-			"VIPShop_ClickWeeklyRecommend",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["VIPShop_ClickFreeMonthly", "VIPShop_ClickWeeklyRecommend", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
@@ -54,11 +37,7 @@
 		"focus": "> 点击【免费】",
 		"recognition": {"type": "OCR", "param": {"expected": "免费", "roi": [355, 405, 80, 60]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"VIPShop_ClickContinue1",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["VIPShop_ClickContinue1", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
@@ -67,11 +46,7 @@
 		"focus": "> 点击任意处继续",
 		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"VIPShop_ClickWeeklyRecommend",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["VIPShop_ClickWeeklyRecommend", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
@@ -80,12 +55,7 @@
 		"focus": "> 点击【每周推荐】",
 		"recognition": {"type": "OCR", "param": {"expected": "每周推荐", "roi": [580, 60, 115, 50]}}, // [592, 72, 93, 28]
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"VIPShop_ClickFreeWeekly",
-			"VIPShop_ClickDailyRecommend",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["VIPShop_ClickFreeWeekly", "VIPShop_ClickDailyRecommend", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
@@ -94,11 +64,7 @@
 		"focus": "> 点击【免费】",
 		"recognition": {"type": "OCR", "param": {"expected": "免费", "roi": [355, 405, 80, 60]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"VIPShop_ClickContinue2",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["VIPShop_ClickContinue2", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
@@ -107,11 +73,7 @@
 		"focus": "> 点击任意处继续",
 		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"VIPShop_ClickDailyRecommend",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["VIPShop_ClickDailyRecommend", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
@@ -120,12 +82,7 @@
 		"focus": "> 点击【每日推荐】",
 		"recognition": {"type": "OCR", "param": {"expected": "每日推荐", "roi": [360, 60, 115, 50]}}, // [370, 72, 95, 29]
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"VIPShop_ClickFreeDaily",
-			"VIPShop_End",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["VIPShop_ClickFreeDaily", "VIPShop_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
@@ -134,11 +91,7 @@
 		"focus": "> 点击【免费】",
 		"recognition": {"type": "OCR", "param": {"expected": "免费", "roi": [355, 405, 80, 60]}}, // [368, 414, 57, 36]
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"VIPShop_ClickContinue3",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["VIPShop_ClickContinue3", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
@@ -147,21 +100,13 @@
 		"focus": "> 点击任意处继续",
 		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"VIPShop_End",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["VIPShop_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
 	// 任务结束
 	"VIPShop_End": {
 		"focus": "> 【贵宾商店】 结束",
-		"next": [
-			"Return_Home",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		]
+		"next": ["Return_Home", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
 	}
 }

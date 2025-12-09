@@ -2,12 +2,7 @@
 	// 入口：杂货铺主任务
 	"人偶商店_杂货铺_开始": {
 		"focus": "> 启动【商店：杂货铺】",
-		"next": [
-			"Puppet_CheckMerchant",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin",
-			"[JumpBack]CloseAd"
-		]
+		"next": ["Puppet_CheckMerchant", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin", "[JumpBack]CloseAd"]
 	},
 
 	// 首页：点击「人偶商会」进入
@@ -15,11 +10,7 @@
 		"focus": "> 进入【人偶商会】",
 		"recognition": {"type": "OCR", "param": {"expected": "人偶商会", "roi": [25, 180, 110, 55]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"Puppet_MainLoop",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Puppet_MainLoop", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 1500,
 		"rate_limit": 2000
 	},
@@ -27,13 +18,7 @@
 	// 【主循环入口】依次尝试 1→2→3→4
 	"Puppet_MainLoop": {
 		// "focus": "> 循环入口：尝试路径1→2→3...",
-		"next": [
-			"Puppet_CheckFree",
-			"Puppet_CheckFreeRefresh",
-			"Puppet_End",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Puppet_CheckFree", "Puppet_CheckFreeRefresh", "Puppet_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"rate_limit": 2000,
 		"timeout": 60000
 	},
@@ -45,11 +30,7 @@
 		"focus": "> 检查是否有【免费物品】",
 		"recognition": {"type": "OCR", "param": {"expected": "免费", "roi": [315, 390, 70, 50]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"Puppet_BuyFree",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Puppet_BuyFree", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
@@ -58,11 +39,7 @@
 		"focus": "> 点击【购买】",
 		"recognition": {"type": "OCR", "param": {"expected": "购买", "roi": [890, 530, 85, 55]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"Puppet_ClickContinue",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Puppet_ClickContinue", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
@@ -71,11 +48,7 @@
 		"focus": "> 点击任意处继续",
 		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"Puppet_MainLoop",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		], // **回到循环！**
+		"next": ["Puppet_MainLoop", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"], // **回到循环！**
 		"post_delay": 800
 	},
 
@@ -85,11 +58,7 @@
 	"Puppet_CheckFreeRefresh": {
 		"focus": "> 检查是否有【免费刷新】",
 		"recognition": {"type": "OCR", "param": {"expected": "免费", "roi": [815, 40, 55, 45]}},
-		"next": [
-			"Puppet_ClickRefreshBtn",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Puppet_ClickRefreshBtn", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
@@ -98,14 +67,10 @@
 		"focus": "> 点击【刷新】",
 		"recognition": {
 			"type": "TemplateMatch",
-			"param": {"template": "store_refresh_commodities.png", "threshold": 0.8, "roi": [880, 70, 70, 70]}
+			"param": {"template": "store_refresh_commodities.png", "threshold": 0.8, "roi": [885, 75, 70, 70]} // [889, 78, 51, 49]
 		},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"Puppet_ClickConfirm",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Puppet_ClickConfirm", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 1000
 	},
 
@@ -114,11 +79,7 @@
 		"focus": "> 点击【确认】",
 		"recognition": {"type": "OCR", "param": {"expected": "确认", "roi": [785, 470, 70, 50]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"Puppet_MainLoop",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		], // **回到循环！**
+		"next": ["Puppet_MainLoop", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"], // **回到循环！**
 		"post_delay": 800
 	},
 
@@ -127,10 +88,6 @@
 	// ————————————————————————
 	"Puppet_End": {
 		"focus": "> 【商店：杂货铺】结束",
-		"next": [
-			"Return_Home",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		]
+		"next": ["Return_Home", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
 	}
 }
