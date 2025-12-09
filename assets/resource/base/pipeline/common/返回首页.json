@@ -19,8 +19,8 @@
 		"action": {"type": "Click", "param": {"target": true}},
 		"post_delay": 800, // 点击后延迟0.8s
 		"rate_limit": 2000, // 每2s检查
-		"timeout": 15000, // 15s超时
-		"next": ["Return_Home"]
+		"next": ["Return_Home"],
+		"timeout": 15000 // 15s超时
 	},
 
 	// 检查“home”按钮
