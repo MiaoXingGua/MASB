@@ -24,17 +24,12 @@
 		"focus": "> 进入【通天深渊】",
 		"recognition": {"type": "OCR", "param": {"expected": "通天深渊", "roi": [235, 165, 105, 35]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Abyss_Counter_Increase", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"next": [
+			"Courtyard_Abyss_DailyChances", // 匹配每日通关 3/3 进入
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 800
-	},
-
-	// 开始计数
-	"Courtyard_Abyss_Counter_Increase": {
-		"action": "Custom",
-		"custom_action": "count",
-		"custom_action_param": "key=courtyard_abyss_counter&t=深渊",
-		"next": ["Courtyard_Abyss_DailyChances", "Courtyard_Abyss_Counter_Increase", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
-		"on_error": ["Courtyard_Abyss_End"]
 	},
 
 	"Courtyard_Abyss_DailyChances": {
@@ -47,36 +42,21 @@
 
 	"Courtyard_Abyss_Battle": {
 		"focus": "> 循环",
-		"next": ["Courtyard_Abyss_EnterBattle", "Courtyard_Abyss_NextBattle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"next": [
+			"Courtyard_Abyss_EnterBattle", // 开始战斗
+			"Courtyard_Abyss_NextBattle",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 1500
 	},
-
-	// "Courtyard_Abyss_NextBattle": {
-	//      "focus": "> 下一个",
-	//     "recognition": {
-	//         "type": "TemplateMatch",
-	//         "param": {
-	//             "template": ["abyss_next.png"],
-	//             // "threshold": 0.7, // 因为有背景原色 只能到0.75左右
-	//             "roi": [545, 585, 145, 50]
-	//         }
-	//     },
-	//     "action": { "type": "Click", "param": { "target": true } },
-	//     "next": [
-	//  	"Courtyard_Abyss_DailyChances",
-	//  	"Courtyard_Abyss_End",
-	//  	"[JumpBack]CheckRetry",
-	//  	"[JumpBack]CheckRelogin"
-	//  ],
-	//     "post_delay": 1500
-	// },
 
 	"Courtyard_Abyss_NextBattle": {
 		"focus": "> 点击返回",
 		"recognition": {"type": "TemplateMatch", "param": {"template": "return_button.png", "roi": [0, 0, 0, 0]}},
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": [
-			"Courtyard_Abyss_DailyChances", // 进入战斗
+			"Courtyard_Abyss_DailyChances", // 匹配每日通关 3/3 进入
 			"Courtyard_Abyss_End", // 结束
 			"[JumpBack]CheckRetry",
 			"[JumpBack]CheckRelogin"
@@ -88,7 +68,11 @@
 		"focus": "> 点击【开始战斗】",
 		"recognition": {"type": "OCR", "param": {"expected": "开始战斗", "roi": [945, 610, 120, 55]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Abyss_Fight", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"next": [
+			"Courtyard_Abyss_Fight", // 完成
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 800
 	},
 
