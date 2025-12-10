@@ -19,7 +19,7 @@
 			"param": {
 				"template": ["friend_main.png", "friend_main_new.png", "friend_main_black.png", "friend_main_new_black.png"],
 				"threshold": 0.8,
-				"roi": [465, 0, 70, 70] // [477, 11, 50, 50]
+				"roi": [465, 0, 70, 70]
 			}
 		},
 		"action": {"type": "Click", "param": {"target": true}},
@@ -29,46 +29,43 @@
 
 	"Friend_Apply_FriendList": {
 		"focus": "> 进入【添加好友界面】",
-		"recognition": {"type": "TemplateMatch", "param": {"template": "friend_apply.png", "threshold": 0.8, "roi": [20, 255, 70, 90]}},
+		"recognition": {"type": "TemplateMatch", "param": {"template": "friend_apply.png", "threshold": 0.8, "roi": [20, 255, 70, 90]}}, // [27, 264, 50, 70]
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Friend_Apply_Counter_increase", "Friend_Apply_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"next": ["Friend_Apply_All", "Friend_Apply_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
-	},
-
-	// 开始计数
-	"Friend_Apply_Counter_increase": {
-		"action": "Custom",
-		"custom_action": "count",
-		"custom_action_param": "key=friend_apply_counter&t=申请好友",
-		"next": ["Friend_Apply_All", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
-		"on_error": ["Friend_Apply_End"]
 	},
 
 	// 申请好友
 	"Friend_Apply_All": {
 		"focus": "> 【全部申请】",
-		"recognition": {"type": "OCR", "param": {"expected": "全部申请", "roi": [0, 0, 0, 0]}},
+		"recognition": {"type": "OCR", "param": {"expected": "全部申请", "roi": [1050, 635, 125, 55]}}, // [1060, 645, 105, 33]
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Friend_Apply_Full", "Friend_Apply_Refresh", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"next": [
+			"Friend_Apply_Full", // 好友已满
+			"Friend_Apply_Refresh", // 刷新 最多3次
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin",
+			"Friend_Apply_End" // 结束
+		],
 		"post_delay": 500
 	},
 
 	// 好友已满
 	"Friend_Apply_Full": {
 		"focus": "> 好友已满",
-		"recognition": {"type": "OCR", "param": {"expected": "好友已满", "roi": [0, 0, 0, 0]}},
 		"next": ["Friend_Apply_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
 	},
 
 	// 刷新 friend_Apply_refresh.png
 	"Friend_Apply_Refresh": {
 		"focus": "> 【刷新】",
+		"max_hit": 3, // 最多刷新3次
 		"recognition": {
 			"type": "TemplateMatch",
 			"param": {"template": "friend_apply_refresh.png", "threshold": 0.8, "roi": [1175, 60, 85, 45]}
 		},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Friend_Apply_Counter_increase", "Friend_Apply_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"next": ["Friend_Apply_Enter", "Friend_Apply_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 3000 // 3s
 	},
 
