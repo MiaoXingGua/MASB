@@ -10,11 +10,7 @@
 		"focus": "> 进入【古堡】",
 		"recognition": {"type": "OCR", "param": {"expected": "古堡", "roi": [0, 0, 0, 0]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"Castle_Council_Entry",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Castle_Council_Entry", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 1500
 	},
 
@@ -23,12 +19,7 @@
 		"focus": "> 发现【议事阁】！进去开会～",
 		"recognition": {"type": "OCR", "param": {"expected": "议事阁", "roi": [0, 0, 0, 0]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"Castle_Council_Finished",
-			"Castle_Council_HoldMeeting",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Castle_Council_Finished", "Castle_Council_HoldMeeting", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
@@ -36,11 +27,7 @@
 	"Castle_Council_Finished": {
 		"focus": "> 会议已结束",
 		"recognition": {"type": "TemplateMatch", "param": {"template": "council_finish.png", "roi": [0, 0, 0, 0]}},
-		"next": [
-			"Castle_Council_End",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Castle_Council_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 500 // 点击后延迟0.5s
 	},
 
@@ -49,11 +36,7 @@
 		"focus": "> 【举行会议】",
 		"recognition": {"type": "OCR", "param": {"expected": "举行会议", "roi": [0, 0, 0, 0]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"Castle_Council_MeetingLoop",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Castle_Council_MeetingLoop", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
@@ -73,11 +56,7 @@
 		"focus": "> 【升级】确认",
 		"recognition": {"type": "OCR", "param": {"expected": "确认", "roi": [780, 465, 80, 60]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"Castle_Council_MeetingLoop",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Castle_Council_MeetingLoop", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
@@ -85,21 +64,13 @@
 	"Castle_Council_BottomLeftSpam": {
 		"focus": "> 左下角疯狂点点点",
 		"action": {"type": "Click", "param": {"target": [200, 600, 0, 0]}},
-		"next": [
-			"Castle_Council_MeetingLoop",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		], // 双向箭头 → 点完回到 Castle_MeetingLoop
+		"next": ["Castle_Council_MeetingLoop", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"], // 双向箭头 → 点完回到 Castle_MeetingLoop
 		"post_delay": 180
 	},
 
 	// 结束
 	"Castle_Council_End": {
 		"focus": "> 【古堡_议事阁】 结束",
-		"next": [
-			"Return_Home",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		]
+		"next": ["Return_Home", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
 	}
 }

@@ -1,23 +1,15 @@
 {
 	"忘却中庭_斗技场_死斗赛_开始": {
 		"focus": "> 开始 【死斗赛】",
-		"next": [
-			"Courtyard_Arena_Crucible_EnterYard",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin",
-			"[JumpBack]CloseAd"
-		]
+		"max_hit": 1,
+		"next": ["Courtyard_Arena_Crucible_EnterYard", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin", "[JumpBack]CloseAd"]
 	},
 
 	"Courtyard_Arena_Crucible_EnterYard": {
 		"focus": "> 进入【忘却中庭】",
 		"recognition": {"type": "OCR", "param": {"expected": "忘却中庭", "roi": [1145, 388, 110, 45], "only_rec": true}},
 		"action": {"type": "Click", "param": {"target": true, "target_offset": [0, -50, 0, 0]}},
-		"next": [
-			"Courtyard_Arena_Crucible_ClickBloodArena",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Courtyard_Arena_Crucible_ClickBloodArena", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 

@@ -1,15 +1,8 @@
 {
 	"忘却中庭_通天深渊_开始": {
 		"focus": "> 开始 【通天深渊】",
-		"next": ["Courtyard_Abyss_Counter", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin", "[JumpBack]CloseAd"]
-	},
-
-	// 初始化计数器
-	"Courtyard_Abyss_Counter": {
-		"action": "Custom",
-		"custom_action": "init_counter",
-		"custom_action_param": "key=courtyard_abyss_counter&max=5&exceed=true",
-		"next": ["Courtyard_Abyss_EnterYard", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
+		"max_hit": 1,
+		"next": ["Courtyard_Abyss_EnterYard", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin", "[JumpBack]CloseAd"]
 	},
 
 	"Courtyard_Abyss_EnterYard": {

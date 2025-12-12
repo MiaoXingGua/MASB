@@ -17,11 +17,7 @@
 		"focus": "> 领取 日常任务 奖励",
 		"recognition": {"type": "OCR", "param": {"expected": "领取所有", "roi": [1035, 635, 120, 50]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"Task_ClickAnywhere",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Task_ClickAnywhere", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
@@ -29,11 +25,7 @@
 		"focus": "> 点击任意处继续",
 		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"Task_ClickWeekly",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Task_ClickWeekly", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 600
 	},
 
@@ -41,11 +33,7 @@
 		"focus": "> 切换到【周常】",
 		"recognition": {"type": "OCR", "param": {"expected": "周常", "roi": [735, 80, 65, 45]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"Task_ClaimAllWeekly",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Task_ClaimAllWeekly", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
@@ -53,20 +41,12 @@
 		"focus": "> 领取 周常任务 奖励",
 		"recognition": {"type": "OCR", "param": {"expected": "领取所有", "roi": [0, 0, 0, 0]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"Task_End",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Task_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 600
 	},
 
 	"Task_End": {
 		"focus": "> 【任务】 结束",
-		"next": [
-			"Return_Home",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		]
+		"next": ["Return_Home", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
 	}
 }

@@ -11,11 +11,7 @@
 		"focus": "> 点击【古堡】",
 		"recognition": {"type": "OCR", "param": {"expected": "古堡", "roi": [550, 670, 60, 50]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"Castle_Wilderness_EnterWilderness",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Castle_Wilderness_EnterWilderness", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 1500,
 		"rate_limit": 3000,
 		"timeout": 60000
@@ -26,11 +22,7 @@
 		"focus": "> 点击【星月旷野】",
 		"recognition": {"type": "OCR", "param": {"expected": "星月旷野", "roi": [420, 369, 105, 60]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"Castle_Wilderness_ClickCloseList",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Castle_Wilderness_ClickCloseList", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 1500,
 		"rate_limit": 3000,
 		"timeout": 60000
@@ -60,11 +52,7 @@
 	"Castle_Wilderness_CheckNoEvent": {
 		"focus": "> 没有可进行的旷野事件",
 		"recognition": {"type": "OCR", "param": {"expected": "没有可进行", "roi": [505, 95, 280, 65]}}, // [520, 108, 238, 36]
-		"next": [
-			"Castle_Wilderness_End",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Castle_Wilderness_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"rate_limit": 2000,
 		"timeout": 15000
 	},
@@ -76,11 +64,7 @@
 			"type": "TemplateMatch",
 			"param": {"template": "wilderness_event_list_open.png", "threshold": 0.8, "roi": [1170, 15, 55, 50]}
 		},
-		"next": [
-			"Castle_Wilderness_ClickEvent",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Castle_Wilderness_ClickEvent", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"rate_limit": 2000,
 		"timeout": 15000
 	},
@@ -93,11 +77,7 @@
 			"param": {"template": "wilderness_event.png", "threshold": 0.8, "roi": [1155, 125, 75, 85]}
 		},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"Castle_Wilderness_ClickConfirm",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Castle_Wilderness_ClickConfirm", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800,
 		"rate_limit": 2000,
 		"timeout": 15000
@@ -108,11 +88,7 @@
 		"focus": "> 点击【确认】触发事件",
 		"recognition": {"type": "OCR", "param": {"expected": "确认", "roi": [775, 520, 75, 60]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"Castle_Wilderness_ClickContinue1",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Castle_Wilderness_ClickContinue1", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800,
 		"rate_limit": 2000,
 		"timeout": 15000
@@ -123,12 +99,7 @@
 		"focus": "> 点击任意处继续",
 		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"Castle_Wilderness_ClickSkip",
-			"Castle_Wilderness_ClickContinue1",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Castle_Wilderness_ClickSkip", "Castle_Wilderness_ClickContinue1", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800,
 		"rate_limit": 2000,
 		"timeout": 15000
@@ -139,11 +110,7 @@
 		"focus": "> 点击跳过事件",
 		"recognition": {"type": "TemplateMatch", "param": {"template": "wilderness_event_skip.png", "threshold": 0.8, "roi": [0, 0, 0, 0]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"Castle_Wilderness_CheckSkipConfirm",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Castle_Wilderness_CheckSkipConfirm", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800,
 		"rate_limit": 2000,
 		"timeout": 15000
@@ -153,11 +120,7 @@
 	"Castle_Wilderness_CheckSkipConfirm": {
 		"focus": "> 确认跳过弹窗",
 		"recognition": {"type": "OCR", "param": {"expected": "是否确认跳过", "roi": [290, 280, 170, 55]}},
-		"next": [
-			"Castle_Wilderness_ClickSkipConfirm",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Castle_Wilderness_ClickSkipConfirm", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"rate_limit": 2000,
 		"timeout": 15000
 	},
@@ -167,11 +130,7 @@
 		"focus": "> 点击【确认】跳过事件",
 		"recognition": {"type": "OCR", "param": {"expected": "确认", "roi": [775, 460, 90, 65]}}, // [790, 473, 60, 40]
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"Castle_Wilderness_ClickContinue2",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Castle_Wilderness_ClickContinue2", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800,
 		"rate_limit": 2000,
 		"timeout": 15000
@@ -197,10 +156,6 @@
 	// 任务结束
 	"Castle_Wilderness_End": {
 		"focus": "> 【古堡_星月旷野】 结束",
-		"next": [
-			"Return_Home",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		]
+		"next": ["Return_Home", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
 	}
 }

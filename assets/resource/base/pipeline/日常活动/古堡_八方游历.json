@@ -10,11 +10,7 @@
 		"focus": "> 进入【古堡】",
 		"recognition": {"type": "OCR", "param": {"expected": "古堡", "roi": [0, 0, 0, 0]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"Castle_WorldTravel_Entry",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Castle_WorldTravel_Entry", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 1500
 	},
 
@@ -23,11 +19,7 @@
 		"focus": "> 进入【八方游历】",
 		"recognition": {"type": "OCR", "param": {"expected": "八方游历", "roi": [0, 0, 0, 0]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"Castle_WorldTravel_QuickClaim",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Castle_WorldTravel_QuickClaim", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
@@ -36,23 +28,14 @@
 		"focus": "> 点击【快速领取】收奖励",
 		"recognition": {"type": "OCR", "param": {"expected": "快速领取", "roi": [0, 0, 0, 0]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"Castle_WorldTravel_TapContinue",
-			"Castle_WorldTravel_NoClaim",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Castle_WorldTravel_TapContinue", "Castle_WorldTravel_NoClaim", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
 	"Castle_WorldTravel_NoClaim": {
 		"focus": "> 无可领取奖励",
 		"recognition": {"type": "OCR", "param": {"expected": "无可领取奖励", "roi": [515, 100, 255, 55]}},
-		"next": [
-			"Castle_WorldTravel_QuickTravel",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Castle_WorldTravel_QuickTravel", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
@@ -61,11 +44,7 @@
 		"focus": "> 点击任意处继续",
 		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"Castle_WorldTravel_QuickTravel",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Castle_WorldTravel_QuickTravel", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
@@ -74,21 +53,13 @@
 		"focus": "> 点击【快速游历】出发",
 		"recognition": {"type": "OCR", "param": {"expected": "快速游历", "roi": [0, 0, 0, 0]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"Castle_WorldTravel_End",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Castle_WorldTravel_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
 	// 结束
 	"Castle_WorldTravel_End": {
 		"focus": "> 【古堡_八方游历】 结束",
-		"next": [
-			"Return_Home",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		]
+		"next": ["Return_Home", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
 	}
 }
