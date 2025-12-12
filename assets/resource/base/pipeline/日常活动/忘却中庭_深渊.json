@@ -19,6 +19,7 @@
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": [
 			"Courtyard_Abyss_DailyChances", // 匹配每日通关 3/3 进入
+			"Courtyard_Abyss_End", // 结束
 			"[JumpBack]CheckRetry",
 			"[JumpBack]CheckRelogin"
 		],
