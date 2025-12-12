@@ -70,7 +70,7 @@
 			"type": "TemplateMatch",
 			"param": {"template": "store_refresh_commodities.png", "threshold": 0.8, "roi": [885, 75, 70, 70]} // [889, 78, 51, 49]
 		},
-		"action": {"type": "Click", "param": {"target": true}},
+		"action": {"type": "Click", "param": {"target": true, "target_offset": [15, 20, -35, -35]}}, // [889, 78, 51, 49] → [904, 98, 16, 14]
 		"next": ["Puppet_ClickConfirm", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 1000
 	},

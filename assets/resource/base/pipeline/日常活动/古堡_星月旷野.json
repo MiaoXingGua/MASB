@@ -35,7 +35,7 @@
 			"type": "TemplateMatch",
 			"param": {"template": "wilderness_event_list_close.png", "threshold": 0.8, "roi": [1170, 15, 55, 50]}
 		},
-		"action": {"type": "Click", "param": {"target": true}},
+		"action": {"type": "Click", "param": {"target": true, "target_offset": [15, 10, -35, -30]}}, // [1170, 15, 55, 50]→[1185, 25, 20, 20]
 		"next": [
 			"Castle_Wilderness_CheckOpenList",
 			"Castle_Wilderness_CheckNoEvent",
