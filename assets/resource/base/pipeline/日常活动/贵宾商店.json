@@ -18,7 +18,7 @@
 	// 点击【日常好礼】
 	"VIPShop_ClickDailyGift": {
 		"focus": "> 点击【日常好礼】",
-		"recognition": {"type": "OCR", "param": {"expected": "日常好礼", "roi": [70, 290, 105, 45]}}, // [82, 303, 86, 23]
+		"recognition": {"type": "OCR", "param": {"expected": "日常好礼", "roi": [70, 290, 105, 140]}}, // [82, 303, 86, 23]
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["VIPShop_ClickMonthlyRecommend", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
