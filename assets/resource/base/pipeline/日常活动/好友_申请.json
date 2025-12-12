@@ -1,15 +1,8 @@
 {
 	"好友_申请_开始": {
 		"focus": "> 开始 【申请好友】",
-		"next": ["Friend_Apply_Counter", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin", "[JumpBack]CloseAd"]
-	},
-
-	// 初始化计数器
-	"Friend_Apply_Counter": {
-		"action": "Custom",
-		"custom_action": "init_counter",
-		"custom_action_param": "key=friend_apply_counter&max=3&exceed=true",
-		"next": ["Friend_Apply_Enter", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
+		"max_hit": 1,
+		"next": ["Friend_Apply_Enter", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin", "[JumpBack]CloseAd"]
 	},
 
 	"Friend_Apply_Enter": {

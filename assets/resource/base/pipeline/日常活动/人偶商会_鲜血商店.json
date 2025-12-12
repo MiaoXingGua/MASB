@@ -2,12 +2,8 @@
 	// 入口：鲜血商店主任务
 	"人偶商店_鲜血商店_开始": {
 		"focus": "> 开始【商店：鲜血商店】",
-		"next": [
-			"Blood_CheckMerchant",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin",
-			"[JumpBack]CloseAd"
-		]
+		"max_hit": 1,
+		"next": ["Blood_CheckMerchant", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin", "[JumpBack]CloseAd"]
 	},
 
 	// 首页：点击「人偶商会」进入

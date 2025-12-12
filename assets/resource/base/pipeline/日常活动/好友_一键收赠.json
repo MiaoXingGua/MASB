@@ -1,6 +1,7 @@
 {
 	"好友_收礼_开始": {
 		"focus": "> 开始 【好友收礼】",
+		"max_hit": 1,
 		"next": ["Friend_Receipt_Enter", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin", "[JumpBack]CloseAd"]
 	},
 

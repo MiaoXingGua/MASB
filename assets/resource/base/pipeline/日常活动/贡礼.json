@@ -2,12 +2,8 @@
 	// 入口：贡礼任务
 	"贡礼_开始": {
 		"focus": "> 开始【贡礼】",
-		"next": [
-			"Gongli_EnterBloodPool",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin",
-			"[JumpBack]CloseAd"
-		]
+		"max_hit": 1,
+		"next": ["Gongli_EnterBloodPool", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin", "[JumpBack]CloseAd"]
 	},
 
 	// 识别图片《贡礼_血池.png》点击进入

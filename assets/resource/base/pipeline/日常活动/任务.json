@@ -1,23 +1,15 @@
 {
 	"任务_开始": {
 		"focus": "> 开始 【任务】领取流程",
-		"next": [
-			"Task_ClickTaskEntry",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin",
-			"[JumpBack]CloseAd"
-		]
+		"max_hit": 1,
+		"next": ["Task_ClickTaskEntry", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin", "[JumpBack]CloseAd"]
 	},
 
 	"Task_ClickTaskEntry": {
 		"focus": "> 进入 任务",
 		"recognition": {"type": "TemplateMatch", "param": {"template": "task.png", "roi": [10, 550, 70, 65]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"Task_ClaimAllDaily",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		],
+		"next": ["Task_ClaimAllDaily", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 1000
 	},
 

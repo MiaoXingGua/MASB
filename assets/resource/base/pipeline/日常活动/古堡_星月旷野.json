@@ -2,12 +2,8 @@
 	// 入口：古堡_星月旷野任务
 	"古堡_星月旷野_开始": {
 		"focus": "> 开始 【古堡_星月旷野】",
-		"next": [
-			"Castle_Wilderness_EnterCastle",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin",
-			"[JumpBack]CloseAd"
-		]
+		"max_hit": 1,
+		"next": ["Castle_Wilderness_EnterCastle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin", "[JumpBack]CloseAd"]
 	},
 
 	// 点击【古堡】

@@ -1,13 +1,8 @@
 {
 	"信息_开始": {
 		"focus": "> 开始 【查看信息】",
-		"next": [
-			"Message_ClickMessageEntry",
-			"Message_End",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin",
-			"[JumpBack]CloseAd"
-		]
+		"max_hit": 1,
+		"next": ["Message_ClickMessageEntry", "Message_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin", "[JumpBack]CloseAd"]
 	},
 
 	"Message_ClickMessageEntry": {

@@ -2,11 +2,8 @@
 	// 入口：启动《银与血》，空操作跳转StartApp
 	"启动游戏_开始": {
 		"focus": "> 启动【银与血】",
-		"next": [
-			"Start_App",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		]
+		"max_hit": 1,
+		"next": ["Start_App", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
 	},
 
 	// 启动APP，定义正常流程和异常处理

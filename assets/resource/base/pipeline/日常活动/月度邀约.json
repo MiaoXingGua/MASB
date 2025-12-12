@@ -2,11 +2,8 @@
 	// 入口：月度邀约任务
 	"月度邀约_开始": {
 		"focus": "> 开始 【月度邀约】",
-		"next": [
-			"MonthlyInvite_EnterMonthlyInvite",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		]
+		"max_hit": 1,
+		"next": ["MonthlyInvite_EnterMonthlyInvite", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
 	},
 
 	// 点击【月度邀约】

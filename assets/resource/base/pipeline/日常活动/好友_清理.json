@@ -1,6 +1,7 @@
 {
 	"好友_清理_开始": {
 		"focus": "> 开始 【清理好友】",
+		"max_hit": 1,
 		"next": ["Friend_Delete_Enter", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin", "[JumpBack]CloseAd"]
 	},
 

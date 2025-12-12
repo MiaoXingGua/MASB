@@ -1,6 +1,7 @@
 {
 	"氏族_开始": {
 		"focus": "> 开始 【氏族】",
+		"max_hit": 1,
 		"next": ["Clan_Entry", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin", "[JumpBack]CloseAd"]
 	},
 

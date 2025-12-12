@@ -2,11 +2,8 @@
 	// 入口：时梦邀约任务
 	"时梦邀约_开始": {
 		"focus": "> 开始 【时梦邀约】",
-		"next": [
-			"TimeDreamInvite_EnterTimeDreamInvite",
-			"[JumpBack]CheckRetry",
-			"[JumpBack]CheckRelogin"
-		]
+		"max_hit": 1,
+		"next": ["TimeDreamInvite_EnterTimeDreamInvite", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
 	},
 
 	// 点击【时梦邀约】
