@@ -79,8 +79,8 @@
 
 	"Clan_ClickHeart": {
 		"focus": "> 【点赞】",
-		"recognition": {"type": "TemplateMatch", "param": {"template": "clan_member_heart.png", "roi": [1095, 155, 95, 80]}},
-		"action": {"type": "Click", "param": {"target": true, "target_offset": [30, 25, -65, -55]}}, // [1095, 155, 95, 80] → [1125, 180, 30, 25]
+		// "recognition": {"type": "TemplateMatch", "param": {"template": "clan_member_heart.png", "roi": [1095, 155, 95, 80]}},
+		"action": {"type": "Click", "param": {"target": [1095, 155, 95, 80], "target_offset": [30, 25, -65, -55]}}, // [1095, 155, 95, 80] → [1125, 180, 30, 25]
 		"next": ["Clan_ClickAnywhere4", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 1000
 	},
@@ -94,8 +94,8 @@
 
 	"Clan_ClickAnywhere4": {
 		"focus": "> 点击任意处继续",
-		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
-		"action": {"type": "Click", "param": {"target": true}},
+		// "recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
+		"action": {"type": "Click", "param": {"target": [555, 635, 165, 45]}},
 		"next": ["Clan_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 1000
 	},
