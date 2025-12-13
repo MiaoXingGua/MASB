@@ -71,8 +71,20 @@
 		"focus": "> 点击【死斗赛】进入挑战界面",
 		"recognition": {"type": "OCR", "param": {"expected": "死斗赛", "roi": [740, 95, 115, 60]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Arena_Crucible_ReadyToMatchOpponent", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"next": [
+			"Courtyard_Arena_Crucibl_Closed", // 新赛季准备中
+			"Courtyard_Arena_Crucible_ReadyToMatchOpponent",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 1000
+	},
+
+	"Courtyard_Arena_Crucibl_Closed": {
+		"focus": "> 新赛季准备中",
+		"recognition": {"type": "OCR", "param": {"expected": "新赛季准备中", "roi": [555, 100, 170, 55]}}, // [566, 111, 147, 33]
+		"next": ["Courtyard_Arena_Gauntlet_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 800
 	},
 
 	"Courtyard_Arena_Crucible_ReadyToMatchOpponent": {
@@ -175,21 +187,24 @@
 		"focus": ">  检查①战斗力 < 40w",
 		"recognition": {"type": "OCR", "param": {"expected": "^(0|[1-9]\\d{0,4}|[1-3]\\d{5})$", "roi": [555, 380, 85, 35]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Arena_Crucible_EnterBattle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
+		"next": ["Courtyard_Arena_Crucible_EnterBattle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"pre_delay": 1000
 	},
 
 	"Courtyard_Arena_Crucible_Branch_40_2": {
 		"focus": "> 检查②战斗力 < 40w",
 		"recognition": {"type": "OCR", "param": {"expected": "^(0|[1-9]\\d{0,4}|[1-3]\\d{5})$", "roi": [835, 380, 85, 35]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Arena_Crucible_EnterBattle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
+		"next": ["Courtyard_Arena_Crucible_EnterBattle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"pre_delay": 1000
 	},
 
 	"Courtyard_Arena_Crucible_Branch_40_3": {
 		"focus": "> 检查③战斗力 < 40w",
 		"recognition": {"type": "OCR", "param": {"expected": "^(0|[1-9]\\d{0,4}|[1-3]\\d{5})$", "roi": [1115, 380, 85, 35]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Arena_Crucible_EnterBattle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
+		"next": ["Courtyard_Arena_Crucible_EnterBattle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"pre_delay": 1000
 	},
 
 	// 45w ^(0|[1-9]\\d{0,4}|[1-3]\\d{5}|4[0-4]\\d{4})$
@@ -197,21 +212,24 @@
 		"focus": ">  检查①战斗力 < 45w",
 		"recognition": {"type": "OCR", "param": {"expected": "^(0|[1-9]\\d{0,4}|[1-3]\\d{5}|4[0-4]\\d{4})$", "roi": [555, 380, 85, 35]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Arena_Crucible_EnterBattle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
+		"next": ["Courtyard_Arena_Crucible_EnterBattle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"pre_delay": 1000
 	},
 
 	"Courtyard_Arena_Crucible_Branch_45_2": {
 		"focus": "> 检查②战斗力 < 45w",
 		"recognition": {"type": "OCR", "param": {"expected": "^(0|[1-9]\\d{0,4}|[1-3]\\d{5}|4[0-4]\\d{4})$", "roi": [835, 380, 85, 35]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Arena_Crucible_EnterBattle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
+		"next": ["Courtyard_Arena_Crucible_EnterBattle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"pre_delay": 1000
 	},
 
 	"Courtyard_Arena_Crucible_Branch_45_3": {
 		"focus": "> 检查③战斗力 < 45w",
 		"recognition": {"type": "OCR", "param": {"expected": "^(0|[1-9]\\d{0,4}|[1-3]\\d{5}|4[0-4]\\d{4})$", "roi": [1115, 380, 85, 35]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Arena_Crucible_EnterBattle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
+		"next": ["Courtyard_Arena_Crucible_EnterBattle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"pre_delay": 1000
 	},
 
 	// 50w ^(0|[1-9]\\d{0,4}|[1-4]\\d{5})$
@@ -219,21 +237,24 @@
 		"focus": ">  检查①战斗力 < 50w",
 		"recognition": {"type": "OCR", "param": {"expected": "^(0|[1-9]\\d{0,4}|[1-4]\\d{5})$", "roi": [555, 380, 85, 35]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Arena_Crucible_EnterBattle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
+		"next": ["Courtyard_Arena_Crucible_EnterBattle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"pre_delay": 1000
 	},
 
 	"Courtyard_Arena_Crucible_Branch_50_2": {
 		"focus": "> 检查②战斗力 < 50w",
 		"recognition": {"type": "OCR", "param": {"expected": "^(0|[1-9]\\d{0,4}|[1-4]\\d{5})$", "roi": [835, 380, 85, 35]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Arena_Crucible_EnterBattle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
+		"next": ["Courtyard_Arena_Crucible_EnterBattle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"pre_delay": 1000
 	},
 
 	"Courtyard_Arena_Crucible_Branch_50_3": {
 		"focus": "> 检查③战斗力 < 50w",
 		"recognition": {"type": "OCR", "param": {"expected": "^(0|[1-9]\\d{0,4}|[1-4]\\d{5})$", "roi": [1115, 380, 85, 35]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Arena_Crucible_EnterBattle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
+		"next": ["Courtyard_Arena_Crucible_EnterBattle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"pre_delay": 1000
 	},
 
 	// 55w ^(0|[1-9]\\d{0,4}|[1-4]\\d{5}|5[0-4]\\d{4})$
@@ -241,21 +262,24 @@
 		"focus": ">  检查①战斗力 < 55w",
 		"recognition": {"type": "OCR", "param": {"expected": "^(0|[1-9]\\d{0,4}|[1-4]\\d{5}|5[0-4]\\d{4})$", "roi": [555, 380, 85, 35]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Arena_Crucible_EnterBattle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
+		"next": ["Courtyard_Arena_Crucible_EnterBattle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"pre_delay": 1000
 	},
 
 	"Courtyard_Arena_Crucible_Branch_55_2": {
 		"focus": "> 检查②战斗力 < 55w",
 		"recognition": {"type": "OCR", "param": {"expected": "^(0|[1-9]\\d{0,4}|[1-4]\\d{5}|5[0-4]\\d{4})$", "roi": [835, 380, 85, 35]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Arena_Crucible_EnterBattle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
+		"next": ["Courtyard_Arena_Crucible_EnterBattle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"pre_delay": 1000
 	},
 
 	"Courtyard_Arena_Crucible_Branch_55_3": {
 		"focus": "> 检查③战斗力 < 55w",
 		"recognition": {"type": "OCR", "param": {"expected": "^(0|[1-9]\\d{0,4}|[1-4]\\d{5}|5[0-4]\\d{4})$", "roi": [1115, 380, 85, 35]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Arena_Crucible_EnterBattle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
+		"next": ["Courtyard_Arena_Crucible_EnterBattle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"pre_delay": 1000
 	},
 
 	"Courtyard_Arena_Crucible_Refresh": {

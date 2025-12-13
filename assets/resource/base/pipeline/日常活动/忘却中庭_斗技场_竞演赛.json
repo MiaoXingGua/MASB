@@ -36,7 +36,7 @@
 
 	"Courtyard_Arena_Gauntlet_Closed": {
 		"focus": "> 新赛季准备中",
-		"recognition": {"type": "OCR", "param": {"expected": "新赛季准备中", "roi": [0, 0, 0, 0]}},
+		"recognition": {"type": "OCR", "param": {"expected": "新赛季准备中", "roi": [555, 100, 170, 55]}}, // [566, 111, 147, 33]
 		"next": ["Courtyard_Arena_Gauntlet_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
