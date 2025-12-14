@@ -2,8 +2,8 @@
 	// 入口：鲜血商店主任务
 	"人偶商店_鲜血商店_开始": {
 		"focus": "> 开始【商店：鲜血商店】",
-		"next": ["Blood_CheckMerchant"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
+		"max_hit": 1,
+		"next": ["Blood_CheckMerchant", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin", "[JumpBack]CloseAd"]
 	},
 
 	// 首页：点击「人偶商会」进入
@@ -11,8 +11,7 @@
 		"focus": "> 进入【人偶商会】",
 		"recognition": {"type": "OCR", "param": {"expected": "人偶商会", "roi": [25, 180, 110, 55]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Blood_WaitForBloodStore"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": ["Blood_WaitForBloodStore", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 1500,
 		"rate_limit": 2000
 	},
@@ -22,8 +21,7 @@
 		"focus": "> 进入【鲜血商店】",
 		"recognition": {"type": "TemplateMatch", "param": {"template": "store_blood.png", "threshold": 0.8, "roi": [0, 0, 160, 730]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Blood_EnterCrystalLoop"], // 进入晶球循环
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": ["Blood_EnterCrystalLoop", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"], // 进入晶球循环
 		"post_delay": 1500,
 		"rate_limit": 2000
 	},
@@ -33,12 +31,7 @@
 	// ————————————————————————
 	"Blood_EnterCrystalLoop": {
 		// "focus": "> 进入血池晶球独立循环",
-		"next": [
-			"Blood_CheckCrystal", // 路径1：检查晶球
-			// "Blood_CheckCommonCrystal",
-			"Blood_End" // 路径2：无晶球 → 结束
-		],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": ["Blood_CheckCrystal", "Blood_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"rate_limit": 2000,
 		"timeout": 60000
 	},
@@ -47,8 +40,7 @@
 		"focus": "> 检查是否有【晶球】",
 		"recognition": {"type": "OCR", "param": {"expected": "晶球", "replace": ["品球", "晶球"], "roi": [0, 0, 0, 0]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Blood_ClickPurchase"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": ["Blood_ClickPurchase", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 1500,
 		"rate_limit": 2000
 	},
@@ -70,8 +62,7 @@
 		"focus": "> 购买【晶球】",
 		"recognition": {"type": "OCR", "param": {"expected": "购买", "roi": [895, 530, 75, 50]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Blood_ClickContinue", "Blood_OutOfResources"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": ["Blood_ClickContinue", "Blood_OutOfResources", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
@@ -79,16 +70,14 @@
 		"focus": "> 点击任意处继续",
 		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Blood_EnterCrystalLoop"], // 回到晶球循环
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": ["Blood_EnterCrystalLoop", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"], // 回到晶球循环
 		"post_delay": 800
 	},
 
 	"Blood_OutOfResources": {
 		"focus": "> 资源不足",
 		"recognition": {"type": "OCR", "param": {"expected": "资源不足", "roi": [585, 100, 110, 55]}},
-		"next": ["Blood_End"], // 回到晶球循环
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": ["Blood_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"], // 回到晶球循环
 		"post_delay": 800
 	},
 
@@ -97,7 +86,6 @@
 	// ————————————————————————
 	"Blood_End": {
 		"focus": "> 【商店：鲜血商店】结束",
-		"next": ["Return_Home"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
+		"next": ["Return_Home", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
 	}
 }

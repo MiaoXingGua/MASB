@@ -77,8 +77,10 @@
                 "target": true
             }
         },
-        "next": ["Login_CheckContinueIdentity"],
-        "interrupt": ["Connection_Closed"],
+        "next": [
+            "Login_CheckContinueIdentity",
+            "[JumpBack]Connection_Closed"
+        ],
         "post_delay": 1000,   // 点击后延迟1s
         "rate_limit": 2000,   // 每2s检查
         "timeout": 15000      // 15s超时

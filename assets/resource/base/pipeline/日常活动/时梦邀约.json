@@ -1,0 +1,77 @@
+{
+	// 入口：时梦邀约任务
+	"时梦邀约_开始": {
+		"focus": "> 开始 【时梦邀约】",
+		"max_hit": 1,
+		"next": ["TimeDreamInvite_EnterTimeDreamInvite", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
+	},
+
+	// 点击【时梦邀约】
+	"TimeDreamInvite_EnterTimeDreamInvite": {
+		"focus": "> 点击【时梦邀约】",
+		"recognition": {"type": "OCR", "param": {"expected": "时梦邀约", "roi": [350, 175, 105, 55]}}, // [250, 189, 83, 33]
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["TimeDreamInvite_ClickDailyTask", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 1500
+	},
+
+	// 点击【每日任务】
+	"TimeDreamInvite_ClickDailyTask": {
+		"focus": "> 点击【每日任务】",
+		"recognition": {"type": "OCR", "param": {"expected": "每日任务", "roi": [1090, 35, 115, 50]}}, // [1100, 46, 93, 30]
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["TimeDreamInvite_ClickClaimAllDaily", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 800
+	},
+
+	// 点击【领取所有】（每日任务）
+	"TimeDreamInvite_ClickClaimAllDaily": {
+		"focus": "> 点击【领取所有】",
+		"recognition": {"type": "OCR", "param": {"expected": "领取所有", "roi": [1045, 625, 145, 60]}}, // [1058, 637, 124, 38]
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["TimeDreamInvite_ClickReward", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 800
+	},
+
+	// 点击【奖励】
+	"TimeDreamInvite_ClickReward": {
+		"focus": "> 点击【奖励】",
+		"recognition": {"type": "OCR", "param": {"expected": "奖励", "roi": [895, 40, 65, 45]}}, // [908, 50, 46, 25]
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["TimeDreamInvite_ClickClaimAllReward", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 800
+	},
+
+	// 点击【领取所有】（奖励）
+	"TimeDreamInvite_ClickClaimAllReward": {
+		"focus": "> 点击【领取所有】",
+		"recognition": {"type": "OCR", "param": {"expected": "领取所有", "roi": [1045, 625, 145, 60]}}, // [1060, 637, 124, 38]
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["TimeDreamInvite_ClickContinue", "TimeDreamInvite_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"], // TimeDreamInvite_CheckNoReward
+		"post_delay": 800
+	},
+
+	// 点击任意处继续
+	"TimeDreamInvite_ClickContinue": {
+		"focus": "> 点击任意处继续",
+		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["TimeDreamInvite_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"], // TimeDreamInvite_CheckNoReward
+		"post_delay": 800
+	},
+
+	// 识别【无可领取奖励】
+	// "TimeDreamInvite_CheckNoReward": {
+	// 	"focus": "> 无可领取奖励",
+	// 	"recognition": {"type": "OCR", "param": {"expected": "无可领取奖励", "roi": [0, 0, 0, 0]}},
+	// 	"next": ["TimeDreamInvite_End"],
+	// 	"interrupt": ["CheckRetry", "CheckRelogin"],
+	// 	"post_delay": 800
+	// },
+
+	// 任务结束
+	"TimeDreamInvite_End": {
+		"focus": "> 【时梦邀约】 结束",
+		"next": ["Return_Home", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
+	}
+}

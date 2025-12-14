@@ -1,19 +1,18 @@
 {
 	"信息_开始": {
 		"focus": "> 开始 【查看信息】",
-		"next": ["Message_ClickMessageEntry", "Message_End"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
+		"max_hit": 1,
+		"next": ["Message_ClickMessageEntry", "Message_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin", "[JumpBack]CloseAd"]
 	},
 
 	"Message_ClickMessageEntry": {
 		"focus": "> 进入 【信息】",
 		"recognition": {
 			"type": "TemplateMatch",
-			"param": {"template": ["message.png", "message_new.png"], "roi": [385, 15, 65, 40]}
+			"param": {"template": ["message.png", "message_new.png", "message_heart_new.png"], "roi": [385, 15, 65, 40]}
 		},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Message_OneKeyClaim"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": ["Message_OneKeyClaim", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 1000
 	},
 
@@ -21,23 +20,29 @@
 		"focus": "> 点击【一键领取】",
 		"recognition": {"type": "OCR", "param": {"expected": "键领取", "roi": [300, 575, 75, 35]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Message_ClickAnywhere"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": ["Message_ClickAnywhere", "Message_BackpackIsFull", "Message_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 800
+	},
+
+	// BUG 应该是执行 interrupt 《自动分解装备》 然后回来 执行 《信息_开始》
+	"Message_BackpackIsFull": {
+		"focus": "> 点击【确定】",
+		"recognition": {"type": "OCR", "param": {"expected": "确认", "roi": [600, 465, 80, 65]}}, // [609, 472, 61, 44]
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Message_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
 	"Message_ClickAnywhere": {
 		"focus": "> 【点击任意处继续】",
-		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [0, 0, 0, 0]}},
+		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Message_End"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": ["Message_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 600
 	},
 
 	"Message_End": {
 		"focus": "> 【查看信息】 结束",
-		"next": ["Return_Home"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
+		"next": ["Return_Home", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
 	}
 }

@@ -1,30 +1,113 @@
 {
-    // 文字识别
-    // "贵宾商店":{
-    //     "recognition": "OCR", // 需要识别东西时填这个
-    //     "expected": "贵宾商店", // 识别内容
-    //     "action": "Click", // 执行动作
-    // },
-    "贵宾商店":{
-        "recognition": "FeatureMatch",
-        "roi": [
-            150,
-            210,
-            35,
-            35
-        ],
-        "template": "NewMessage.png", // 必选
-        "action": "Click", // 执行动作
-        "next": [
+	// 入口：贵宾商店任务
+	"贵宾商店_开始": {
+		"focus": "> 开始 【贵宾商店】",
+		"max_hit": 1,
+		"next": ["VIPShop_EnterVIPShop", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
+	},
 
-        ]
-    },
-    // 是识别【新内容】点击 or 识别《日常好礼》点击 识别《免费》点击 识别《免费》点击 识别《点击任意处继续》点击
-    // 识别《每周推荐》点击 （识别《免费》点击 识别《免费》点击 识别《点击任意处继续》点击）
-    // 识别《每月推荐》点击
+	// 点击【贵宾商店】
+	"VIPShop_EnterVIPShop": {
+		"focus": "> 点击【贵宾商店】",
+		"recognition": {"type": "OCR", "param": {"expected": "贵宾商店", "roi": [130, 170, 105, 55]}}, // [144, 189, 81, 34]
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["VIPShop_ClickDailyGift", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 1500
+	},
 
+	// 点击【日常好礼】
+	"VIPShop_ClickDailyGift": {
+		"focus": "> 点击【日常好礼】",
+		"recognition": {"type": "OCR", "param": {"expected": "日常好礼", "roi": [70, 290, 105, 140]}}, // [82, 303, 86, 23]
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["VIPShop_ClickMonthlyRecommend", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 800
+	},
 
-    // 识别《免费》点击  识别《购买》点击 识别《点击任意处继续》点击
-    // 第二页 是否买打折的 识别《off》点击 识别《最大》点击 识别《购买》点击 识别《点击任意处继续》点击
+	// 点击【每月推荐】
+	"VIPShop_ClickMonthlyRecommend": {
+		"focus": "> 点击【每月推荐】",
+		"recognition": {"type": "OCR", "param": {"expected": "每月推荐", "roi": [800, 60, 115, 50]}}, // [812, 72, 96, 29]
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["VIPShop_ClickFreeMonthly", "VIPShop_ClickWeeklyRecommend", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 800
+	},
 
+	// 点击【免费】（每月推荐）
+	"VIPShop_ClickFreeMonthly": {
+		"focus": "> 点击【免费】",
+		"recognition": {"type": "OCR", "param": {"expected": "免费", "roi": [355, 405, 80, 60]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["VIPShop_ClickContinue1", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 800
+	},
+
+	// 点击任意处继续（每月推荐领取后）
+	"VIPShop_ClickContinue1": {
+		"focus": "> 点击任意处继续",
+		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["VIPShop_ClickWeeklyRecommend", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 800
+	},
+
+	// 点击【每周推荐】
+	"VIPShop_ClickWeeklyRecommend": {
+		"focus": "> 点击【每周推荐】",
+		"recognition": {"type": "OCR", "param": {"expected": "每周推荐", "roi": [580, 60, 115, 50]}}, // [592, 72, 93, 28]
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["VIPShop_ClickFreeWeekly", "VIPShop_ClickDailyRecommend", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 800
+	},
+
+	// 点击【免费】（每周推荐）
+	"VIPShop_ClickFreeWeekly": {
+		"focus": "> 点击【免费】",
+		"recognition": {"type": "OCR", "param": {"expected": "免费", "roi": [355, 405, 80, 60]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["VIPShop_ClickContinue2", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 800
+	},
+
+	// 点击任意处继续（每周推荐领取后）
+	"VIPShop_ClickContinue2": {
+		"focus": "> 点击任意处继续",
+		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["VIPShop_ClickDailyRecommend", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 800
+	},
+
+	// 点击【每日推荐】
+	"VIPShop_ClickDailyRecommend": {
+		"focus": "> 点击【每日推荐】",
+		"recognition": {"type": "OCR", "param": {"expected": "每日推荐", "roi": [360, 60, 115, 50]}}, // [370, 72, 95, 29]
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["VIPShop_ClickFreeDaily", "VIPShop_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 800
+	},
+
+	// 点击【免费】（每日推荐）
+	"VIPShop_ClickFreeDaily": {
+		"focus": "> 点击【免费】",
+		"recognition": {"type": "OCR", "param": {"expected": "免费", "roi": [355, 405, 80, 60]}}, // [368, 414, 57, 36]
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["VIPShop_ClickContinue3", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 800
+	},
+
+	// 点击任意处继续（每日推荐领取后）
+	"VIPShop_ClickContinue3": {
+		"focus": "> 点击任意处继续",
+		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["VIPShop_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 800
+	},
+
+	// 任务结束
+	"VIPShop_End": {
+		"focus": "> 【贵宾商店】 结束",
+		"next": ["Return_Home", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
+	}
 }
