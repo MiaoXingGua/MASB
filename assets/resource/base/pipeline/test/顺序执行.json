@@ -1,0 +1,19 @@
+{
+	"NodeA": {
+		"focus": "> 开始 【日常活动】总流程",
+		"next": [
+			"[JumpBack]NodeB", //
+			"[JumpBack]NodeC"
+		]
+	},
+	"NodeB": {
+		"focus": "> NodeB",
+		"max_hit": 1,
+		"next": ["NodeB1"]
+	},
+	"NodeB1": {},
+	"NodeC": {
+		"focus": "> NodeC",
+		"max_hit": 1
+	}
+}
