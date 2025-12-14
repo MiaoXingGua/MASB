@@ -1,66 +1,68 @@
 {
-    // 检查“下载”按钮，点击后返回主流程
-    "CheckDownload": {
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "expected": "下载",
-                "roi": [600, 450, 85, 65]
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": true
-            }
-        },
-        "post_delay": 1000   // 点击后延迟1s，确保下载开始
-    },
+	// 检查“下载”按钮，点击后返回主流程
+	"CheckDownload": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "下载",
+				"roi": [600, 450, 85, 65]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"post_delay": 1000 // 点击后延迟1s，确保下载开始
+	},
 
-    // 检查“开始下载”按钮，点击后返回主流程
-    "CheckStartDownload": {
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "expected": "开始下载",
-                "roi": [580, 525, 115, 45]
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": true
-            }
-        },
-        "post_delay": 1000   // 点击后延迟1s
-    },
+	// 检查“开始下载”按钮，点击后返回主流程
+	"CheckStartDownload": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "开始下载",
+				"roi": [580, 525, 115, 45] // [583, 532, 105, 29]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"post_delay": 1000 // 点击后延迟1s
+	},
 
-    "CheckDownloadFinish":{
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "expected": "更新完成",
-                "roi": [375, 315, 60, 25]  //
-            }
-        },
-        "next": ["CheckDownloadFinishDone"]
-    },
-    "CheckDownloadFinishDone":{
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "expected": "确认",
-                "replace": [["娟", "确"], ["站", "确"]],
-                "roi": [875, 385, 25, 20]  //
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": true
-            }
-        },
-        "post_delay": 1000   // 点击后延迟1s
-    }
-
+	"CheckDownloadFinish": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "更新完成",
+				"roi": [375, 315, 60, 25] //
+			}
+		},
+		"next": ["CheckDownloadFinishDone"]
+	},
+	"CheckDownloadFinishDone": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "确认",
+				"replace": [
+					["娟", "确"],
+					["站", "确"]
+				],
+				"roi": [875, 385, 25, 20] //
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"post_delay": 1000 // 点击后延迟1s
+	}
 }

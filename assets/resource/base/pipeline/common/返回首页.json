@@ -1,88 +1,82 @@
 {
-    "Return_Home": {
-        "focus": "> 返回首页",
-        "next": [
-            "TapClickAnywhere",
-            "CheckHome", // 检查“返回”按钮
-            "CheckClose", // 检查“X”按钮
-            "CheckReturn", // 检查“←”按钮
-            "CheckBack", // 检查“返回”按钮
-            "End" // 没有前面四项就可以结束了
-        ]
-    },
+	"Return_Home": {
+		"focus": "> 返回首页",
+		"next": [
+			"TapClickAnywhere",
+			"CheckHome", // 检查“返回”按钮
+			"CheckClose", // 检查“X”按钮
+			"CheckReturn", // 检查“←”按钮
+			"CheckBack", // 检查“返回”按钮
+			"LevelUp", // 检查是否等级提升了
+			"CloseAd", //
+			"End" // 没有前面四项就可以结束了
+		],
+		"post_delay": 1500
+	},
 
-    // 检查“点击任意处继续”并点击屏幕中心
-    "TapClickAnywhere": {
-        "focus": "> 点击任意处继续...",
-        "recognition": {"type": "OCR", "param": {"expected": "点击任意处继续"}},
-        "action": {"type": "Click", "param": {"target": true}},
-        "post_delay": 800,    // 点击后延迟0.8s
-        "rate_limit": 2000,   // 每2s检查
-        "timeout": 15000,      // 15s超时
-        "next": ["Return_Home"]
-    },
+	// 检查“点击任意处继续”并点击屏幕中心
+	"TapClickAnywhere": {
+		"focus": "> 点击任意处继续...",
+		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"post_delay": 800, // 点击后延迟0.8s
+		"rate_limit": 2000, // 每2s检查
+		"next": ["Return_Home"],
+		"timeout": 15000 // 15s超时
+	},
 
-    // 检查“home”按钮
-    "CheckHome": {
-        "recognition": {
-            "type": "TemplateMatch",  // 用图像匹配（X按钮更稳定）
-            "param": {
-                "template": "home_button.png",  // 需准备720p裁剪图像
-                // "threshold": 0.7, // 匹配得分（1就是100%匹配）
-                "roi": [235, 5, 65, 65] // 右上角区域（示例）
-            }
-        },
-        "action": { "type": "Click", "param": { "target": true } },
-        "next": ["Return_Home"],
-        "post_delay": 500    // 点击后延迟0.5s
-    },
+	// 检查“home”按钮
+	"CheckHome": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {"template": "home_button.png", "roi": [235, 5, 65, 65]}
+		},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Return_Home"],
+		"post_delay": 500 // 点击后延迟0.5s
+	},
 
-    // 检查“X”按钮
-    "CheckClose": {
-        "recognition": {
-            "type": "TemplateMatch",  // 用图像匹配（X按钮更稳定）
-            "param": {
-                "template": "close_button.png",  // 需准备720p裁剪图像
-                // "threshold": 0.7, // 匹配得分（1就是100%匹配）
-                // "roi": [1050, 135, 55, 45] // BUG：实际点击区域 但是不同流程位置可能不同 所以先注释
-            }
-        },
-        "action": { "type": "Click", "param": { "target": true } },
-        "next": ["Return_Home"],
-        "post_delay": 500    // 点击后延迟0.5s
-    },
+	// 检查“X”按钮
+	"CheckClose": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": "close_button.png"
+			}
+		},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Return_Home"],
+		"post_delay": 500 // 点击后延迟0.5s
+	},
 
-    // 检查“←”按钮
-    "CheckReturn": {
-        "recognition": {
-            "type": "TemplateMatch",  // 用图像匹配（X按钮更稳定）
-            "param": {
-                "template": "return_button.png",
-                // "threshold": 0.7, // 匹配得分（1就是100%匹配）
-                "roi": [20, 15, 85, 45]  // BUG：实际点击区域 但是不同流程位置可能不同 所以先注释
-            }
-        },
-        "action": { "type": "Click", "param": { "target": true } },
-        "next": ["Return_Home"],
-        "post_delay": 500    // 点击后延迟0.5s
-    },
+	// 检查“←”按钮
+	"CheckReturn": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": "return_button.png",
+				"roi": [20, 15, 85, 45] // BUG：实际点击区域 但是不同流程位置可能不同 所以先注释
+			}
+		},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Return_Home"],
+		"post_delay": 500 // 点击后延迟0.5s
+	},
 
-    // 检查“返回”按钮
-    "CheckBack": {
-        "focus": "> 点击返回",
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "expected": "返回",
-                "roi": [125, 25, 55, 30] // BUG：实际点击区域 但是不同流程位置可能不同 所以先注释
-            }
-        },
-        "action": { "type": "Click", "param": { "target": true } },
-        "next": ["Return_Home"],
-        "post_delay": 500
-    },
+	// 检查“返回”按钮
+	"CheckBack": {
+		"focus": "> 点击返回",
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "返回",
+				"roi": [125, 25, 55, 30] // BUG：实际点击区域 但是不同流程位置可能不同 所以先注释
+			}
+		},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Return_Home"],
+		"post_delay": 500
+	},
 
-    "End": {
-
-    }
+	"End": {}
 }

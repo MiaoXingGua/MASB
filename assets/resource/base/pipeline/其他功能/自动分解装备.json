@@ -1,0 +1,294 @@
+{
+	// 入口：自动分解装备任务
+	"自动分解装备_开始": {
+		"focus": "> 开始 【自动分解装备】",
+		"next": [
+			"EquipDecompose_EnterBackpack",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		]
+	},
+
+	// 点击【backpack_new.png】（背包图标）
+	"EquipDecompose_EnterBackpack": {
+		"focus": "> 点击背包图标",
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {"template": "backpack_new.png", "threshold": 0.8, "roi": [550, 5, 70, 65]} // [563, 14, 50, 45]
+		},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": [
+			"EquipDecompose_EnterEquipmentTab",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
+		"post_delay": 1500
+	},
+
+	// 点击【backpack_equipment_tab.png】（装备标签）
+	"EquipDecompose_EnterEquipmentTab": {
+		"focus": "> 切换至装备标签",
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {"template": "backpack_equipment_tab.png", "threshold": 0.8, "roi": [30, 430, 75, 90]} // [39, 439, 55, 70]
+		},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": [
+			"EquipDecompose_ClickOneKeyDecompose",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
+		"post_delay": 1500
+	},
+
+	// 点击【display_worn_equipment.png】（显示穿戴装备，切换为隐藏）
+	"EquipDecompose_HideWornEquipment": {
+		"focus": "> 隐藏穿戴装备",
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": "display_worn_equipment.png",
+
+				"threshold": 0.8,
+				"roi": [420, 590, 60, 60]
+			} // [433, 602, 40, 40]
+		},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": [
+			"EquipDecompose_CheckHideStatus",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
+		"post_delay": 800
+	},
+
+	// 确认已隐藏穿戴装备（识别【hide_worn_equipment.png】）
+	"EquipDecompose_CheckHideStatus": {
+		"focus": "> 确认穿戴装备已隐藏",
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {"template": "display_worn_equipment.png", "method": 1, "threshold": 0.8, "roi": [420, 590, 60, 60]} // [433, 602, 40, 40]
+		},
+		"next": [
+			"EquipDecompose_ClickOneKeyDecompose",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		]
+	},
+
+	// 点击【一键分解】
+	"EquipDecompose_ClickOneKeyDecompose": {
+		"focus": "> 点击【一键分解】",
+		"recognition": {"type": "OCR", "param": {"expected": "键分解", "roi": [995, 600, 115, 55]}}, // [1005, 606, 93, 34]
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": [
+			"EquipDecompose_ClickQuickSelect",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
+		"post_delay": 800
+	},
+
+	// 点击【快速选择】
+	"EquipDecompose_ClickQuickSelect": {
+		"focus": "> 点击【快速选择】",
+		"recognition": {"type": "OCR", "param": {"expected": "快速选择", "roi": [470, 595, 120, 55]}}, // [480, 607, 105, 33]
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": [
+			"EquipDecompose_SelectTier1",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
+		"post_delay": 800
+	},
+
+	// 点击【equipment_tier_1.png】（1阶装备）
+	"EquipDecompose_SelectTier1": {
+		"focus": "> 选择1阶装备",
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {"template": "equipment_tier_1.png", "threshold": 0.8, "roi": [535, 420, 100, 55]} // [544, 428, 80, 35]
+		}, // [544, 428, 80, 35]
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": [
+			"EquipDecompose_SelectTier2",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
+		"post_delay": 500
+	},
+
+	// 点击【equipment_tier_2.png】（2阶装备）
+	"EquipDecompose_SelectTier2": {
+		"focus": "> 选择2阶装备",
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {"template": "equipment_tier_2.png", "threshold": 0.8, "roi": [650, 420, 100, 55]} // [660, 427, 80, 35]
+		}, // [660, 427, 80, 35]
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": [
+			"EquipDecompose_SelectTier3",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
+		"post_delay": 500
+	},
+
+	// 点击【equipment_tier_3.png】（3阶装备）
+	"EquipDecompose_SelectTier3": {
+		"focus": "> 选择3阶装备",
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {"template": "equipment_tier_3.png", "threshold": 0.8, "roi": [765, 420, 100, 55]} // [774, 427, 80, 35]
+		}, // [544, 470, 80, 35],
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": [
+			"EquipDecompose_SelectTier4",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
+		"post_delay": 500
+	},
+
+	// 点击【equipment_tier_4.png】（4阶装备）
+	"EquipDecompose_SelectTier4": {
+		"focus": "> 选择4阶装备",
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {"template": "equipment_tier_4.png", "threshold": 0.8, "roi": [880, 420, 100, 55]} // [889, 427, 80, 35]
+		}, // [775, 427, 80, 35]
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": [
+			"EquipDecompose_SelectTier5",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
+		"post_delay": 500
+	},
+
+	// 点击【equipment_tier_5.png】（5阶装备）
+	"EquipDecompose_SelectTier5": {
+		"focus": "> 选择5阶装备",
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {"template": "equipment_tier_5.png", "threshold": 0.8, "roi": [995, 420, 100, 55]} // [1004, 428, 80, 35],
+		}, // [544, 471, 80, 35]
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": [
+			"EquipDecompose_SelectTier6",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
+		"post_delay": 500
+	},
+
+	// 点击【equipment_tier_6.png】（6阶装备）
+	"EquipDecompose_SelectTier6": {
+		"focus": "> 选择6阶装备",
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {"template": "equipment_tier_6.png", "threshold": 0.8, "roi": [535, 470, 100, 55]} // [544, 471, 80, 35]
+		},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": [
+			"EquipDecompose_SelectTier7",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
+		"post_delay": 500
+	},
+
+	// 点击【equipment_tier_7.png】（7阶装备）
+	"EquipDecompose_SelectTier7": {
+		"focus": "> 选择7阶装备",
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {"template": "equipment_tier_7.png", "threshold": 0.8, "roi": [650, 470, 100, 55]} // [659, 471, 80, 35]
+		},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": [
+			"EquipDecompose_SelectTier8",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
+		"post_delay": 500
+	},
+
+	// 点击【equipment_tier_8.png】（8阶装备）
+	"EquipDecompose_SelectTier8": {
+		"focus": "> 选择8阶装备",
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {"template": "equipment_tier_8.png", "threshold": 0.8, "roi": [765, 470, 100, 55]} // [772, 470, 80, 35]
+		},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": [
+			"EquipDecompose_ClickQuickSelectAgain",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
+		"post_delay": 500
+	},
+
+	// 再次点击【快速选择】（确认选择）
+	"EquipDecompose_ClickQuickSelectAgain": {
+		"focus": "> 确认快速选择",
+		"recognition": {"type": "OCR", "param": {"expected": "快速选择", "roi": [470, 595, 120, 55]}}, // [480, 607, 100, 33],
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": [
+			"EquipDecompose_ClickDecompose",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
+		"post_delay": 800
+	},
+
+	// 点击【分解】
+	"EquipDecompose_ClickDecompose": {
+		"focus": "> 点击【分解】",
+		"recognition": {"type": "OCR", "param": {"expected": "分解", "roi": [1025, 595, 80, 55]}}, // [1034, 607, 59, 36]
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": [
+			"EquipDecompose_ClickConfirm",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
+		"post_delay": 800
+	},
+
+	// 点击【确定】
+	"EquipDecompose_ClickConfirm": {
+		"focus": "> 点击【确定】",
+		"recognition": {"type": "OCR", "param": {"expected": "确定", "roi": [790, 500, 75, 50]}}, // [800, 513, 52, 30]
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": [
+			"EquipDecompose_ClickContinue",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
+		"post_delay": 800
+	},
+
+	// 点击任意处继续
+	"EquipDecompose_ClickContinue": {
+		"focus": "> 点击任意处继续",
+		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": [
+			"EquipDecompose_End",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
+		"post_delay": 800
+	},
+
+	// 任务结束
+	"EquipDecompose_End": {
+		"focus": "> 【自动分解装备】 结束",
+		"next": [
+			"Return_Home",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		]
+	}
+}

@@ -1,28 +1,15 @@
 {
 	"忘却中庭_通天深渊_开始": {
 		"focus": "> 开始 【通天深渊】",
-		"next": ["Courtyard_Abyss_Counter"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
-	},
-
-	// 初始化计数器
-	"Courtyard_Abyss_Counter": {
-		"action": "Custom",
-		"custom_action": "init_counter",
-		"custom_action_param": "key=courtyard_abyss_counter&max=5&exceed=true",
-		"next": ["Courtyard_Abyss_EnterYard"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
+		"max_hit": 1,
+		"next": ["Courtyard_Abyss_EnterYard", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin", "[JumpBack]CloseAd"]
 	},
 
 	"Courtyard_Abyss_EnterYard": {
 		"focus": "> 进入【忘却中庭】",
 		"recognition": {"type": "OCR", "param": {"expected": "忘却中庭", "roi": [1145, 388, 110, 45], "only_rec": true}},
 		"action": {"type": "Click", "param": {"target": true, "target_offset": [0, -50, 0, 0]}},
-		"next": [
-			"Courtyard_Abyss_EnterAbyss",
-			"Courtyard_Abyss_EnterYard" // BUG：有时click可能一次点不中
-		],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": ["Courtyard_Abyss_EnterAbyss", "Courtyard_Abyss_EnterYard", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
@@ -30,27 +17,20 @@
 		"focus": "> 进入【通天深渊】",
 		"recognition": {"type": "OCR", "param": {"expected": "通天深渊", "roi": [235, 165, 105, 35]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Abyss_Counter_Increase"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": [
+			"Courtyard_Abyss_DailyChances", // 匹配每日通关 3/3 进入
+			"Courtyard_Abyss_End", // 结束
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 800
-	},
-
-	// 开始计数
-	"Courtyard_Abyss_Counter_Increase": {
-		"action": "Custom",
-		"custom_action": "count",
-		"custom_action_param": "key=courtyard_abyss_counter&t=深渊",
-		"next": ["Courtyard_Abyss_DailyChances", "Courtyard_Abyss_Counter_Increase"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
-		"on_error": ["Courtyard_Abyss_End"]
 	},
 
 	"Courtyard_Abyss_DailyChances": {
 		"focus": "> 点击【每日通关】",
 		"recognition": {"type": "OCR", "param": {"expected": "^每日通关[1-3]", "roi": [0, 0, 0, 0]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Abyss_Battle"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": ["Courtyard_Abyss_Battle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
@@ -58,40 +38,23 @@
 		"focus": "> 循环",
 		"next": [
 			"Courtyard_Abyss_EnterBattle", // 开始战斗
-			"Courtyard_Abyss_NextBattle" // next
+			"Courtyard_Abyss_NextBattle",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
 		],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"post_delay": 1500
 	},
-
-	// "Courtyard_Abyss_NextBattle": {
-	//      "focus": "> 下一个",
-	//     "recognition": {
-	//         "type": "TemplateMatch",
-	//         "param": {
-	//             "template": ["abyss_next.png"],
-	//             // "threshold": 0.7, // 因为有背景原色 只能到0.75左右
-	//             "roi": [545, 585, 145, 50]
-	//         }
-	//     },
-	//     "action": { "type": "Click", "param": { "target": true } },
-	//     "next": [
-	//         "Courtyard_Abyss_EnterBattle", // 进入战斗
-	//         // "Courtyard_Abyss_NextBattle", // 再翻一页（最多4页）
-	//         "Courtyard_Abyss_End" // 结束
-	//     ],
-	//     "post_delay": 1500
-	// },
 
 	"Courtyard_Abyss_NextBattle": {
 		"focus": "> 点击返回",
 		"recognition": {"type": "TemplateMatch", "param": {"template": "return_button.png", "roi": [0, 0, 0, 0]}},
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": [
-			"Courtyard_Abyss_DailyChances", // 进入战斗
-			"Courtyard_Abyss_End" // 结束
+			"Courtyard_Abyss_DailyChances", // 匹配每日通关 3/3 进入
+			"Courtyard_Abyss_End", // 结束
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
 		],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"post_delay": 3000
 	},
 
@@ -99,8 +62,11 @@
 		"focus": "> 点击【开始战斗】",
 		"recognition": {"type": "OCR", "param": {"expected": "开始战斗", "roi": [945, 610, 120, 55]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Abyss_Fight"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": [
+			"Courtyard_Abyss_Fight", // 完成
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 800
 	},
 
@@ -109,8 +75,21 @@
 		"focus": "> 开战",
 		"recognition": {"type": "OCR", "param": {"expected": "完成", "roi": [1155, 600, 75, 50]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Abyss_NextFight", "Courtyard_Abyss_Click", "Courtyard_Abyss_NextBattle"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": [
+			"Courtyard_Abyss_NextFight", // 下一场
+			"Courtyard_Abyss_Click", // 一直点
+			"Courtyard_Abyss_NextBattle", // 返回
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
+		"post_delay": 800
+	},
+
+	"Courtyard_Abyss_Defeat": {
+		"focus": "> 失败退出",
+		"recognition": {"type": "OCR", "param": {"expected": "放弃", "roi": [1165, 620, 75, 55]}}, // [1178, 632, 54, 32],
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Courtyard_Abyss_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
@@ -119,23 +98,33 @@
 		"focus": "> 开战",
 		"recognition": {"type": "OCR", "param": {"expected": "下一层", "roi": [1080, 615, 140, 45]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Abyss_Fight", "Courtyard_Abyss_Click", "Courtyard_Abyss_NextBattle"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": [
+			"Courtyard_Abyss_Fight",
+			"Courtyard_Abyss_Click",
+			"Courtyard_Abyss_NextBattle",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 800
 	},
 
 	"Courtyard_Abyss_Click": {
 		"focus": "> 点击",
 		"action": {"type": "Click", "param": {"target": [1160, 605, 50, 30]}},
-		"next": ["Courtyard_Abyss_Fight", "Courtyard_Abyss_NextFight", "Courtyard_Abyss_NextBattle"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": [
+			"Courtyard_Abyss_Fight",
+			"Courtyard_Abyss_NextFight",
+			"Courtyard_Abyss_NextBattle",
+			"Courtyard_Abyss_Defeat", // 失败
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 800,
 		"timeout": 300000 // 5分钟
 	},
 
 	"Courtyard_Abyss_End": {
 		"focus": "> 【通天深渊】 结束",
-		"next": ["Return_Home"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
+		"next": ["Return_Home", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
 	}
 }

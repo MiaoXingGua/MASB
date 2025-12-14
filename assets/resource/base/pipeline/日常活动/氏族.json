@@ -1,16 +1,15 @@
 {
 	"氏族_开始": {
 		"focus": "> 开始 【氏族】",
-		"next": ["Clan_Entry"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
+		"max_hit": 1,
+		"next": ["Clan_Entry", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin", "[JumpBack]CloseAd"]
 	},
 
 	"Clan_Entry": {
 		"focus": "> 进入【氏族】",
 		"recognition": {"type": "OCR", "param": {"expected": "氏族", "roi": [720, 675, 50, 35]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Clan_SignIn"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": ["Clan_SignIn", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 1000
 	},
 
@@ -18,95 +17,91 @@
 		"focus": "> 点击【氏族签到】",
 		"recognition": {"type": "OCR", "param": {"expected": "氏族签到", "roi": [540, 460, 130, 50]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Clan_Claim", "Clan_ClickAnywhere2"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
-		"post_delay": 800
+		"next": ["Clan_Claim", "Clan_ClickAnywhere2", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 1000
 	},
 
 	"Clan_Claim": {
 		"focus": "> 点击【领取】",
 		"recognition": {"type": "OCR", "param": {"expected": "(^|[^已])领取", "roi": [0, 0, 0, 0]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Clan_ClickAnywhere1"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
-		"post_delay": 800
+		"next": ["Clan_ClickAnywhere1", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 1000
 	},
 
 	"Clan_ClickAnywhere1": {
 		"focus": "> 点击任意处继续",
 		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Clan_ClickAnywhere2"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
-		"post_delay": 600
+		"next": ["Clan_ClickAnywhere2", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 1000
 	},
 
 	"Clan_ClickAnywhere2": {
 		"focus": "> 点击任意处继续",
 		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Clan_EnterAncestralVault"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
-		"post_delay": 600
+		"next": ["Clan_EnterAncestralVault", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 1000
 	},
 
 	"Clan_EnterAncestralVault": {
 		"focus": "> 进入【先灵秘窖】",
 		"recognition": {"type": "OCR", "param": {"expected": "先灵秘窖", "roi": [1035, 460, 125, 50], "replace": [["窑", "窖"]]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Clan_ClickAnywhere3"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
-		"post_delay": 800
+		"next": ["Clan_ClickAnywhere3", "Clan_Return", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 1000
 	},
 
 	"Clan_ClickAnywhere3": {
 		"focus": "> 点击任意处继续",
 		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Clan_Return"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
-		"post_delay": 600
+		"next": ["Clan_Return", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 1000
 	},
 
 	"Clan_Return": {
 		"focus": "> 返回",
 		"recognition": {"type": "OCR", "param": {"expected": "返回", "roi": [120, 20, 70, 40]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Clan_MemberEntry"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
-		"post_delay": 800
+		"next": ["Clan_MemberEntry", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 1000
 	},
 
 	"Clan_MemberEntry": {
 		"focus": "> 进入【成员】",
 		"recognition": {"type": "OCR", "param": {"expected": "成员", "roi": [780, 80, 60, 40]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Clan_ClickHeart"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
-		"post_delay": 800
+		"next": ["Clan_HeartDone", "Clan_ClickHeart", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 1000
 	},
 
 	"Clan_ClickHeart": {
-		"focus": "> 点击 爱心",
-		"recognition": {"type": "TemplateMatch", "param": {"template": "clan_member_heart.png", "roi": [1090, 150, 95, 90]}},
-		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Clan_ClickAnywhere4"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
-		"post_delay": 800
+		"focus": "> 【点赞】",
+		// "recognition": {"type": "TemplateMatch", "param": {"template": "clan_member_heart.png", "roi": [1095, 155, 95, 80]}},
+		"action": {"type": "Click", "param": {"target": [1095, 155, 95, 80], "target_offset": [30, 25, -65, -55]}}, // [1095, 155, 95, 80] → [1125, 180, 30, 25]
+		"next": ["Clan_ClickAnywhere4", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 1000
+	},
+
+	"Clan_HeartDone": {
+		"focus": "> 点过赞了",
+		"recognition": {"type": "TemplateMatch", "param": {"template": "clan_member_heart_done.png", "roi": [1090, 150, 95, 80]}},
+		"next": ["Clan_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 1000
 	},
 
 	"Clan_ClickAnywhere4": {
 		"focus": "> 点击任意处继续",
-		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [0, 0, 0, 0]}},
-		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Clan_End"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
-		"post_delay": 600
+		// "recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
+		"action": {"type": "Click", "param": {"target": [555, 635, 165, 45]}},
+		"next": ["Clan_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 1000
 	},
 
 	"Clan_End": {
 		"focus": "> 【氏族】结束",
-		"next": ["Return_Home"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
+		"next": ["Return_Home", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
 	}
 }

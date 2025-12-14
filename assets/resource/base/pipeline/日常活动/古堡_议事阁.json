@@ -1,8 +1,8 @@
 {
 	"古堡_议事阁_开始": {
 		"focus": "> 开始 【古堡_议事阁】",
-		"next": ["Castle_Council_Entrance"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
+		"max_hit": 1,
+		"next": ["Castle_Council_Entrance", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin", "[JumpBack]CloseAd"]
 	},
 
 	// 进入古堡
@@ -10,8 +10,7 @@
 		"focus": "> 进入【古堡】",
 		"recognition": {"type": "OCR", "param": {"expected": "古堡", "roi": [0, 0, 0, 0]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Castle_Council_Entry"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": ["Castle_Council_Entry", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 1500
 	},
 
@@ -20,11 +19,7 @@
 		"focus": "> 发现【议事阁】！进去开会～",
 		"recognition": {"type": "OCR", "param": {"expected": "议事阁", "roi": [0, 0, 0, 0]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": [
-			"Castle_Council_Finished", // 1 会议已结束
-			"Castle_Council_HoldMeeting" // 2开始会议
-		],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": ["Castle_Council_Finished", "Castle_Council_HoldMeeting", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
@@ -32,8 +27,7 @@
 	"Castle_Council_Finished": {
 		"focus": "> 会议已结束",
 		"recognition": {"type": "TemplateMatch", "param": {"template": "council_finish.png", "roi": [0, 0, 0, 0]}},
-		"next": ["Castle_Council_End"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": ["Castle_Council_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 500 // 点击后延迟0.5s
 	},
 
@@ -42,19 +36,19 @@
 		"focus": "> 【举行会议】",
 		"recognition": {"type": "OCR", "param": {"expected": "举行会议", "roi": [0, 0, 0, 0]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Castle_Council_MeetingLoop"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": ["Castle_Council_MeetingLoop", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
 	"Castle_Council_MeetingLoop": {
 		"focus": "> 会议进行中...",
 		"next": [
-			"Castle_Council_LevelMax", // 等级已满提示
-			"Castle_Council_Finished", // 3 结束
-			"Castle_Council_BottomLeftSpam" // 1 没结束 一直点击
+			"Castle_Council_LevelMax",
+			"Castle_Council_Finished",
+			"Castle_Council_BottomLeftSpam",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
 		],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
 		"post_delay": 180
 	},
 
@@ -62,8 +56,7 @@
 		"focus": "> 【升级】确认",
 		"recognition": {"type": "OCR", "param": {"expected": "确认", "roi": [780, 465, 80, 60]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Castle_Council_MeetingLoop"],
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": ["Castle_Council_MeetingLoop", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
 	},
 
@@ -71,15 +64,13 @@
 	"Castle_Council_BottomLeftSpam": {
 		"focus": "> 左下角疯狂点点点",
 		"action": {"type": "Click", "param": {"target": [200, 600, 0, 0]}},
-		"next": ["Castle_Council_MeetingLoop"], // 双向箭头 → 点完回到 Castle_MeetingLoop
-		"interrupt": ["CheckRetry", "CheckRelogin"],
+		"next": ["Castle_Council_MeetingLoop", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"], // 双向箭头 → 点完回到 Castle_MeetingLoop
 		"post_delay": 180
 	},
 
 	// 结束
 	"Castle_Council_End": {
 		"focus": "> 【古堡_议事阁】 结束",
-		"next": ["Return_Home"],
-		"interrupt": ["CheckRetry", "CheckRelogin"]
+		"next": ["Return_Home", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
 	}
 }

@@ -1,6 +1,6 @@
 {
     "tabWidth": 4,
-    "printWidth": 150,
+    "printWidth": 140,
     "useTabs": false,
     "bracketSameLine": true,
     "bracketSpacing": false,

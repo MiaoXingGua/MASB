@@ -1,0 +1,84 @@
+//  python -m MaaDebugger --port 8080
+
+{
+	"my_action_111": {
+		"focus": "my_action_111",
+		"action": "Custom",
+		"custom_action": "my_action_111",
+		"custom_action_param": ""
+	},
+
+	// 计数器
+	"test_counter": {
+		"focus": "开始 counter",
+		"next": ["test_counter_init"]
+	},
+	"test_counter_init": {
+		"action": "Custom",
+		"custom_action": "init_counter",
+		"custom_action_param": "key=test_counter&max=2&exceed=true",
+		"next": ["test_counter_increment"]
+	},
+	"test_counter_loop": {
+		"next": ["test_counter_increment"]
+	},
+	"test_counter_increment": {
+		"action": "Custom",
+		"custom_action": "count",
+		"custom_action_param": "key=test_counter&t=循环",
+		"next": ["test_counter_loop"],
+		"on_error": ["test_counter_end"]
+	},
+	"test_counter_end": {
+		"focus": "计数已达上限，循环结束！"
+	},
+
+	"test_counters_开始": {
+		"focus": "【功能测试】初始化两个独立计数器",
+		"next": ["test_counters_初始化"]
+	},
+
+	"test_counters_初始化": {
+		"action": "Custom",
+		"custom_action": "init_counters",
+		"custom_action_param": [
+			{"key": "counter_a", "max": 3, "exceed": false},
+			{"key": "counter_b", "max": 2, "exceed": true}
+		],
+		"next": ["test_counters_Loop"]
+	},
+
+	"test_counters_Loop": {
+		"focus": "选择要测试的计数器：\n1. counter_a (执行 3 次)\n2. counter_b (执行 2 次)",
+		"next": ["test_counters_a_循环", "test_counters_b_入口"],
+		"on_error": ["test_counters_a_结束"]
+	},
+
+	"test_counters_a_循环": {
+		"action": "Custom",
+		"custom_action": "count",
+		"custom_action_param": {"key": "counter_a", "t": "counter_a"},
+		"next": ["test_counters_Loop"]
+	},
+
+	"test_counters_a_结束": {
+		"focus": "counter_a 测试通过：执行第 3 次后停止"
+	},
+
+	"test_counters_b_入口": {
+		"focus": "开始测试 counter_b (max=2, exceed=true)",
+		"next": ["test_counters_b_循环"]
+	},
+
+	"test_counters_b_循环": {
+		"action": "Custom",
+		"custom_action": "count",
+		"custom_action_param": {"key": "counter_b", "t": "counter_b"},
+		"next": ["test_counters_b_循环"],
+		"on_error": ["test_counters_b_结束"]
+	},
+
+	"test_counters_b_结束": {
+		"focus": "counter_b 测试通过：执行第 3 次时触发 on_error"
+	}
+}
