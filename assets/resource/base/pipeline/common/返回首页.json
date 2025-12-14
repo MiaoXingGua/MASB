@@ -8,8 +8,10 @@
 			"CheckReturn", // 检查“←”按钮
 			"CheckBack", // 检查“返回”按钮
 			"LevelUp", // 检查是否等级提升了
+			"CloseAd", //
 			"End" // 没有前面四项就可以结束了
-		]
+		],
+		"post_delay": 1500
 	},
 
 	// 检查“点击任意处继续”并点击屏幕中心
@@ -26,12 +28,8 @@
 	// 检查“home”按钮
 	"CheckHome": {
 		"recognition": {
-			"type": "TemplateMatch", // 用图像匹配（X按钮更稳定）
-			"param": {
-				"template": "home_button.png", // 需准备720p裁剪图像
-				// "threshold": 0.7, // 匹配得分（1就是100%匹配）
-				"roi": [235, 5, 65, 65] // 右上角区域（示例）
-			}
+			"type": "TemplateMatch",
+			"param": {"template": "home_button.png", "roi": [235, 5, 65, 65]}
 		},
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Return_Home"],
@@ -41,11 +39,9 @@
 	// 检查“X”按钮
 	"CheckClose": {
 		"recognition": {
-			"type": "TemplateMatch", // 用图像匹配（X按钮更稳定）
+			"type": "TemplateMatch",
 			"param": {
-				"template": "close_button.png" // 需准备720p裁剪图像
-				// "threshold": 0.7, // 匹配得分（1就是100%匹配）
-				// "roi": [1050, 135, 55, 45] // BUG：实际点击区域 但是不同流程位置可能不同 所以先注释
+				"template": "close_button.png"
 			}
 		},
 		"action": {"type": "Click", "param": {"target": true}},
@@ -56,10 +52,9 @@
 	// 检查“←”按钮
 	"CheckReturn": {
 		"recognition": {
-			"type": "TemplateMatch", // 用图像匹配（X按钮更稳定）
+			"type": "TemplateMatch",
 			"param": {
 				"template": "return_button.png",
-				// "threshold": 0.7, // 匹配得分（1就是100%匹配）
 				"roi": [20, 15, 85, 45] // BUG：实际点击区域 但是不同流程位置可能不同 所以先注释
 			}
 		},
