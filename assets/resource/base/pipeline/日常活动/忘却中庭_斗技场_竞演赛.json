@@ -7,7 +7,7 @@
 
 	"Courtyard_Arena_Gauntlet_EnterYard": {
 		"focus": "> 进入【忘却中庭】",
-		"recognition": {"type": "OCR", "param": {"expected": "忘却中庭", "roi": [1145, 388, 110, 45], "only_rec": true}},
+		"recognition": {"type": "OCR", "param": {"expected": "忘却中庭", "roi": [1145, 370, 105, 45]}}, // [1157, 382, 83, 25]
 		"action": {"type": "Click", "param": {"target": true, "target_offset": [0, -50, 0, 0]}},
 		"next": ["Courtyard_Arena_Gauntlet_ClickBloodArena", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
@@ -23,7 +23,7 @@
 
 	"Courtyard_Arena_Gauntlet_ClickDeathMatch": {
 		"focus": "> 点击【竞演赛】进入挑战界面",
-		"recognition": {"type": "OCR", "param": {"expected": "竞演赛", "roi": [400, 100, 125, 55]}},
+		"recognition": {"type": "OCR", "param": {"expected": "竞演赛", "roi": [560, 95, 115, 60]}}, // [570, 107, 95, 38]
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": [
 			"Courtyard_Arena_Gauntlet_ReadyToMatchOpponent",

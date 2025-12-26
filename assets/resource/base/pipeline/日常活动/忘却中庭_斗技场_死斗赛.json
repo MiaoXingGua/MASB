@@ -7,7 +7,7 @@
 
 	"Courtyard_Arena_Crucible_EnterYard": {
 		"focus": "> 进入【忘却中庭】",
-		"recognition": {"type": "OCR", "param": {"expected": "忘却中庭", "roi": [1145, 388, 110, 45], "only_rec": true}},
+		"recognition": {"type": "OCR", "param": {"expected": "忘却中庭", "roi": [1145, 370, 105, 45]}}, // [1157, 382, 83, 25]
 		"action": {"type": "Click", "param": {"target": true, "target_offset": [0, -50, 0, 0]}},
 		"next": ["Courtyard_Arena_Crucible_ClickBloodArena", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
@@ -34,7 +34,7 @@
 			"param": {
 				"template": ["courtyard_arena_crucible_reward.png", "courtyard_arena_crucible_reward_true.png"],
 				"threshold": 0.8,
-				"roi": [850, 140, 85, 65]
+				"roi": [1005, 140, 85, 65] // x+155
 			}
 		},
 		"action": {"type": "Click", "param": {"target": true}},
@@ -69,7 +69,7 @@
 
 	"Courtyard_Arena_Crucible_ClickDeathMatch": {
 		"focus": "> 点击【死斗赛】进入挑战界面",
-		"recognition": {"type": "OCR", "param": {"expected": "死斗赛", "roi": [740, 95, 115, 60]}},
+		"recognition": {"type": "OCR", "param": {"expected": "死斗赛", "roi": [895, 95, 115, 60]}}, // [905, 107, 99, 38]
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": [
 			"Courtyard_Arena_Crucibl_Closed", // 新赛季准备中
