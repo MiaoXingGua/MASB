@@ -7,7 +7,7 @@
 
 	"Courtyard_Abyss_EnterYard": {
 		"focus": "> 进入【忘却中庭】",
-		"recognition": {"type": "OCR", "param": {"expected": "忘却中庭", "roi": [1145, 388, 110, 45], "only_rec": true}},
+		"recognition": {"type": "OCR", "param": {"expected": "忘却中庭", "roi": [1145, 370, 105, 45]}}, // [1157, 382, 83, 25]
 		"action": {"type": "Click", "param": {"target": true, "target_offset": [0, -50, 0, 0]}},
 		"next": ["Courtyard_Abyss_EnterAbyss", "Courtyard_Abyss_EnterYard", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800

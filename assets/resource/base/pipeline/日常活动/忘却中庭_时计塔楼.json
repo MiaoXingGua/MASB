@@ -26,7 +26,7 @@
 		"recognition": {"type": "OCR", "param": {"expected": "快速扫荡", "roi": [845, 650, 130, 55]}}, // [856, 662, 108, 32]
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Courtyard_Timeworn_StartSweep", "Courtyard_Timeworn_SweepHasDone", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
-		"post_delay": 800
+		"post_delay": 1200
 	},
 
 	"Courtyard_Timeworn_SweepHasDone": {

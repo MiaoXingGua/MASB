@@ -23,7 +23,7 @@
 
 	"Clan_Claim": {
 		"focus": "> 点击【领取】",
-		"recognition": {"type": "OCR", "param": {"expected": "(^|[^已])领取", "roi": [0, 0, 0, 0]}},
+		"recognition": {"type": "OCR", "param": {"expected": "(^|[^已])领取", "roi": [0, 450, 1280, 65]}}, // [824, 465, 48, 32]
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Clan_ClickAnywhere1", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 1000
