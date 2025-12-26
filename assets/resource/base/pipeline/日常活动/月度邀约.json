@@ -11,8 +11,20 @@
 		"focus": "> 点击【月度邀约】",
 		"recognition": {"type": "OCR", "param": {"expected": "度邀约", "roi": [230, 175, 105, 55]}}, // [250, 189, 83, 33]
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["MonthlyInvite_ClickDailyTask", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"next": [
+			"[JumpBack]MonthlyInvite_hinkAbout", // 快结束时会问你要不要购买通票
+			"MonthlyInvite_ClickDailyTask",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
 		"post_delay": 1500
+	},
+
+	"MonthlyInvite_hinkAbout": {
+		"focus": "> 再想想...",
+		"recognition": {"type": "OCR", "param": {"expected": "再想想", "roi": [0, 0, 0, 0]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"post_delay": 800
 	},
 
 	// 点击【每日任务】
