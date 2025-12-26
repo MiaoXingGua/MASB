@@ -9,7 +9,10 @@
 	// 识别图片《贡礼_血池.png》点击进入
 	"Gongli_EnterBloodPool": {
 		"focus": "> 进入【血池】",
-		"recognition": {"type": "TemplateMatch", "param": {"template": "blood_pool.png", "threshold": 0.6, "roi": [30, 330, 160, 100]}}, //[40, 340, 138, 78],
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {"template": ["blood_pool.png", "blood_pool_empty.png"], "threshold": 0.6, "roi": [30, 330, 160, 100]}
+		}, //[40, 340, 138, 78],
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Gongli_CheckReceiveGift", "[JumpBack]TapClickAnywhere", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 1000
@@ -105,7 +108,7 @@
 		"focus": "> 点击任意处继续",
 		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Gongli_ClickCancel2", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"next": ["Gongli_ClickCancel2", "[JumpBack]LevelUp", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"], // 【点击任意处继续】后才会出现升级提示 而不是 点击【使用】时
 		"post_delay": 800
 		// "rate_limit": 2000,
 		// "timeout": 15000

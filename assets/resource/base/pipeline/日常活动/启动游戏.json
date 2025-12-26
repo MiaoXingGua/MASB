@@ -13,6 +13,7 @@
 		"next": [
 			"Start_ClickStart",
 			"Start_AlreadyInHomePage",
+			"UpdatingMaintenance",
 			"[JumpBack]CheckRetry",
 			"[JumpBack]InitFalse",
 			"[JumpBack]CheckRelogin",
@@ -25,8 +26,8 @@
 			"[JumpBack]CheckCloseAnnouncement",
 			"[JumpBack]TapClickAnywhere",
 			"[JumpBack]CheckReturn",
-			"[JumpBack]TapTap",
 			"[JumpBack]Return_Home"
+			// "[JumpBack]TapTap"
 		],
 		"post_delay": 5000, // 启动后延迟5s
 		"rate_limit": 5000, // 每5s检查
@@ -36,7 +37,10 @@
 	// 检查是否已在首页，成功则结束
 	"Start_AlreadyInHomePage": {
 		"focus": "> 检查是否在首页...",
-		"recognition": {"type": "TemplateMatch", "param": {"template": "blood_pool.png", "threshold": 0.5, "roi": [0, 0, 0, 0]}},
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {"template": ["blood_pool.png", "blood_pool_empty.png"], "threshold": 0.7, "roi": [0, 0, 0, 0]}
+		}, // 0.5 不够
 		"next": ["Start_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"timeout": 10000, // 10s超时，快速检查
 		"rate_limit": 2000 // 每2s检查
@@ -70,14 +74,18 @@
 
 	// 检查公告“X”按钮，15秒内检测到则点击，未检测到结束
 	"CheckCloseAnnouncement": {
-		"next": ["[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"next": ["[JumpBack]CheckRetry", "[JumpBack]CheckRelogin", "_CheckCloseAnnouncement"],
 		"focus": "> 检查公告关闭（X）...",
-		"recognition": {"type": "TemplateMatch", "param": {"template": "close_button.png", "threshold": 0.8, "roi": [1095, 45, 110, 110]}},
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {"template": ["close_button.png", "ad_close_red.png", "ad_close.png"], "threshold": 0.8, "roi": [1095, 45, 110, 110]}
+		},
 		"action": {"type": "Click", "param": {"target": true}},
 		"timeout": 15000, // 15s超时
 		"rate_limit": 1000, // 每1s检查
 		"post_delay": 500 // 点击后延迟0.5s
 	},
+	"_CheckCloseAnnouncement": {},
 
 	// 结束：成功进入游戏，终止任务
 	"Start_End": {
