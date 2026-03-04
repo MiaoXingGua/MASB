@@ -17,13 +17,20 @@
 		"focus": "> 点击【鲜血斗技场】",
 		"recognition": {"type": "OCR", "param": {"expected": "鲜血斗技场", "roi": [75, 345, 130, 50]}},
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Arena_Gauntlet_ClickDeathMatch", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"next": ["Courtyard_Arena_Gauntlet_ClickDeathMatch", "Courtyard_Arena_Gauntlet_HasOver","[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 1000
 	},
 
+	"Courtyard_Arena_Gauntlet_HasOver": {
+		"focus": "> 没开",
+		"next": ["Courtyard_Arena_Gauntlet_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 800
+	},
+
+
 	"Courtyard_Arena_Gauntlet_ClickDeathMatch": {
 		"focus": "> 点击【竞演赛】进入挑战界面",
-		"recognition": {"type": "OCR", "param": {"expected": "竞演赛", "roi": [560, 95, 115, 60]}}, // [570, 107, 95, 38]
+		"recognition": {"type": "OCR", "param": {"expected": "竞演赛", "roi": [0, 0, 0, 0]}}, // 位置会变更（有特殊斗技场不定时开放） [570, 107, 95, 38] → [560, 95, 115, 60]
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": [
 			"Courtyard_Arena_Gauntlet_ReadyToMatchOpponent",
