@@ -1,0 +1,201 @@
+{
+	"忘却中庭_虚实之间_开始": {
+		"focus": "> 开始 【虚实之间】",
+		"max_hit": 1,
+		"next": ["Xushi_EnterCourtyard", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin", "[JumpBack]CloseAd"]
+	},
+
+	// 识别《忘却中庭》点击进入
+	"Xushi_EnterCourtyard": {
+		"focus": "> 进入【忘却中庭】",
+		"recognition": {"type": "OCR", "param": {"expected": "忘却中庭", "roi": [1145, 370, 105, 45]}},
+		"action": {"type": "Click", "param": {"target": true, "target_offset": [0, -50, 0, 0]}},
+		"next": ["Xushi_EnterXushi", "Xushi_EnterCourtyard", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 800
+	},
+
+	// 识别《虚实之间》点击进入
+	"Xushi_EnterXushi": {
+		"focus": "> 进入【虚实之间】",
+		"recognition": {"type": "OCR", "param": {"expected": "虚实之间", "roi": [620, 225, 110, 45]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Xushi_MainInterfaceLoop", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 800
+	},
+
+	// 主界面循环入口（优先匹配有次数副本，无则结束）
+	"Xushi_MainInterfaceLoop": {
+		"focus": "> 主界面循环检查可打副本",
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": [
+			// 检查四大副本剩余次数
+			"Xushi_YuanShi_CheckTimes", // 1. 源始诞辰
+			"Xushi_YinXue_CheckTimes", // 2. 银血神律
+			"Xushi_HeiXue_CheckTimes", // 3. 黑血欲孽
+			"Xushi_ShouMu_CheckTimes", // 4. 守墓默想
+			"Xushi_End", // 无任何可打副本，直接结束
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
+		"post_delay": 800
+	},
+
+	/*
+	源始诞辰（左 1）：[45, 110, 220, 40] 第3层
+	银血神律（左 2）：[370, 110, 220, 40] 第4层
+	黑血欲孽（左 3）：[695, 110, 220, 40] 第3层
+	守墓默想（左 4）：[1010, 110, 220, 40] 第3层
+	层数：[25, 120, 145, 560]
+	开始斩魂： [740, 680, 415, 110]
+	**/
+
+	// ===================== 1. 源始诞辰  =====================
+	"Xushi_YuanShi_CheckTimes": {
+		"focus": "> 源始诞辰：检查剩余次数",
+		"recognition": {"type": "OCR", "param": {"expected": "[1-3]/3", "roi": [45, 110, 220, 40]}}, // 源始诞辰专属位置，可调整
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Xushi_YuanShi", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 500
+	},
+	// 源始诞辰：选择第03层
+	"Xushi_YuanShi": {
+		"focus": "> 源始诞辰：选择第03层",
+		"recognition": {"type": "OCR", "param": {"expected": "第03层", "roi": [25, 120, 145, 350]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Xushi_ReadyToFight", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 500
+	},
+	// ===================== 2. 银血神律 流程 =====================
+	"Xushi_YinXue_CheckTimes": {
+		"focus": "> 银血神律：检查剩余次数",
+		"recognition": {"type": "OCR", "param": {"expected": "[1-3]/3", "roi": [370, 110, 220, 40]}}, // 银血神律专属位置，可调整
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Xushi_YinXue", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 500
+	},
+	"Xushi_YinXue": {
+		"focus": "> 银血神律：选择第04层",
+		"recognition": {"type": "OCR", "param": {"expected": "第04层", "roi": [25, 120, 145, 350]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Xushi_ReadyToFight", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 500
+	},
+	// ===================== 3. 黑血欲孽 流程 =====================
+	"Xushi_HeiXue_CheckTimes": {
+		"focus": "> 黑血欲孽：检查剩余次数",
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "[1-3]/3",
+				"replace": [
+					["113", "1/3"],
+					["213", "2/3"],
+					["313", "3/3"]
+				],
+				"roi": [695, 110, 220, 40]
+			}
+		}, // 黑血欲孽专属位置，可调整
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Xushi_HeiXue", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 500
+	},
+	"Xushi_HeiXue": {
+		"focus": "> 黑血欲孽：选择第03层",
+		"recognition": {"type": "OCR", "param": {"expected": "第03层", "roi": [25, 120, 145, 350]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Xushi_ReadyToFight", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 500
+	},
+	// ===================== 4. 守墓默想 流程 =====================
+	"Xushi_ShouMu_CheckTimes": {
+		"focus": "> 守墓默想：检查剩余次数",
+		"recognition": {"type": "OCR", "param": {"expected": "[1-3]/3", "roi": [1010, 110, 220, 40]}}, // 守墓默想专属位置，可调整
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Xushi_ShouMu", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 500
+	},
+	"Xushi_ShouMu": {
+		"focus": "> 守墓默想：选择第04层",
+		"recognition": {"type": "OCR", "param": {"expected": "第03层", "roi": [25, 120, 145, 350]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Xushi_ReadyToFight", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 500
+	},
+	// ===================== 通用战斗流程  =====================
+	// 识别到开始斩魂
+	"Xushi_ReadyToFight": {
+		"focus": "> 源始诞辰：开始斩魂",
+		"recognition": {"type": "OCR", "param": {"expected": "开始斩魂", "roi": [945, 585, 220, 70]}},
+		"next": [
+			"Xushi_CheckFightTimes", // 识别可用次数，开始斩魂
+			"Xushi_ReturnMain", // 没有可用次数返回上一级，重选副本
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
+		"post_delay": 800
+	},
+	// 识别可用次数，开始斩魂
+	"Xushi_CheckFightTimes": {
+		"focus": "> 源始诞辰：检查可用次数",
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "[1-3]/3",
+				"replace": [
+					["113", "1/3"],
+					["213", "2/3"],
+					["313", "3/3"]
+				],
+				"roi": [1130, 585, 100, 70]
+			}
+		},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": [
+			"Xushi_StartFight", // 开始斩魂
+
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin",
+			"[JumpBack]Xushi_KeepClick" // 一直点击
+		],
+		"post_delay": 800
+	},
+	"Xushi_StartFight": {
+		"focus": "> 源始诞辰：开始战斗",
+		"recognition": {"type": "OCR", "param": {"expected": "完成", "roi": [1155, 600, 75, 50]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": [
+			// "Xushi_ReadyToFight", // 检查是否战斗完了（回到开始战斗界面了）
+			"Xushi_ReturnMain", // Main是通用的→选层是不通用的→战斗时通用的（但是战斗胜利后会自动给你升层，所以要判断胜利还是失败，比较麻烦。所以直接回到Main重新再来）
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin",
+			"[JumpBack]Xushi_KeepClick" // 没回到⑨一直点击
+		],
+		"post_delay": 2000
+	},
+	// 固定间隔一直点击（所有副本通用，间隔500ms）
+	"Xushi_KeepClick": {
+		"focus": "> 通用-固定间隔持续点击",
+		"action": {"type": "Click", "param": {"target": [640, 360, 0, 0]}}, // 通用点击位置，可调整
+		"post_delay": 500, // 固定间隔500ms
+		"timeout": 60000 // 最长持续点击60秒，可调整
+	},
+
+	// 识别《返回》点击（返回主界面继续循环）
+	"Xushi_ReturnMain": {
+		"focus": "> 通用：返回主界面",
+		"recognition": {"type": "OCR", "param": {"expected": "返回", "roi": [0, 0, 0, 0]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": [
+			"Xushi_MainInterfaceLoop", // 返回主界面，继续检查其他副本
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
+		"post_delay": 1000
+	},
+
+	// 虚实之间流程结束（无任何可打副本）
+	"Xushi_End": {
+		"focus": "> 【虚实之间】 结束",
+		"next": ["Return_Home", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"]
+	}
+}
