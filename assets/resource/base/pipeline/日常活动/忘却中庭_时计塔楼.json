@@ -25,8 +25,22 @@
 		"focus": "> 点击【快速扫荡】",
 		"recognition": {"type": "OCR", "param": {"expected": "快速扫荡", "roi": [845, 650, 130, 55]}}, // [856, 662, 108, 32]
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Courtyard_Timeworn_StartSweep", "Courtyard_Timeworn_SweepHasDone", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"next": [
+			"Courtyard_Timeworn_StartSweep",
+			"Courtyard_Timeworn_SweepHasOver",
+			"Courtyard_Timeworn_SweepHasDone",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin",
+			"Courtyard_Timeworn_QuickSweep" // 有可能没点到 再点一次
+		],
 		"post_delay": 1200
+	},
+
+	"Courtyard_Timeworn_SweepHasOver": {
+		"focus": "> 无法快速扫荡",
+		"recognition": {"type": "OCR", "param": {"expected": "无法快速扫荡", "roi": [0, 0, 0, 0]}},
+		"next": ["Courtyard_Timeworn_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 800
 	},
 
 	"Courtyard_Timeworn_SweepHasDone": {
