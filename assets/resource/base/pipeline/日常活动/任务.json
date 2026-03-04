@@ -18,7 +18,7 @@
 		"recognition": {"type": "OCR", "param": {"expected": "领取所有", "roi": [1035, 635, 120, 50]}},
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Task_ClickAnywhere", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
-		"post_delay": 800
+		"post_delay": 1200
 	},
 
 	"Task_ClickAnywhere": {

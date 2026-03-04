@@ -27,7 +27,7 @@
 	// 点击【每月推荐】
 	"VIPShop_ClickMonthlyRecommend": {
 		"focus": "> 点击【每月推荐】",
-		"recognition": {"type": "OCR", "param": {"expected": "每月推荐", "roi": [800, 60, 115, 50]}}, // [812, 72, 96, 29]
+		"recognition": {"type": "OCR", "param": {"expected": "每月推荐", "roi": [250, 60, 800, 50]}}, // [812, 72, 96, 29]
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["VIPShop_ClickFreeMonthly", "VIPShop_ClickWeeklyRecommend", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
@@ -54,7 +54,7 @@
 	// 点击【每周推荐】
 	"VIPShop_ClickWeeklyRecommend": {
 		"focus": "> 点击【每周推荐】",
-		"recognition": {"type": "OCR", "param": {"expected": "每周推荐", "roi": [580, 60, 115, 50]}}, // [592, 72, 93, 28]
+		"recognition": {"type": "OCR", "param": {"expected": "每周推荐", "roi": [250, 60, 800, 50]}}, // [592, 72, 93, 28]
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["VIPShop_ClickFreeWeekly", "VIPShop_ClickDailyRecommend", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800
@@ -81,7 +81,7 @@
 	// 点击【每日推荐】
 	"VIPShop_ClickDailyRecommend": {
 		"focus": "> 点击【每日推荐】",
-		"recognition": {"type": "OCR", "param": {"expected": "每日推荐", "roi": [360, 60, 115, 50]}}, // [370, 72, 95, 29]
+		"recognition": {"type": "OCR", "param": {"expected": "每日推荐", "roi": [250, 60, 800, 50]}}, // [370, 72, 95, 29]
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["VIPShop_ClickFreeDaily", "VIPShop_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800

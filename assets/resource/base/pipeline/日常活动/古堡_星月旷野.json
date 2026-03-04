@@ -9,7 +9,7 @@
 	// 点击【古堡】
 	"Castle_Wilderness_EnterCastle": {
 		"focus": "> 点击【古堡】",
-		"recognition": {"type": "OCR", "param": {"expected": "古堡", "roi": [550, 670, 60, 50]}},
+		"recognition": {"type": "OCR", "param": {"expected": "古堡", "roi": [545, 670, 60, 40]}}, // [558, 680, 38, 21]
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": ["Castle_Wilderness_EnterWilderness", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 1500,
@@ -33,7 +33,7 @@
 		"focus": "> 展开【事件列表】",
 		"recognition": {
 			"type": "TemplateMatch",
-			"param": {"template": "wilderness_event_list_close.png", "threshold": 0.8, "roi": [1170, 15, 55, 50]}
+			"param": {"template": "wilderness_event_list_close.png", "threshold": 0.5, "roi": [1170, 15, 55, 50]}
 		},
 		"action": {"type": "Click", "param": {"target": true, "target_offset": [15, 10, -35, -30]}}, // [1170, 15, 55, 50]→[1185, 25, 20, 20]
 		"next": [
@@ -76,7 +76,7 @@
 			"type": "TemplateMatch",
 			"param": {"template": "wilderness_event.png", "threshold": 0.8, "roi": [1155, 125, 75, 85]}
 		},
-		"action": {"type": "Click", "param": {"target": true}},
+		"action": {"type": "Click", "param": {"target": true, "target_offset": [-20, 0, -10, -10]}},
 		"next": ["Castle_Wilderness_ClickConfirm", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 800,
 		"rate_limit": 2000,

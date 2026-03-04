@@ -14,7 +14,7 @@
 			"param": {"template": ["blood_pool.png", "blood_pool_empty.png"], "threshold": 0.6, "roi": [30, 330, 160, 100]}
 		}, //[40, 340, 138, 78],
 		"action": {"type": "Click", "param": {"target": true}},
-		"next": ["Gongli_CheckReceiveGift", "[JumpBack]TapClickAnywhere", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"next": ["Gongli_CheckReceiveGift", "[JumpBack]TapAnywhere", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
 		"post_delay": 1000
 		// "rate_limit": 3000,
 		// "timeout": 600000
