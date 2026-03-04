@@ -1,0 +1,236 @@
+{
+	// 跨服挑战赛
+	"忘却中庭_斗技场_复辉挑战赛_开始": {
+		"focus": "> 开始 【挑战赛】",
+		"max_hit": 1,
+		"next": ["Courtyard_Arena_Challenge_EnterYard", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin", "[JumpBack]CloseAd"]
+	},
+
+	"Courtyard_Arena_Challenge_EnterYard": {
+		"focus": "> 进入【忘却中庭】",
+		"recognition": {"type": "OCR", "param": {"expected": "忘却中庭", "roi": [1145, 370, 105, 45]}}, // [1157, 382, 83, 25]
+		"action": {"type": "Click", "param": {"target": true, "target_offset": [0, -50, 0, 0]}},
+		"next": ["Courtyard_Arena_Challenge_ClickBloodArena", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 800
+	},
+
+	"Courtyard_Arena_Challenge_ClickBloodArena": {
+		"focus": "> 点击【鲜血斗技场】",
+		"recognition": {"type": "OCR", "param": {"expected": "鲜血斗技场", "roi": [75, 345, 130, 50]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Courtyard_Arena_Challenge_Match", "Courtyard_Arena_Challenge_HasOver", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 1000
+	},
+
+	"Courtyard_Arena_Challenge_HasOver": {
+		"focus": "> 斗技场 没开",
+		"next": ["Courtyard_Arena_Challenge_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 800
+	},
+
+	"Courtyard_Arena_Challenge_Match": {
+		"focus": "> 点击【挑战赛】",
+		"recognition": {"type": "OCR", "param": {"expected": "挑战赛", "roi": [0, 0, 0, 0]}}, // 位置会变更（有特殊斗技场不定时开放） [570, 107, 95, 38] → [560, 95, 115, 60]
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": [
+			"Courtyard_Arena_Challenge_Closed", // 赛季 没开始 退出
+			"Courtyard_Arena_Challenge_Match_Preliminary", // 海选赛
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
+		"post_delay": 1000
+	},
+
+	// 海选赛
+	"Courtyard_Arena_Challenge_Match_Preliminary": {
+		"focus": "> 点击【海选赛】",
+		"recognition": {"type": "OCR", "param": {"expected": "海选赛", "roi": [0, 0, 0, 0]}}, //
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": [
+			"Courtyard_Arena_Challenge_MainMenu", // 主界面
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
+		"post_delay": 1000
+	},
+
+	"Courtyard_Arena_Challenge_Closed": {
+		"focus": "> 新赛季准备中",
+		"recognition": {"type": "OCR", "param": {"expected": "新赛季准备中", "roi": [555, 100, 170, 55]}}, // [566, 111, 147, 33]
+		"next": ["Courtyard_Arena_Challenge_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 800
+	},
+
+	// 没有免费挑战机会
+	"Courtyard_Arena_Challenge_NoFreeChance": {
+		"focus": "> 没有可挑战次数",
+		"recognition": {"type": "OCR", "param": {"expected": "0", "roi": [1030, 150, 90, 70]}}, // [1037, 157, 73, 48]
+		"next": ["Courtyard_Arena_Challenge_End", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 800
+	},
+
+	"Courtyard_Arena_Challenge_MainMenu": {
+		"focus": "> 海选赛 主界面",
+		"recognition": {"type": "OCR", "param": {"expected": "今日挑战次数", "roi": [0, 0, 0, 0]}},
+		"next": ["Courtyard_Arena_Challenge_CheckBranches", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 800
+	},
+
+	// 开始筛选对手
+	"Courtyard_Arena_Challenge_CheckBranches": {
+		"focus": "> 检查4个挑战位 + 刷新按钮（任意一个可点就行）",
+		"next": [
+			"Courtyard_Arena_Challenge_NoFreeChance", // 没有免费挑战次数 退出
+			"Courtyard_Arena_Challenge_Branch1",
+			"Courtyard_Arena_Challenge_Branch2",
+			"Courtyard_Arena_Challenge_Branch3",
+			"Courtyard_Arena_Challenge_Branch4",
+			"Courtyard_Arena_Challenge_SwipUp", // 第一次战斗力没匹配到 向上滑（因为挑战赛刷新是扣钱的）
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		]
+	},
+
+	"Courtyard_Arena_Challenge_SwipUp": {
+		"focus": "> 4个都 ≥ 14万，向上滑",
+		"action": "Swipe",
+		"begin": [790, 540, 40, 40], // ③号 [790, 490, 75, 40]
+		"end": [790, 410, 40, 40], // ①号 [790, 360, 75, 40]
+		"next": ["Courtyard_Arena_Challenge_CheckBranches_2", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"], // 刷新完再重新检查
+		"post_delay": 1500
+	},
+
+	//
+	"Courtyard_Arena_Challenge_CheckBranches_2": {
+		"focus": "> 检查4个挑战位 + 刷新按钮（任意一个可点就行）",
+		"next": [
+			"Courtyard_Arena_Challenge_NoFreeChance", // 没有免费挑战次数 退出
+			"Courtyard_Arena_Challenge_Branch1",
+			"Courtyard_Arena_Challenge_Branch2",
+			"Courtyard_Arena_Challenge_Branch3",
+			"Courtyard_Arena_Challenge_Branch4",
+			// "Courtyard_Arena_Challenge_Refresh", //
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		]
+	},
+
+	"Courtyard_Arena_Challenge_Refresh": {
+		"focus": "> 4个都 ≥ 14万，点刷新",
+		"recognition": {"type": "TemplateMatch", "param": {"template": "courtyard_arena_tussle_refresh.png", "roi": [0, 0, 0, 0]}},
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Courtyard_Arena_Challenge_CheckBranches", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"], // 刷新完再重新检查
+		"post_delay": 1500
+	},
+
+	// 40w ^((0)|([1-9]\\d{0,4})|([1-3]\\d{5}))$
+	// 42w ^(0|[1-9]\\d{0,4}|[0-3]\\d{5}|4[0-1]\\d{4})$
+	// 14w ^(0|[1-9]\d{0,4}|1[0-3]\d{4})$
+	// 15w ^(?:[1-9]\d{0,4}|1[0-4]\d{4})$
+	// 15.5w ^(?:[1-9]\d{0,4}|1[0-4]\d{4}|15[0-4]\d{3})$
+	"Courtyard_Arena_Challenge_Branch1": {
+		"focus": ">  ①战斗力 < 15w",
+		"recognition": {"type": "OCR", "param": {"expected": "^(?:[1-9]\\d{0,4}|1[0-4]\\d{4}|15[0-4]\\d{3})$", "roi": [790, 360, 75, 80]}}, // [800, 370, 55, 20]
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Courtyard_Arena_Challenge_EnterBattle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 800
+	},
+
+	"Courtyard_Arena_Challenge_Branch2": {
+		"focus": "> ②战斗力 < 15w",
+		"recognition": {"type": "OCR", "param": {"expected": "^(?:[1-9]\\d{0,4}|1[0-4]\\d{4}|15[0-4]\\d{3})$", "roi": [1185, 360, 75, 80]}}, // [1205, 370, 40, 20]
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Courtyard_Arena_Challenge_EnterBattle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 800
+	},
+
+	"Courtyard_Arena_Challenge_Branch3": {
+		"focus": "> ③战斗力 < 15w",
+		"recognition": {"type": "OCR", "param": {"expected": "^(?:[1-9]\\d{0,4}|1[0-4]\\d{4}|15[0-4]\\d{3})$", "roi": [790, 490, 75, 80]}}, // [805, 500, 55, 20]
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Courtyard_Arena_Challenge_EnterBattle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 800
+	},
+
+	"Courtyard_Arena_Challenge_Branch4": {
+		"focus": "> ④战斗力 < 15w",
+		"recognition": {"type": "OCR", "param": {"expected": "^(?:[1-9]\\d{0,4}|1[0-4]\\d{4}|15[0-4]\\d{3})$", "roi": [1185, 490, 75, 80]}}, // [1205, 500, 45, 20]
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Courtyard_Arena_Challenge_EnterBattle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 800
+	},
+
+	// 进入战斗 - 勾选自动战斗
+	// 其实 点击固定点会稳定
+	"Courtyard_Arena_Challenge_EnterBattle": {
+		"focus": "> 进入战斗 - 勾选自动战斗",
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {"template": "courtyard_arena_tussle_model_selecter.png", "roi": [250, 465, 60, 60]}
+		}, // [254, 521, 48, 42]
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": [
+			"Courtyard_Arena_Challenge_isAutoBattle",
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin",
+			"Courtyard_Arena_Challenge_EnterBattle" // 回去再勾选自动战斗
+		], // 刷新完再重新检查
+		"post_delay": 1500
+	},
+
+	// 进入战斗 - 确认是自动战斗
+	"Courtyard_Arena_Challenge_isAutoBattle": {
+		"focus": "> 进入战斗 - 确认是自动战斗",
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {"template": "courtyard_arena_tussle_model_selecter_auto_battle.png", "roi": [250, 475, 135, 45], "threshold": 0.95} // [255, 526, 126, 35]
+		},
+		"next": [
+			"Courtyard_Arena_Challenge_BattleStart", // 点击进入战斗
+			// "Courtyard_Arena_Challenge_EnterBattle", // 回去再勾选自动战斗
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		],
+		"post_delay": 1500
+	},
+
+	"Courtyard_Arena_Challenge_BattleStart": {
+		"focus": "> 进入战斗 - 开始战斗",
+		"recognition": {"type": "OCR", "param": {"expected": "进入战斗", "roi": [840, 500, 130, 60]}}, // [848, 512, 109, 37]
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Courtyard_Arena_Challenge_Battle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 3000
+	},
+
+	// 进入战斗 - 战斗中...
+	"Courtyard_Arena_Challenge_Battle": {
+		"focus": "> 进入战斗 - 战斗中...",
+		"next": [
+			"Courtyard_Arena_Challenge_QuickBattle", // 点击 快速战斗
+			"Courtyard_Arena_Challenge_MainMenu", // 重新匹配战斗
+			"Courtyard_Arena_Challenge_TapTap", // 点点点
+			"[JumpBack]CheckRetry",
+			"[JumpBack]CheckRelogin"
+		]
+	},
+
+	"Courtyard_Arena_Challenge_QuickBattle": {
+		"focus": "> 开始战斗",
+		"recognition": {"type": "OCR", "param": {"expected": "完成", "roi": [1150, 600, 75, 55]}}, // [1162, 608, 55, 32]
+		"action": {"type": "Click", "param": {"target": true}},
+		"next": ["Courtyard_Arena_Challenge_Battle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 1000
+	},
+
+	"Courtyard_Arena_Challenge_TapTap": {
+		"focus": "> 随便点点",
+		"action": {"type": "Click", "param": {"target": [640, 360, 0, 0]}},
+		"next": ["Courtyard_Arena_Challenge_Battle", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"],
+		"post_delay": 1200
+	},
+
+	"Courtyard_Arena_Challenge_End": {
+		"focus": "> 【角逐赛】 结束",
+		"next": ["Return_Home", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"] // 接回之前的刷新/挑战分支循环
+	}
+}
