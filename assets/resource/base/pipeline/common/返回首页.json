@@ -2,7 +2,7 @@
 	"Return_Home": {
 		"focus": "> 返回首页",
 		"next": [
-			"TapClickAnywhere",
+			"TapAnywhere",
 			"TapBlankWhere",
 			"CheckHome", // 检查“返回”按钮
 			"CheckClose", // 检查“X”按钮
@@ -16,7 +16,7 @@
 	},
 
 	// 检查“点击任意处继续”并点击屏幕中心
-	"TapClickAnywhere": {
+	"TapAnywhere": {
 		"focus": "> 点击任意处继续...",
 		"recognition": {"type": "OCR", "param": {"expected": "点击任意处继续", "roi": [555, 635, 165, 45]}},
 		"action": {"type": "Click", "param": {"target": true}},
@@ -28,7 +28,7 @@
 
 	"TapBlankWhere": {
 		"focus": "> 点击空白区域关闭...",
-		"recognition": {"type": "OCR", "param": {"expected": "空白区域", "roi": [555, 665, 165, 65]}},
+		"recognition": {"type": "OCR", "param": {"expected": "空白", "roi": [555, 665, 165, 65]}},
 		"action": {"type": "Click", "param": {"target": true}},
 		"post_delay": 800, // 点击后延迟0.8s
 		"rate_limit": 2000, // 每2s检查

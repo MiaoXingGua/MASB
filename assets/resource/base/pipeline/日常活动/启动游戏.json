@@ -24,7 +24,8 @@
 			"[JumpBack]Login_CheckLoginButton",
 			"[JumpBack]CheckProtocol",
 			"[JumpBack]CheckCloseAnnouncement",
-			"[JumpBack]TapClickAnywhere",
+			"[JumpBack]TapAnywhere",
+			"[JumpBack]TapBlankWhere",
 			"[JumpBack]CheckReturn",
 			"[JumpBack]Return_Home"
 			// "[JumpBack]TapTap"
@@ -62,7 +63,7 @@
 			"[JumpBack]CheckConfirm",
 			"[JumpBack]Login_CheckLoginButton",
 			"[JumpBack]CheckProtocol",
-			"[JumpBack]TapClickAnywhere",
+			"[JumpBack]TapAnywhere",
 			"[JumpBack]CheckReturn",
 			"[JumpBack]CheckCloseAnnouncement"
 		],
@@ -78,7 +79,7 @@
 		"focus": "> 检查公告关闭（X）...",
 		"recognition": {
 			"type": "TemplateMatch",
-			"param": {"template": ["close_button.png", "ad_close_red.png", "ad_close.png"], "threshold": 0.8, "roi": [1095, 45, 110, 110]}
+			"param": {"template": ["close_button.png", "ad_close_red.png", "ad_close.png"], "threshold": 0.7, "roi": [1095, 45, 110, 120]}
 		},
 		"action": {"type": "Click", "param": {"target": true}},
 		"timeout": 15000, // 15s超时
