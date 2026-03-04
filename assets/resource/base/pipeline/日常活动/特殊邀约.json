@@ -8,8 +8,8 @@
 
 	// 点击【特殊邀约】
 	"TimeDreamInvite_EnterTimeDreamInvite": {
-		"focus": "> 点击【圣咏邀约】",
-		"recognition": {"type": "OCR", "param": {"expected": "圣咏邀约", "roi": [350, 175, 105, 55]}}, // [250, 189, 83, 33]
+		"focus": "> 点击【春意邀约】",
+		"recognition": {"type": "OCR", "param": {"expected": "春意邀约", "roi": [350, 175, 105, 55]}}, // [250, 189, 83, 33]
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": [
 			"[JumpBack]TimeDreamInvite_ThinkAbout", // 快结束时会问你要不要购买通票
