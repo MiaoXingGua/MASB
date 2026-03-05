@@ -28,8 +28,8 @@
 
 	"TapBlankWhere": {
 		"focus": "> 点击空白区域关闭...",
-		"recognition": {"type": "OCR", "param": {"expected": "空白", "roi": [555, 665, 165, 65]}},
-		"action": {"type": "Click", "param": {"target": true}},
+		"recognition": {"type": "OCR", "param": {"expected": "空白", "roi": [565, 630, 220, 70]}},
+		"action": {"type": "Click", "param": {"target": true, "target_offset": [0, -530, -200, -50]}}, // target_offset 在 target 的基础上额外移动再作为点击目标，四个值分别相加。可选，默认 [0, 0, 0, 0] 。
 		"post_delay": 800, // 点击后延迟0.8s
 		"rate_limit": 2000, // 每2s检查
 		"next": ["Return_Home"],

@@ -64,6 +64,7 @@
 			"[JumpBack]Login_CheckLoginButton",
 			"[JumpBack]CheckProtocol",
 			"[JumpBack]TapAnywhere",
+			"[JumpBack]TapBlankWhere",
 			"[JumpBack]CheckReturn",
 			"[JumpBack]CheckCloseAnnouncement"
 		],
