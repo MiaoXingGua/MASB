@@ -44,7 +44,7 @@
 	// 海选赛
 	"Courtyard_Arena_Challenge_Match_Preliminary": {
 		"focus": "> 点击【海选赛】",
-		"recognition": {"type": "OCR", "param": {"expected": "海选赛", "roi": [0, 0, 0, 0]}}, //
+		"recognition": {"type": "OCR", "param": {"expected": "海选赛", "roi": [945, 155, 135, 65]}}, // [952, 165, 114, 44]
 		"action": {"type": "Click", "param": {"target": true}},
 		"next": [
 			"Courtyard_Arena_Challenge_MainMenu", // 主界面
@@ -95,7 +95,8 @@
 		"focus": "> 4个都 ≥ 14万，向上滑",
 		"action": "Swipe",
 		"begin": [790, 540, 40, 40], // ③号 [790, 490, 75, 40]
-		"end": [790, 410, 40, 40], // ①号 [790, 360, 75, 40]
+		// "end": [790, 410, 40, 40], // ①号 [790, 360, 75, 40]
+		"end": [790, 0, 40, 40],
 		"next": ["Courtyard_Arena_Challenge_CheckBranches_2", "[JumpBack]CheckRetry", "[JumpBack]CheckRelogin"], // 刷新完再重新检查
 		"post_delay": 1500
 	},
@@ -109,7 +110,7 @@
 			"Courtyard_Arena_Challenge_Branch2",
 			"Courtyard_Arena_Challenge_Branch3",
 			"Courtyard_Arena_Challenge_Branch4",
-			// "Courtyard_Arena_Challenge_Refresh", //
+			"Courtyard_Arena_Challenge_Refresh", // 刷新
 			"[JumpBack]CheckRetry",
 			"[JumpBack]CheckRelogin"
 		]
@@ -168,7 +169,7 @@
 			"type": "TemplateMatch",
 			"param": {"template": "courtyard_arena_tussle_model_selecter.png", "roi": [250, 465, 60, 60]}
 		}, // [254, 521, 48, 42]
-		"action": {"type": "Click", "param": {"target": true}},
+		"action": {"type": "Click", "param": {"target": true, "target_offset": [30, 30, -60, -60]}},
 		"next": [
 			"Courtyard_Arena_Challenge_isAutoBattle",
 			"[JumpBack]CheckRetry",
